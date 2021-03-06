@@ -14,6 +14,8 @@
 		3DAABC6F25F40DA90042AD4D /* UIKitMyNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3DAABC6D25F40DA90042AD4D /* UIKitMyNotes.xcdatamodeld */; };
 		3DAABC7125F40DB30042AD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DAABC7025F40DB30042AD4D /* Assets.xcassets */; };
 		3DAABC7425F40DB30042AD4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DAABC7225F40DB30042AD4D /* LaunchScreen.storyboard */; };
+		3DAABC7F25F4117F0042AD4D /* NotesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAABC7E25F4117F0042AD4D /* NotesRepository.swift */; };
+		3DAABC8425F412330042AD4D /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAABC8325F412330042AD4D /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		3DAABC7025F40DB30042AD4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DAABC7325F40DB30042AD4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3DAABC7525F40DB30042AD4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3DAABC7E25F4117F0042AD4D /* NotesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesRepository.swift; sourceTree = "<group>"; };
+		3DAABC8325F412330042AD4D /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 		3DAABC6325F40DA80042AD4D /* UIKitMyNotes */ = {
 			isa = PBXGroup;
 			children = (
+				3DAABC8125F4120E0042AD4D /* domain */,
+				3DAABC7D25F411670042AD4D /* persistence */,
 				3DAABC6425F40DA80042AD4D /* AppDelegate.swift */,
 				3DAABC6625F40DA80042AD4D /* SceneDelegate.swift */,
 				3DAABC6825F40DA80042AD4D /* ViewController.swift */,
@@ -68,6 +74,30 @@
 				3DAABC6D25F40DA90042AD4D /* UIKitMyNotes.xcdatamodeld */,
 			);
 			path = UIKitMyNotes;
+			sourceTree = "<group>";
+		};
+		3DAABC7D25F411670042AD4D /* persistence */ = {
+			isa = PBXGroup;
+			children = (
+				3DAABC7E25F4117F0042AD4D /* NotesRepository.swift */,
+			);
+			name = persistence;
+			sourceTree = "<group>";
+		};
+		3DAABC8125F4120E0042AD4D /* domain */ = {
+			isa = PBXGroup;
+			children = (
+				3DAABC8225F412220042AD4D /* model */,
+			);
+			path = domain;
+			sourceTree = "<group>";
+		};
+		3DAABC8225F412220042AD4D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				3DAABC8325F412330042AD4D /* Note.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +171,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DAABC6925F40DA80042AD4D /* ViewController.swift in Sources */,
+				3DAABC7F25F4117F0042AD4D /* NotesRepository.swift in Sources */,
 				3DAABC6525F40DA80042AD4D /* AppDelegate.swift in Sources */,
 				3DAABC6F25F40DA90042AD4D /* UIKitMyNotes.xcdatamodeld in Sources */,
 				3DAABC6725F40DA80042AD4D /* SceneDelegate.swift in Sources */,
+				3DAABC8425F412330042AD4D /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
