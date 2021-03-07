@@ -16,6 +16,7 @@
 		3DAABC7425F40DB30042AD4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DAABC7225F40DB30042AD4D /* LaunchScreen.storyboard */; };
 		3DAABC7F25F4117F0042AD4D /* NotesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAABC7E25F4117F0042AD4D /* NotesRepository.swift */; };
 		3DAABC8425F412330042AD4D /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAABC8325F412330042AD4D /* Note.swift */; };
+		3DC70F4B25F5171A00C446B2 /* MyNotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC70F4A25F5171A00C446B2 /* MyNotesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		3DAABC7525F40DB30042AD4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DAABC7E25F4117F0042AD4D /* NotesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesRepository.swift; sourceTree = "<group>"; };
 		3DAABC8325F412330042AD4D /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		3DC70F4A25F5171A00C446B2 /* MyNotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNotesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				3DAABC6825F40DA80042AD4D /* MyNotesViewController.swift */,
+				3DC70F4A25F5171A00C446B2 /* MyNotesViewModel.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				3DAABC7F25F4117F0042AD4D /* NotesRepository.swift in Sources */,
 				3DAABC6525F40DA80042AD4D /* AppDelegate.swift in Sources */,
 				3DAABC6F25F40DA90042AD4D /* UIKitMyNotes.xcdatamodeld in Sources */,
+				3DC70F4B25F5171A00C446B2 /* MyNotesViewModel.swift in Sources */,
 				3DAABC6725F40DA80042AD4D /* SceneDelegate.swift in Sources */,
 				3DAABC8425F412330042AD4D /* Note.swift in Sources */,
 			);
