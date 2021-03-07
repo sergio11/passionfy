@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DA307CC25F55F6F00FD50CF /* SaveNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA307CB25F55F6F00FD50CF /* SaveNoteViewController.swift */; };
 		3DAABC6525F40DA80042AD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAABC6425F40DA80042AD4D /* AppDelegate.swift */; };
 		3DAABC6725F40DA80042AD4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAABC6625F40DA80042AD4D /* SceneDelegate.swift */; };
 		3DAABC6925F40DA80042AD4D /* MyNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAABC6825F40DA80042AD4D /* MyNotesViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3DA307CB25F55F6F00FD50CF /* SaveNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveNoteViewController.swift; sourceTree = "<group>"; };
 		3DAABC6125F40DA80042AD4D /* UIKitMyNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitMyNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DAABC6425F40DA80042AD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DAABC6625F40DA80042AD4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3DA307C925F55F3A00FD50CF /* mynotes */ = {
+			isa = PBXGroup;
+			children = (
+				3DAABC6825F40DA80042AD4D /* MyNotesViewController.swift */,
+				3DC70F4A25F5171A00C446B2 /* MyNotesViewModel.swift */,
+			);
+			path = mynotes;
+			sourceTree = "<group>";
+		};
+		3DA307CA25F55F4D00FD50CF /* savenote */ = {
+			isa = PBXGroup;
+			children = (
+				3DA307CB25F55F6F00FD50CF /* SaveNoteViewController.swift */,
+			);
+			path = savenote;
+			sourceTree = "<group>";
+		};
 		3DAABC5825F40DA80042AD4D = {
 			isa = PBXGroup;
 			children = (
@@ -105,8 +124,8 @@
 		3DC70F4825F5059D00C446B2 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				3DAABC6825F40DA80042AD4D /* MyNotesViewController.swift */,
-				3DC70F4A25F5171A00C446B2 /* MyNotesViewModel.swift */,
+				3DA307CA25F55F4D00FD50CF /* savenote */,
+				3DA307C925F55F3A00FD50CF /* mynotes */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -184,6 +203,7 @@
 				3DAABC6925F40DA80042AD4D /* MyNotesViewController.swift in Sources */,
 				3DAABC7F25F4117F0042AD4D /* NotesRepository.swift in Sources */,
 				3DAABC6525F40DA80042AD4D /* AppDelegate.swift in Sources */,
+				3DA307CC25F55F6F00FD50CF /* SaveNoteViewController.swift in Sources */,
 				3DAABC6F25F40DA90042AD4D /* UIKitMyNotes.xcdatamodeld in Sources */,
 				3DC70F4B25F5171A00C446B2 /* MyNotesViewModel.swift in Sources */,
 				3DAABC6725F40DA80042AD4D /* SceneDelegate.swift in Sources */,
