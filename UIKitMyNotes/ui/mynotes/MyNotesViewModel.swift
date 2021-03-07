@@ -13,13 +13,10 @@ class MyNotesViewModel {
 
     
     func getNotes(with callback: @escaping (ResultEnum) -> Void) {
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
             self.myNotes = self.getMyNotesFromDB()
             callback(ResultEnum.success(myNotes: self.myNotes))
         }
-        
-        
     }
     
     enum ResultEnum {
