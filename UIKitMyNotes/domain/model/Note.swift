@@ -25,6 +25,17 @@ class Note {
         case LOW
         case MEDIUM
         case HIGHT
+        
+        static func of(ordinal: Int) -> NotePriorityEnum {
+            let priorityEnum: NotePriorityEnum
+            switch ordinal {
+                case 0: priorityEnum = NotePriorityEnum.LOW
+                case 1: priorityEnum = NotePriorityEnum.MEDIUM
+                default: priorityEnum = NotePriorityEnum.HIGHT
+            }
+            return priorityEnum;
+        }
+        
     }
     
 }
