@@ -55,7 +55,6 @@ class MyNotesViewController: UIViewController {
     
     override func performSegue(withIdentifier identifier: String, sender: Any?) {
         print("performSegue \(identifier)")
-        
     }
     
     
@@ -63,7 +62,7 @@ class MyNotesViewController: UIViewController {
     
     // Load data in the tableView
     private func onLoadData() {
-        viewModel.getNotes(with: { [weak self] result in
+        viewModel.getNotes(completionBlock: {[weak self] result in
             self?.myNotesTable.reloadData()
             self?.myNotesTable.separatorStyle = .singleLine
             self?.removeLoadingScreen()
@@ -98,7 +97,6 @@ class MyNotesViewController: UIViewController {
             print("Delete note")
         })
         alertViewController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
-            print("Delete note was cancel")
             self.myNotesTable.reloadRows(at: [IndexPath(row: noteIdx, section: 0)], with: .right)
         })
         present(alertViewController, animated: true, completion: nil)

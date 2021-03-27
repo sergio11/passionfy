@@ -9,20 +9,29 @@ import Foundation
 
 class MyNotesViewModel {
     
+    
+    fileprivate let notesRepository = NotesRepository.shared
+    
     private(set) var myNotes: [Note] = []
 
     
-    func getNotes(with callback: @escaping (ResultEnum) -> Void) {
+    func getNotes(completionBlock: @escaping (Result<[Note], Error>) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
             self.myNotes = self.getMyNotesFromDB()
-            callback(ResultEnum.success(myNotes: self.myNotes))
+            completionBlock(.success(self.myNotes))
         }
     }
     
-    enum ResultEnum {
-        case success(myNotes: [Note])
-        case error(ex: NSException)
+    func saveNote(note: Note, completionBlock: (Result<Note, Error>) -> Void) {
+        do {
+            let noteSaved = try notesRepository.save(note: note)
+            completionBlock(.success(noteSaved))
+        } catch let error {
+            completionBlock(.failure(error))
+        }
+        
     }
+    
     
     /**
         Private Methods

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D7B63A3260FA994008B31E5 /* RepositoryExceptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B63A2260FA994008B31E5 /* RepositoryExceptions.swift */; };
 		3DA307CC25F55F6F00FD50CF /* SaveNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA307CB25F55F6F00FD50CF /* SaveNoteViewController.swift */; };
 		3DAABC6525F40DA80042AD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAABC6425F40DA80042AD4D /* AppDelegate.swift */; };
 		3DAABC6725F40DA80042AD4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAABC6625F40DA80042AD4D /* SceneDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D7B63A2260FA994008B31E5 /* RepositoryExceptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryExceptions.swift; sourceTree = "<group>"; };
 		3DA307CB25F55F6F00FD50CF /* SaveNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveNoteViewController.swift; sourceTree = "<group>"; };
 		3DAABC6125F40DA80042AD4D /* UIKitMyNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitMyNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DAABC6425F40DA80042AD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				3DAABC7E25F4117F0042AD4D /* NotesRepository.swift */,
+				3D7B63A2260FA994008B31E5 /* RepositoryExceptions.swift */,
 			);
 			name = persistence;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DAABC6925F40DA80042AD4D /* MyNotesViewController.swift in Sources */,
+				3D7B63A3260FA994008B31E5 /* RepositoryExceptions.swift in Sources */,
 				3DAABC7F25F4117F0042AD4D /* NotesRepository.swift in Sources */,
 				3DAABC6525F40DA80042AD4D /* AppDelegate.swift in Sources */,
 				3DA307CC25F55F6F00FD50CF /* SaveNoteViewController.swift in Sources */,
