@@ -13,25 +13,25 @@ struct CardView: View {
     @State private var degrees: Double = 0
     @State private var currentImageIndex = 0
     
-    @State private var mockImages = [
-        "example",
-        "example",
-        "example"
-    ]
+    let model: CardModel
     
     var body: some View {
         ZStack(alignment: .bottom) {
             ZStack(alignment: .top) {
-                Image(mockImages[currentImageIndex])
+                Image(user.profileImageURLs[currentImageIndex])
                     .resizable()
                     .scaledToFit()
+                    .frame(width: SizeConstants.cardWidth, height: SizeConstants.cardHeight)
                     .overlay {
-                        ImageScrollingOverlay(currentImageIndex: $currentImageIndex, imageCount: mockImages.count)
+                        ImageScrollingOverlay(currentImageIndex: $currentImageIndex, imageCount: imageCount)
                     }
+                
+                CardImageIndicatorView(currentImageIndex: currentImageIndex, imageCount: imageCount)
+                
                 SwipeActionIndicatorView(xOffset: $xOffset)
             }
         
-            UserInfoView()
+            UserInfoView(user: user)
                 .padding(.horizontal)
         }
         .frame(width: SizeConstants.cardWidth, height: SizeConstants.cardHeight)
@@ -48,6 +48,35 @@ struct CardView: View {
 
 private extension CardView {
     
+    var user: User {
+        return model.user
+    }
+    
+    var imageCount: Int {
+        return user.profileImageURLs.count
+    }
+}
+
+private extension CardView {
+    
+    func returnToCenter() {
+        xOffset = 0
+        degrees = 0
+    }
+    
+    func swipeRight() {
+        xOffset = 500
+        degrees = 12
+    }
+    
+    func swipeLeft() {
+        xOffset = -500
+        degrees = -12
+    }
+}
+
+private extension CardView {
+    
     func onDragChanged(_ value: _ChangedGesture<DragGesture>.Value) {
         xOffset = value.translation.width
         degrees = Double(value.translation.width / 25)
@@ -56,14 +85,20 @@ private extension CardView {
     func onDragEnded(_ value: _ChangedGesture<DragGesture>.Value) {
         let width = value.translation.width
         if abs(width) <= abs(SizeConstants.screenCutOff) {
-            xOffset = 0
-            degrees = 0
+            returnToCenter()
+        } else {
+            if width >= SizeConstants.screenCutOff {
+                swipeRight()
+            } else {
+                swipeLeft()
+            }
         }
+        
     }
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView()
+        CardView(model: CardModel(user: MockData.users[0]))
     }
 }
