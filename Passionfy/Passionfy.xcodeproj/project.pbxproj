@@ -14,6 +14,9 @@
 		3DC37E302CF7902C00E7FB1B /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E2F2CF7902C00E7FB1B /* MainTabBar.swift */; };
 		3DC37E332CF792C600E7FB1B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E322CF792C600E7FB1B /* CardView.swift */; };
 		3DC37E352CF7943C00E7FB1B /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E342CF7943C00E7FB1B /* UserInfoView.swift */; };
+		3DC37E372CF79A8E00E7FB1B /* SwipeActionIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E362CF79A8E00E7FB1B /* SwipeActionIndicatorView.swift */; };
+		3DC37E3A2CF79D2400E7FB1B /* SizeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E392CF79D2400E7FB1B /* SizeConstants.swift */; };
+		3DC37E3C2CF79E5D00E7FB1B /* ImageScrollingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E3B2CF79E5D00E7FB1B /* ImageScrollingOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +28,9 @@
 		3DC37E2F2CF7902C00E7FB1B /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		3DC37E322CF792C600E7FB1B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3DC37E342CF7943C00E7FB1B /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		3DC37E362CF79A8E00E7FB1B /* SwipeActionIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionIndicatorView.swift; sourceTree = "<group>"; };
+		3DC37E392CF79D2400E7FB1B /* SizeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstants.swift; sourceTree = "<group>"; };
+		3DC37E3B2CF79E5D00E7FB1B /* ImageScrollingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollingOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,7 @@
 		3DC37E292CF78FBB00E7FB1B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3DC37E382CF79D1000E7FB1B /* Constants */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -158,10 +165,20 @@
 		3DC37E312CF792AB00E7FB1B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3DC37E3B2CF79E5D00E7FB1B /* ImageScrollingOverlay.swift */,
 				3DC37E322CF792C600E7FB1B /* CardView.swift */,
 				3DC37E342CF7943C00E7FB1B /* UserInfoView.swift */,
+				3DC37E362CF79A8E00E7FB1B /* SwipeActionIndicatorView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3DC37E382CF79D1000E7FB1B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				3DC37E392CF79D2400E7FB1B /* SizeConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,9 +251,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DC37E3C2CF79E5D00E7FB1B /* ImageScrollingOverlay.swift in Sources */,
 				3DC37E302CF7902C00E7FB1B /* MainTabBar.swift in Sources */,
+				3DC37E372CF79A8E00E7FB1B /* SwipeActionIndicatorView.swift in Sources */,
 				3DC37E1A2CF78F6200E7FB1B /* ContentView.swift in Sources */,
 				3DC37E332CF792C600E7FB1B /* CardView.swift in Sources */,
+				3DC37E3A2CF79D2400E7FB1B /* SizeConstants.swift in Sources */,
 				3DC37E182CF78F6200E7FB1B /* PassionfyApp.swift in Sources */,
 				3DC37E352CF7943C00E7FB1B /* UserInfoView.swift in Sources */,
 			);
