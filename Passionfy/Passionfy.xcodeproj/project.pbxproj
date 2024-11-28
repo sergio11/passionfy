@@ -24,6 +24,8 @@
 		3DC37E4A2CF7A94400E7FB1B /* CardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E492CF7A94400E7FB1B /* CardsViewModel.swift */; };
 		3DC37E4D2CF7A9B000E7FB1B /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E4C2CF7A9B000E7FB1B /* CardService.swift */; };
 		3DC37E502CF7AA7E00E7FB1B /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E4F2CF7AA7E00E7FB1B /* MockData.swift */; };
+		3DC37E522CF7B66200E7FB1B /* SwipeActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E512CF7B66200E7FB1B /* SwipeActionButtonsView.swift */; };
+		3DC37E542CF7B7B900E7FB1B /* SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E532CF7B7B900E7FB1B /* SwipeAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		3DC37E492CF7A94400E7FB1B /* CardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewModel.swift; sourceTree = "<group>"; };
 		3DC37E4C2CF7A9B000E7FB1B /* CardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardService.swift; sourceTree = "<group>"; };
 		3DC37E4F2CF7AA7E00E7FB1B /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		3DC37E512CF7B66200E7FB1B /* SwipeActionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionButtonsView.swift; sourceTree = "<group>"; };
+		3DC37E532CF7B7B900E7FB1B /* SwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,7 @@
 				3DC37E362CF79A8E00E7FB1B /* SwipeActionIndicatorView.swift */,
 				3DC37E3D2CF7A2F300E7FB1B /* CardImageIndicatorView.swift */,
 				3DC37E3F2CF7A61400E7FB1B /* CardStackView.swift */,
+				3DC37E512CF7B66200E7FB1B /* SwipeActionButtonsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				3DC37E462CF7A90C00E7FB1B /* CardModel.swift */,
+				3DC37E532CF7B7B900E7FB1B /* SwipeAction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,8 +331,10 @@
 				3DC37E302CF7902C00E7FB1B /* MainTabBar.swift in Sources */,
 				3DC37E372CF79A8E00E7FB1B /* SwipeActionIndicatorView.swift in Sources */,
 				3DC37E502CF7AA7E00E7FB1B /* MockData.swift in Sources */,
+				3DC37E542CF7B7B900E7FB1B /* SwipeAction.swift in Sources */,
 				3DC37E1A2CF78F6200E7FB1B /* ContentView.swift in Sources */,
 				3DC37E3E2CF7A2F300E7FB1B /* CardImageIndicatorView.swift in Sources */,
+				3DC37E522CF7B66200E7FB1B /* SwipeActionButtonsView.swift in Sources */,
 				3DC37E472CF7A90C00E7FB1B /* CardModel.swift in Sources */,
 				3DC37E402CF7A61400E7FB1B /* CardStackView.swift in Sources */,
 				3DC37E332CF792C600E7FB1B /* CardView.swift in Sources */,
