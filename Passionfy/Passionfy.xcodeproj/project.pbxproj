@@ -13,6 +13,7 @@
 		3D185D9B2D03108F009A4935 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185D9A2D03108F009A4935 /* EditProfileView.swift */; };
 		3D185D9D2D0311B9009A4935 /* ProfileImageGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185D9C2D0311B9009A4935 /* ProfileImageGridView.swift */; };
 		3D185DA32D03184E009A4935 /* UserMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DA22D03184E009A4935 /* UserMatchView.swift */; };
+		3D185DA62D031B77009A4935 /* MatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DA52D031B77009A4935 /* MatchManager.swift */; };
 		3DC37E182CF78F6200E7FB1B /* PassionfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E172CF78F6200E7FB1B /* PassionfyApp.swift */; };
 		3DC37E1A2CF78F6200E7FB1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E192CF78F6200E7FB1B /* ContentView.swift */; };
 		3DC37E1C2CF78F6500E7FB1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DC37E1B2CF78F6500E7FB1B /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		3D185D9A2D03108F009A4935 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		3D185D9C2D0311B9009A4935 /* ProfileImageGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageGridView.swift; sourceTree = "<group>"; };
 		3D185DA22D03184E009A4935 /* UserMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMatchView.swift; sourceTree = "<group>"; };
+		3D185DA52D031B77009A4935 /* MatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchManager.swift; sourceTree = "<group>"; };
 		3DC37E142CF78F6200E7FB1B /* Passionfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Passionfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DC37E172CF78F6200E7FB1B /* PassionfyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassionfyApp.swift; sourceTree = "<group>"; };
 		3DC37E192CF78F6200E7FB1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		3D185D9E2D0317F9009A4935 /* Matches */ = {
 			isa = PBXGroup;
 			children = (
+				3D185DA42D031B6B009A4935 /* Manager */,
 				3D185D9F2D031805009A4935 /* View */,
 			);
 			path = Matches;
@@ -114,6 +117,14 @@
 				3D185DA22D03184E009A4935 /* UserMatchView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3D185DA42D031B6B009A4935 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				3D185DA52D031B77009A4935 /* MatchManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		3DC37E0B2CF78F6200E7FB1B = {
@@ -397,6 +408,7 @@
 				3DC37E3E2CF7A2F300E7FB1B /* CardImageIndicatorView.swift in Sources */,
 				3DC37E522CF7B66200E7FB1B /* SwipeActionButtonsView.swift in Sources */,
 				3DC37E472CF7A90C00E7FB1B /* CardModel.swift in Sources */,
+				3D185DA62D031B77009A4935 /* MatchManager.swift in Sources */,
 				3D185DA32D03184E009A4935 /* UserMatchView.swift in Sources */,
 				3DC37E402CF7A61400E7FB1B /* CardStackView.swift in Sources */,
 				3D185D9D2D0311B9009A4935 /* ProfileImageGridView.swift in Sources */,

@@ -35,5 +35,6 @@ struct MainTabBar: View {
 struct MainTabBar_Previews: PreviewProvider {
     static var previews: some View {
         MainTabBar()
+            .environmentObject(MatchManager())
     }
 }

@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct PassionfyApp: App {
+    
+    @StateObject var matchManager = MatchManager()
+    
     var body: some Scene {
         WindowGroup {
             MainTabBar()
+                .environmentObject(matchManager)
         }
     }
 }
