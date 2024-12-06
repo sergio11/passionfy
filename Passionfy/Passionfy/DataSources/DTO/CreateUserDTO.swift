@@ -12,4 +12,5 @@ internal struct CreateUserDTO: Decodable {
     var username: String
     var birthdate: String
     var phoneNumber: String
+    var profileImageUrls: [String]
 }

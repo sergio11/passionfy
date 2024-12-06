@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct User: Identifiable, Hashable {
-    let id: String
-    let fullname: String
-    var age: Int
-    var profileImageURLs: [String]
+struct User: Decodable, Identifiable, Hashable {
+    var id: String
+    var username: String
+    var phone: String
+    var birthdate: String
+    var fullname: String
+    var profileImageUrls: [String]
+    var bio: String?
+    var location: String?
 }
