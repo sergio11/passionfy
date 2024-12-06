@@ -14,8 +14,8 @@ struct ProfileImageGridView: View {
     var body: some View {
         LazyVGrid(columns: columns, spacing: 16) {
             ForEach(0 ..< 6) { index in
-                if index < user.profileImageURLs.count {
-                    Image(user.profileImageURLs[index])
+                if index < user.profileImageUrls.count {
+                    Image(user.profileImageUrls[index])
                         .resizable()
                         .scaledToFill()
                         .frame(width: imageWidth, height: imageHeight)

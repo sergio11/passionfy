@@ -26,9 +26,6 @@ internal extension UpdateUserDTO {
         if let birthdate = birthdate {
             dictionary["birthdate"] = birthdate
         }
-        if let profileImageUrl = profileImageUrl {
-            dictionary["profileImageUrl"] = profileImageUrl
-        }
 
         return dictionary
     }

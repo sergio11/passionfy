@@ -21,7 +21,7 @@ struct UserProfileView: View {
                     .font(.title2)
                     .fontWeight(.semibold)
                 
-                Text("\(user.age)")
+                Text("\(user.birthdate)")
                     .font(.title2)
                 
                 Spacer()
@@ -40,15 +40,15 @@ struct UserProfileView: View {
             ScrollView {
                 VStack {
                     ZStack(alignment: .top) {
-                        Image(user.profileImageURLs[currentImageIndex])
+                        Image(user.profileImageUrls[currentImageIndex])
                             .resizable()
                             .scaledToFit()
                             .frame(width: SizeConstants.cardWidth, height: SizeConstants.cardHeight)
                             .overlay {
-                                ImageScrollingOverlay(currentImageIndex: $currentImageIndex, imageCount: user.profileImageURLs.count)
+                                ImageScrollingOverlay(currentImageIndex: $currentImageIndex, imageCount: user.profileImageUrls.count)
                             }
                         
-                        CardImageIndicatorView(currentImageIndex: currentImageIndex, imageCount: user.profileImageURLs.count)
+                        CardImageIndicatorView(currentImageIndex: currentImageIndex, imageCount: user.profileImageUrls.count)
                     }
                     
                     VStack(alignment: .leading, spacing: 12) {

@@ -21,7 +21,7 @@ struct CardView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             ZStack(alignment: .top) {
-                Image(user.profileImageURLs[currentImageIndex])
+                Image(user.profileImageUrls[currentImageIndex])
                     .resizable()
                     .scaledToFit()
                     .frame(width: SizeConstants.cardWidth, height: SizeConstants.cardHeight)
@@ -61,7 +61,7 @@ private extension CardView {
     }
     
     var imageCount: Int {
-        return user.profileImageURLs.count
+        return user.profileImageUrls.count
     }
 }
 

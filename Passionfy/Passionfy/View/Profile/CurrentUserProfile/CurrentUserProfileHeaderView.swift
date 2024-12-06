@@ -15,7 +15,7 @@ struct CurrentUserProfileHeaderView: View {
         VStack {
             ZStack(alignment: .topTrailing) {
                 
-                Image(user.profileImageURLs[0])
+                Image(user.profileImageUrls[0])
                     .resizable()
                     .scaledToFill()
                     .frame(width: 120, height: 120)
@@ -38,7 +38,7 @@ struct CurrentUserProfileHeaderView: View {
                     .offset(x: -8, y: 10)
             }
             
-            Text("\(user.fullname), \(user.age)")
+            Text("\(user.fullname), \(user.birthdate)")
                 .font(.title2)
                 .fontWeight(.light)
         }

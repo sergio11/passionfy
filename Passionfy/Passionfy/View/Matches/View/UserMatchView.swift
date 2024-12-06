@@ -22,14 +22,14 @@ struct UserMatchView: View {
                 VStack {
                     Image(systemName: "circle")
                     
-                    if let matchedUser = matchManager.matchedUser {
-                        Text("You and \(matchedUser.fullname) liked each other.")
+                    if let fullname = matchManager.matchedUser?.fullname {
+                        Text("You and \(fullname) liked each other.")
                             .foregroundColor(.white)
                     }
                 }
                     
                 HStack(spacing: 16) {
-                    Image(MockData.users[0].profileImageURLs[0])
+                    Image(MockData.users[0].profileImageUrls[0])
                         .resizable()
                         .scaledToFill()
                         .frame(width: 150, height: 150)
@@ -41,7 +41,7 @@ struct UserMatchView: View {
                         }
                     
                     if let matchedUser = matchManager.matchedUser {
-                        Image(matchedUser.profileImageURLs[0])
+                        Image(matchedUser.profileImageUrls[0])
                             .resizable()
                             .scaledToFill()
                             .frame(width: 150, height: 150)

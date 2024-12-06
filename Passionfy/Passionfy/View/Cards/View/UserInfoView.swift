@@ -20,7 +20,7 @@ struct UserInfoView: View {
                     .font(.title)
                     .fontWeight(.heavy)
                 
-                Text("\(user.age)")
+                Text("\(user.birthdate)")
                     .font(.title)
                     .fontWeight(.semibold)
                 

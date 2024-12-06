@@ -12,8 +12,8 @@ internal struct UserDTO: Decodable {
     var username: String
     var birthdate: String
     var phoneNumber: String
-    var fullname: String?
+    var fullname: String
     var location: String?
     var bio: String?
-    var profileImageUrl: String?
+    var profileImageUrls: [String]
 }
