@@ -14,8 +14,19 @@
 		3D185D9D2D0311B9009A4935 /* ProfileImageGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185D9C2D0311B9009A4935 /* ProfileImageGridView.swift */; };
 		3D185DA32D03184E009A4935 /* UserMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DA22D03184E009A4935 /* UserMatchView.swift */; };
 		3D185DA62D031B77009A4935 /* MatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DA52D031B77009A4935 /* MatchManager.swift */; };
+		3D185DB12D03277A009A4935 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3D185DB02D03277A009A4935 /* Kingfisher */; };
+		3D185DB42D03285D009A4935 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 3D185DB32D03285D009A4935 /* Factory */; };
+		3D185DB72D0329B8009A4935 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3D185DB62D0329B8009A4935 /* FirebaseAuth */; };
+		3D185DB92D0329B8009A4935 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D185DB82D0329B8009A4935 /* FirebaseFirestore */; };
+		3D185DBB2D0329B8009A4935 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3D185DBA2D0329B8009A4935 /* FirebaseFirestoreSwift */; };
+		3D185DBD2D0329B8009A4935 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3D185DBC2D0329B8009A4935 /* FirebaseStorage */; };
+		3D185DBF2D0329E9009A4935 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DBE2D0329E9009A4935 /* Container.swift */; };
+		3D185DC42D032A37009A4935 /* CreateUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DC32D032A37009A4935 /* CreateUserDTO.swift */; };
+		3D185DC62D032A4C009A4935 /* UpdateUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DC52D032A4C009A4935 /* UpdateUserDTO.swift */; };
+		3D185DC82D032A61009A4935 /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DC72D032A61009A4935 /* UserDTO.swift */; };
+		3D185DCA2D032A8A009A4935 /* CreateUserDTO+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DC92D032A8A009A4935 /* CreateUserDTO+Dictionary.swift */; };
+		3D185DCC2D032AA8009A4935 /* UpdateUserDTO+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DCB2D032AA8009A4935 /* UpdateUserDTO+Dictionary.swift */; };
 		3DC37E182CF78F6200E7FB1B /* PassionfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E172CF78F6200E7FB1B /* PassionfyApp.swift */; };
-		3DC37E1A2CF78F6200E7FB1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E192CF78F6200E7FB1B /* ContentView.swift */; };
 		3DC37E1C2CF78F6500E7FB1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DC37E1B2CF78F6500E7FB1B /* Assets.xcassets */; };
 		3DC37E1F2CF78F6500E7FB1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DC37E1E2CF78F6500E7FB1B /* Preview Assets.xcassets */; };
 		3DC37E302CF7902C00E7FB1B /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E2F2CF7902C00E7FB1B /* MainTabBar.swift */; };
@@ -43,9 +54,14 @@
 		3D185D9C2D0311B9009A4935 /* ProfileImageGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageGridView.swift; sourceTree = "<group>"; };
 		3D185DA22D03184E009A4935 /* UserMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMatchView.swift; sourceTree = "<group>"; };
 		3D185DA52D031B77009A4935 /* MatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchManager.swift; sourceTree = "<group>"; };
+		3D185DBE2D0329E9009A4935 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		3D185DC32D032A37009A4935 /* CreateUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserDTO.swift; sourceTree = "<group>"; };
+		3D185DC52D032A4C009A4935 /* UpdateUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserDTO.swift; sourceTree = "<group>"; };
+		3D185DC72D032A61009A4935 /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
+		3D185DC92D032A8A009A4935 /* CreateUserDTO+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateUserDTO+Dictionary.swift"; sourceTree = "<group>"; };
+		3D185DCB2D032AA8009A4935 /* UpdateUserDTO+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateUserDTO+Dictionary.swift"; sourceTree = "<group>"; };
 		3DC37E142CF78F6200E7FB1B /* Passionfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Passionfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DC37E172CF78F6200E7FB1B /* PassionfyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassionfyApp.swift; sourceTree = "<group>"; };
-		3DC37E192CF78F6200E7FB1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3DC37E1B2CF78F6500E7FB1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DC37E1E2CF78F6500E7FB1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3DC37E2F2CF7902C00E7FB1B /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
@@ -70,6 +86,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D185DBB2D0329B8009A4935 /* FirebaseFirestoreSwift in Frameworks */,
+				3D185DB12D03277A009A4935 /* Kingfisher in Frameworks */,
+				3D185DB92D0329B8009A4935 /* FirebaseFirestore in Frameworks */,
+				3D185DB72D0329B8009A4935 /* FirebaseAuth in Frameworks */,
+				3D185DB42D03285D009A4935 /* Factory in Frameworks */,
+				3D185DBD2D0329B8009A4935 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +149,99 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		3D185DA72D03265E009A4935 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				3D185DBE2D0329E9009A4935 /* Container.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		3D185DA82D03266B009A4935 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				3D185DC22D032A29009A4935 /* Impl */,
+				3D185DC12D032A12009A4935 /* Extensions */,
+				3D185DC02D032A0E009A4935 /* DTO */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		3D185DA92D03267D009A4935 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
+		3D185DAA2D032687009A4935 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DC37E432CF7A8A200E7FB1B /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D185DAB2D032690009A4935 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		3D185DAC2D03269A009A4935 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		3D185DAD2D0326A9009A4935 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3DC37E2B2CF78FDF00E7FB1B /* Search */,
+				3DC37E2C2CF78FE800E7FB1B /* Messaging */,
+				3D185D9E2D0317F9009A4935 /* Matches */,
+				3DC37E2A2CF78FD600E7FB1B /* Cards */,
+				3DC37E2D2CF78FF000E7FB1B /* Profile */,
+				3DC37E2E2CF78FFA00E7FB1B /* TabBar */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3D185DAE2D0326B1009A4935 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3D185DC02D032A0E009A4935 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				3D185DC32D032A37009A4935 /* CreateUserDTO.swift */,
+				3D185DC52D032A4C009A4935 /* UpdateUserDTO.swift */,
+				3D185DC72D032A61009A4935 /* UserDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		3D185DC12D032A12009A4935 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3D185DC92D032A8A009A4935 /* CreateUserDTO+Dictionary.swift */,
+				3D185DCB2D032AA8009A4935 /* UpdateUserDTO+Dictionary.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3D185DC22D032A29009A4935 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
 		3DC37E0B2CF78F6200E7FB1B = {
 			isa = PBXGroup;
 			children = (
@@ -146,12 +261,17 @@
 		3DC37E162CF78F6200E7FB1B /* Passionfy */ = {
 			isa = PBXGroup;
 			children = (
-				3DC37E292CF78FBB00E7FB1B /* Utils */,
-				3DC37E282CF78FB400E7FB1B /* Shared */,
+				3D185DA72D03265E009A4935 /* DI */,
+				3D185DA82D03266B009A4935 /* DataSources */,
+				3D185DA92D03267D009A4935 /* Mapper */,
 				3DC37E272CF78FAA00E7FB1B /* Extensions */,
-				3DC37E262CF78FA300E7FB1B /* Core */,
+				3D185DAB2D032690009A4935 /* Repositories */,
+				3D185DAA2D032687009A4935 /* Model */,
+				3D185DAC2D03269A009A4935 /* UseCases */,
+				3D185DAD2D0326A9009A4935 /* View */,
+				3D185DAE2D0326B1009A4935 /* ViewModel */,
+				3DC37E292CF78FBB00E7FB1B /* Utils */,
 				3DC37E252CF78F9900E7FB1B /* App */,
-				3DC37E192CF78F6200E7FB1B /* ContentView.swift */,
 				3DC37E1B2CF78F6500E7FB1B /* Assets.xcassets */,
 				3DC37E1D2CF78F6500E7FB1B /* Preview Content */,
 			);
@@ -174,32 +294,11 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		3DC37E262CF78FA300E7FB1B /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				3D185D9E2D0317F9009A4935 /* Matches */,
-				3DC37E2E2CF78FFA00E7FB1B /* TabBar */,
-				3DC37E2D2CF78FF000E7FB1B /* Profile */,
-				3DC37E2C2CF78FE800E7FB1B /* Messaging */,
-				3DC37E2B2CF78FDF00E7FB1B /* Search */,
-				3DC37E2A2CF78FD600E7FB1B /* Cards */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
 		3DC37E272CF78FAA00E7FB1B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		3DC37E282CF78FB400E7FB1B /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				3DC37E412CF7A88E00E7FB1B /* Users */,
-			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 		3DC37E292CF78FBB00E7FB1B /* Utils */ = {
@@ -276,22 +375,6 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		3DC37E412CF7A88E00E7FB1B /* Users */ = {
-			isa = PBXGroup;
-			children = (
-				3DC37E422CF7A89500E7FB1B /* Model */,
-			);
-			path = Users;
-			sourceTree = "<group>";
-		};
-		3DC37E422CF7A89500E7FB1B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				3DC37E432CF7A8A200E7FB1B /* User.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		3DC37E452CF7A8F800E7FB1B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +424,14 @@
 			dependencies = (
 			);
 			name = Passionfy;
+			packageProductDependencies = (
+				3D185DB02D03277A009A4935 /* Kingfisher */,
+				3D185DB32D03285D009A4935 /* Factory */,
+				3D185DB62D0329B8009A4935 /* FirebaseAuth */,
+				3D185DB82D0329B8009A4935 /* FirebaseFirestore */,
+				3D185DBA2D0329B8009A4935 /* FirebaseFirestoreSwift */,
+				3D185DBC2D0329B8009A4935 /* FirebaseStorage */,
+			);
 			productName = Passionfy;
 			productReference = 3DC37E142CF78F6200E7FB1B /* Passionfy.app */;
 			productType = "com.apple.product-type.application";
@@ -369,6 +460,11 @@
 				Base,
 			);
 			mainGroup = 3DC37E0B2CF78F6200E7FB1B;
+			packageReferences = (
+				3D185DAF2D03277A009A4935 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				3D185DB22D03285D009A4935 /* XCRemoteSwiftPackageReference "Factory" */,
+				3D185DB52D0329B8009A4935 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 3DC37E152CF78F6200E7FB1B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -395,6 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D185DCC2D032AA8009A4935 /* UpdateUserDTO+Dictionary.swift in Sources */,
 				3D185D9B2D03108F009A4935 /* EditProfileView.swift in Sources */,
 				3DC37E3C2CF79E5D00E7FB1B /* ImageScrollingOverlay.swift in Sources */,
 				3D185D902D03025B009A4935 /* UserProfileView.swift in Sources */,
@@ -402,20 +499,24 @@
 				3DC37E302CF7902C00E7FB1B /* MainTabBar.swift in Sources */,
 				3D185D962D030740009A4935 /* CurrentUserProfileHeaderView.swift in Sources */,
 				3DC37E372CF79A8E00E7FB1B /* SwipeActionIndicatorView.swift in Sources */,
+				3D185DC62D032A4C009A4935 /* UpdateUserDTO.swift in Sources */,
 				3DC37E502CF7AA7E00E7FB1B /* MockData.swift in Sources */,
 				3DC37E542CF7B7B900E7FB1B /* SwipeAction.swift in Sources */,
-				3DC37E1A2CF78F6200E7FB1B /* ContentView.swift in Sources */,
 				3DC37E3E2CF7A2F300E7FB1B /* CardImageIndicatorView.swift in Sources */,
 				3DC37E522CF7B66200E7FB1B /* SwipeActionButtonsView.swift in Sources */,
 				3DC37E472CF7A90C00E7FB1B /* CardModel.swift in Sources */,
 				3D185DA62D031B77009A4935 /* MatchManager.swift in Sources */,
+				3D185DBF2D0329E9009A4935 /* Container.swift in Sources */,
+				3D185DC82D032A61009A4935 /* UserDTO.swift in Sources */,
 				3D185DA32D03184E009A4935 /* UserMatchView.swift in Sources */,
 				3DC37E402CF7A61400E7FB1B /* CardStackView.swift in Sources */,
+				3D185DC42D032A37009A4935 /* CreateUserDTO.swift in Sources */,
 				3D185D9D2D0311B9009A4935 /* ProfileImageGridView.swift in Sources */,
 				3DC37E332CF792C600E7FB1B /* CardView.swift in Sources */,
 				3DC37E3A2CF79D2400E7FB1B /* SizeConstants.swift in Sources */,
 				3DC37E182CF78F6200E7FB1B /* PassionfyApp.swift in Sources */,
 				3D185D942D0306F8009A4935 /* CurrentUserProfile.swift in Sources */,
+				3D185DCA2D032A8A009A4935 /* CreateUserDTO+Dictionary.swift in Sources */,
 				3DC37E4A2CF7A94400E7FB1B /* CardsViewModel.swift in Sources */,
 				3DC37E352CF7943C00E7FB1B /* UserInfoView.swift in Sources */,
 				3DC37E442CF7A8A200E7FB1B /* User.swift in Sources */,
@@ -619,6 +720,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3D185DAF2D03277A009A4935 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+		3D185DB22D03285D009A4935 /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		3D185DB52D0329B8009A4935 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.21;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3D185DB02D03277A009A4935 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D185DAF2D03277A009A4935 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		3D185DB32D03285D009A4935 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D185DB22D03285D009A4935 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+		3D185DB62D0329B8009A4935 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D185DB52D0329B8009A4935 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		3D185DB82D0329B8009A4935 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D185DB52D0329B8009A4935 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		3D185DBA2D0329B8009A4935 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D185DB52D0329B8009A4935 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		3D185DBC2D0329B8009A4935 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D185DB52D0329B8009A4935 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3DC37E0C2CF78F6200E7FB1B /* Project object */;
 }
