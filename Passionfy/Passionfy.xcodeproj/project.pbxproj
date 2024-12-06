@@ -10,6 +10,8 @@
 		3D185D902D03025B009A4935 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185D8F2D03025B009A4935 /* UserProfileView.swift */; };
 		3D185D942D0306F8009A4935 /* CurrentUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185D932D0306F8009A4935 /* CurrentUserProfile.swift */; };
 		3D185D962D030740009A4935 /* CurrentUserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185D952D030740009A4935 /* CurrentUserProfileHeaderView.swift */; };
+		3D185D9B2D03108F009A4935 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185D9A2D03108F009A4935 /* EditProfileView.swift */; };
+		3D185D9D2D0311B9009A4935 /* ProfileImageGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185D9C2D0311B9009A4935 /* ProfileImageGridView.swift */; };
 		3DC37E182CF78F6200E7FB1B /* PassionfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E172CF78F6200E7FB1B /* PassionfyApp.swift */; };
 		3DC37E1A2CF78F6200E7FB1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E192CF78F6200E7FB1B /* ContentView.swift */; };
 		3DC37E1C2CF78F6500E7FB1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DC37E1B2CF78F6500E7FB1B /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 		3D185D8F2D03025B009A4935 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		3D185D932D0306F8009A4935 /* CurrentUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserProfile.swift; sourceTree = "<group>"; };
 		3D185D952D030740009A4935 /* CurrentUserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileHeaderView.swift; sourceTree = "<group>"; };
+		3D185D9A2D03108F009A4935 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		3D185D9C2D0311B9009A4935 /* ProfileImageGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageGridView.swift; sourceTree = "<group>"; };
 		3DC37E142CF78F6200E7FB1B /* Passionfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Passionfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DC37E172CF78F6200E7FB1B /* PassionfyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassionfyApp.swift; sourceTree = "<group>"; };
 		3DC37E192CF78F6200E7FB1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,6 +87,15 @@
 				3D185D952D030740009A4935 /* CurrentUserProfileHeaderView.swift */,
 			);
 			path = CurrentUserProfile;
+			sourceTree = "<group>";
+		};
+		3D185D972D031069009A4935 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				3D185D9A2D03108F009A4935 /* EditProfileView.swift */,
+				3D185D9C2D0311B9009A4935 /* ProfileImageGridView.swift */,
+			);
+			path = EditProfile;
 			sourceTree = "<group>";
 		};
 		3DC37E0B2CF78F6200E7FB1B = {
@@ -196,6 +209,7 @@
 		3DC37E2D2CF78FF000E7FB1B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				3D185D972D031069009A4935 /* EditProfile */,
 				3D185D922D0306E0009A4935 /* CurrentUserProfile */,
 				3D185D912D0306CB009A4935 /* UserProfile */,
 			);
@@ -351,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D185D9B2D03108F009A4935 /* EditProfileView.swift in Sources */,
 				3DC37E3C2CF79E5D00E7FB1B /* ImageScrollingOverlay.swift in Sources */,
 				3D185D902D03025B009A4935 /* UserProfileView.swift in Sources */,
 				3DC37E4D2CF7A9B000E7FB1B /* CardService.swift in Sources */,
@@ -364,6 +379,7 @@
 				3DC37E522CF7B66200E7FB1B /* SwipeActionButtonsView.swift in Sources */,
 				3DC37E472CF7A90C00E7FB1B /* CardModel.swift in Sources */,
 				3DC37E402CF7A61400E7FB1B /* CardStackView.swift in Sources */,
+				3D185D9D2D0311B9009A4935 /* ProfileImageGridView.swift in Sources */,
 				3DC37E332CF792C600E7FB1B /* CardView.swift in Sources */,
 				3DC37E3A2CF79D2400E7FB1B /* SizeConstants.swift in Sources */,
 				3DC37E182CF78F6200E7FB1B /* PassionfyApp.swift in Sources */,
