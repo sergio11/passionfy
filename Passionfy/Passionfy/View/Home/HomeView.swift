@@ -1,13 +1,13 @@
 //
-//  MainTabBar.swift
+//  HomeView.swift
 //  Passionfy
 //
-//  Created by Sergio Sánchez Sánchez on 27/11/24.
+//  Created by Sergio Sánchez Sánchez on 6/12/24.
 //
 
 import SwiftUI
 
-struct MainTabBar: View {
+struct HomeView: View {
     
     var body: some View {
         TabView {
@@ -32,9 +32,8 @@ struct MainTabBar: View {
     }
 }
 
-struct MainTabBar_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabBar()
-            .environmentObject(MatchManager())
+        HomeView()
     }
 }

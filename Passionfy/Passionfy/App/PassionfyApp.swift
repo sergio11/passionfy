@@ -31,7 +31,7 @@ struct PassionfyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainTabBar()
+            MainView()
                 .environmentObject(matchManager)
         }
     }
