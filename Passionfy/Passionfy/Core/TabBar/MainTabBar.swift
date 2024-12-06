@@ -28,6 +28,7 @@ struct MainTabBar: View {
                 .tabItem { Image(systemName: "person") }
                 .tag(3)
         }
+        .tint(.primary)
     }
 }
 
