@@ -15,23 +15,23 @@ struct AuthenticationView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                Color.black.ignoresSafeArea()
+            VStack {
                 TopBarView(backButtonAction: {
                     dismiss()
                 })
-                VStack {
-                    PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Sign in securely by providing your phone number", label: "Your Phone")
-                    Spacer()
-                    AgreementTextView()
-                    ContinueButton(
-                        isPhoneNumberEmpty: viewModel.phoneNumber.isEmpty
-                    ) {
-                        viewModel.sendOtp()
-                    }
-                }.padding(.bottom, 40)
-            }
+                OnboardingAccountLogoView()
+                Spacer()
+                PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Sign in securely by providing your phone number", label: "Your Phone")
+                Spacer()
+                AgreementTextView()
+                ContinueButton(
+                    isPhoneNumberEmpty: viewModel.phoneNumber.isEmpty
+                ) {
+                    viewModel.sendOtp()
+                }
+            }.padding()
         }
+        .background(AnimatedRadialGradientView())
         .sheet(isPresented: $viewModel.showCountryList) {
             SelectCountryView(countryChosen: $viewModel.country)
         }
@@ -42,16 +42,12 @@ struct AuthenticationView: View {
                 viewModel.signIn()
             })
         }
-        .overlay {
-            LoadingView()
-                .opacity(viewModel.isLoading ? 1 : 0)
-        }
         .onReceive(viewModel.$signInSuccess) { success in
             if success {
                 isAuthenticated = true
             }
         }
-        .environment(\.colorScheme, .dark)
+        .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
     }
 }
 

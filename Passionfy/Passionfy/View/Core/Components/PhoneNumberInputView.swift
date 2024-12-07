@@ -19,47 +19,43 @@ struct PhoneNumberInputView: View {
         VStack {
             VStack(alignment: .center, spacing: 8) {
                 Text(title)
-                    .foregroundColor(.white)
-                    .fontWeight(.heavy)
+                    .customFont(.regular, 16)
+                    .foregroundColor(Color.pink.opacity(0.8))
                     .multilineTextAlignment(.center)
-                    .font(.system(size: 16))
                 HStack {
                     RoundedRectangle(cornerRadius: 25)
                         .stroke(lineWidth: 1)
                         .frame(width: 75, height: 45)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.pink.opacity(0.8))
                         .overlay(
                             Text("\(country.flag(country: country.isoCode))")
                             +
                             Text("+\(country.phoneCode)")
-                                .foregroundColor(.white)
-                                .font(.system(size: 12))
-                                .fontWeight(.bold)
+                                .customFont(.bold, 12)
+                                .foregroundColor(Color.pink.opacity(0.8))
                         ).onTapGesture {
                             self.showCountryList.toggle()
                         }
                     
                     Text(label)
-                        .foregroundColor(phoneNumber.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
-                        .fontWeight(.heavy)
-                        .font(.system(size: 40))
-                        .frame(width: 270)
+                        .customFont(.bold, 30)
+                        .foregroundColor(Color.pink.opacity(0.6))
+                        .opacity(phoneNumber.isEmpty ? 1.0: 0)
+                        .frame(width: 250)
                         .overlay(
                             TextField("", text: $phoneNumber)
-                                .foregroundColor(.white)
-                                .font(.system(size: 40))
-                                .fontWeight(.heavy)
+                                .customFont(.bold, 40)
+                                .foregroundColor(Color.pink)
                                 .multilineTextAlignment(.center)
+                                .tint(Color.pink)
                                 .keyboardType(.numberPad)
                                 .filterNumericCharacters(binding: $phoneNumber)
                         )
-                }.padding(.top, 5)
-                
+                }.padding(.top)
             }
-            .padding(.leading, UIScreen.main.bounds.width * 0.05)
             Spacer()
         }
-        .padding(.top, 50)
+        .padding(.top)
     }
 }
 

@@ -13,15 +13,15 @@ struct SelectCountryView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack {
-            ZStack {
-                Color.black.ignoresSafeArea()
+        ZStack {
+            VStack {
                 TopBarView(backButtonAction: { dismiss() },
                            title: "Select Country",
                            backButtomIcon: "xmark")
                 CountryList(countryChosen: $countryChosen)
             }
-        }
+            .padding(.top)
+        }.background(AnimatedRadialGradientView())
     }
 }
 
@@ -33,12 +33,13 @@ private struct CountryList: View {
     
     var body: some View {
         VStack {
-            VStack {
+            ZStack {
                 List {
                     Section {
                         ForEach(countries, id: \.isoCode) { country in
                             HStack {
                                 Text("\(country.flag(country: country.isoCode)) \(country.localizedName) (+\(country.phoneCode))")
+                                    .customFont(.regular, 12)
                                 Spacer()
                                 if country.isoCode == countryChosen.isoCode {
                                     Image(systemName: "checkmark.circle")
@@ -51,13 +52,16 @@ private struct CountryList: View {
                         }
                     } header: {
                         Text("Suggested")
+                            .customFont(.bold, 12)
+                            .foregroundColor(Color.pink)
                             .padding(.leading, -8)
-                            .font(.system(size: 12))
                     }
                 }
+                .scrollContentBackground(.hidden)
+                .background(Color.clear)
             }
         }
-        .padding(.top, 50)
+        .padding(.top)
     }
 }
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TopBarView: View {
     var backButtonAction: (() -> Void)? = nil
-    var title: String = "Passionfy."
+    var title: String? = nil
     var backButtomIcon: String = "arrow.backward"
     var trailingActionContent: AnyView? = nil
 
@@ -26,9 +26,11 @@ struct TopBarView: View {
                 }.padding(.leading)
             }
             Spacer()
-            Text(title)
-                .customFont(.bold, 22)
-                .foregroundColor(Color.pink)
+            if let title = title {
+                Text(title)
+                    .customFont(.bold, 22)
+                    .foregroundColor(Color.pink)
+            }
             Spacer()
             if let trailingActionContent = trailingActionContent {
                 trailingActionContent
