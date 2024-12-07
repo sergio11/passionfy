@@ -10,7 +10,7 @@ import Foundation
 class BaseViewModel: ObservableObject {
     
     @Published var isLoading: Bool = false
-    @Published var errorMessage = ""
+    @Published var errorMessage: String? = nil
     @Published var showAlert = false
     
     internal func onLoading() {

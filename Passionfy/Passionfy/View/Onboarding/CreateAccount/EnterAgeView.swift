@@ -27,7 +27,7 @@ struct EnterAgeView: View {
                 }
                 .padding(.bottom, 40)
             }
-        }/*.errorAlert(isPresented: $viewModel.showAlert, message: viewModel.errorMessage)*/
+        }.modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
     }
 }
 
@@ -88,21 +88,14 @@ private struct InputField: View {
 private struct ContinueButton: View {
     
     @EnvironmentObject var viewModel: CreateAccountViewModel
-    
-    var isBirthdateValid: Binding<Bool> {
-        Binding<Bool>(
-            get: { viewModel.birthdate.hasDataValid() },
-            set: { _ in }
-        )
-    }
         
     var body: some View {
-        Button {
+        ActionButtonView(
+            title: "Continue",
+            mode: .filled
+        ) {
             viewModel.nextFlowStep()
-        } label: {
-            WhiteButtonView(buttonActive: isBirthdateValid, text: "Continue")
-        }
-        .disabled(!viewModel.birthdate.hasDataValid())
+        }.disabled(!viewModel.birthdate.hasDataValid())
     }
 }
 

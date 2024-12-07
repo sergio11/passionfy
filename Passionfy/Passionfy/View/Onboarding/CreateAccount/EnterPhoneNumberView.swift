@@ -34,8 +34,7 @@ struct EnterPhoneNumberView: View {
             LoadingView()
                 .opacity(viewModel.isLoading ? 1 : 0)
         }
-        /*.errorAlert(isPresented: $viewModel.showAlert, message: viewModel.errorMessage)*/
-        .environment(\.colorScheme, .dark)
+        .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
     }
 }
 
@@ -43,20 +42,13 @@ private struct ContinueButton: View {
     
     @EnvironmentObject var viewModel: CreateAccountViewModel
     
-    var isPhoneNumberValid: Binding<Bool> {
-        Binding<Bool>(
-            get: { !viewModel.phoneNumber.isEmpty },
-            set: { _ in }
-        )
-    }
-    
     var body: some View {
-        Button {
+        ActionButtonView(
+            title: "Continue",
+            mode: .filled
+        ) {
             viewModel.sendOtp()
-        } label: {
-            WhiteButtonView(buttonActive: isPhoneNumberValid, text: "Continue")
-        }
-        .disabled(viewModel.phoneNumber.isEmpty)
+        }.disabled(viewModel.phoneNumber.isEmpty)
     }
 }
 
