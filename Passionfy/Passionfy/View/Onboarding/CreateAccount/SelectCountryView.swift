@@ -21,7 +21,6 @@ struct SelectCountryView: View {
                            backButtomIcon: "xmark")
                 CountryList(countryChosen: $countryChosen)
             }
-            .environment(\.colorScheme, .dark)
         }
     }
 }

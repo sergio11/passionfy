@@ -24,7 +24,11 @@ struct AuthenticationView: View {
                     PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Sign in securely by providing your phone number", label: "Your Phone")
                     Spacer()
                     AgreementTextView()
-                    ContinueButton(viewModel: viewModel)
+                    ContinueButton(
+                        isPhoneNumberEmpty: viewModel.phoneNumber.isEmpty
+                    ) {
+                        viewModel.sendOtp()
+                    }
                 }.padding(.bottom, 40)
             }
         }
@@ -52,23 +56,17 @@ struct AuthenticationView: View {
 }
 
 private struct ContinueButton: View {
-    
-    @StateObject var viewModel: AuthenticationViewModel
-    
-    var isPhoneNumberValid: Binding<Bool> {
-        Binding<Bool>(
-            get: { !viewModel.phoneNumber.isEmpty },
-            set: { _ in }
-        )
-    }
+
+    var isPhoneNumberEmpty: Bool
+    var onClicked: (() -> Void)? = nil
     
     var body: some View {
-        Button {
-            viewModel.sendOtp()
-        } label: {
-            WhiteButtonView(buttonActive: isPhoneNumberValid, text: "Continue")
-        }
-        .disabled(viewModel.phoneNumber.isEmpty)
+        ActionButtonView(
+            title: "Continue",
+            mode: .filled
+        ) {
+            onClicked?()
+        }.disabled(isPhoneNumberEmpty)
     }
 }
 

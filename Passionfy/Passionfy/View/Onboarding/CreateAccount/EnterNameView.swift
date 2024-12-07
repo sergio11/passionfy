@@ -15,24 +15,25 @@ struct EnterNameView: View {
     var body: some View {
         VStack {
             ZStack {
-                Color.black.ignoresSafeArea()
-                TopBarView(backButtonAction: {
-                    dismiss()
-                })
+                AnimatedRadialGradientView()
                 VStack {
+                    TopBarView(backButtonAction: {
+                        dismiss()
+                    })
                     NameInputView()
                     Spacer()
-                    ExplanationText(message: "The username you choose must be unique. It's what other users will use to identify you.")
+                    Text("Choose a username that reflects you. It's how others will recognize and connect with you on Passionfy.")
+                        .customFont(.semiBold, 14)
+                        .foregroundColor(Color.pink.opacity(0.6))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
                     ContinueButton()
                 }
-                .padding(.bottom, 40)
+                .animation(nil)
+                .padding()
             }
         }
-        .overlay {
-            LoadingView()
-                .opacity(viewModel.isLoading ? 1 : 0)
-        }
-        /*.errorAlert(isPresented: $viewModel.showAlert, message: viewModel.errorMessage)*/
+        .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
     }
 }
 
@@ -43,20 +44,23 @@ private struct NameInputView: View {
     var body: some View {
         VStack {
             VStack {
-                Text("Let's get started, what's your username?")
+                Text("What's the name that sparks connection?")
+                    .customFont(.semiBold, 16)
                     .fontWeight(.heavy)
-                    .font(.system(size: 16))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color.pink.opacity(0.8))
                 
-                Text("Your username")
-                    .foregroundColor(viewModel.username.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
-                    .fontWeight(.heavy)
+                Text("Your unique name")
+                    .customFont(.bold, 30)
+                    .foregroundColor(Color.pink.opacity(0.6))
                     .opacity(viewModel.username.isEmpty ? 1.0: 0)
-                    .font(.system(size: 40))
                     .frame(width: 300)
                     .overlay(
                         TextField("", text: $viewModel.username)
-                            .font(.system(size: 40, weight: .heavy))
+                            .customFont(.bold, 40)
+                            .foregroundColor(Color.pink)
                             .multilineTextAlignment(.center)
+                            .tint(Color.pink)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(viewModel.showAlert ? Color.red : Color.clear, lineWidth: 2)
@@ -67,7 +71,7 @@ private struct NameInputView: View {
             .foregroundColor(.white)
             Spacer()
         }
-        .padding(.top, 50)
+        .padding(.top)
     }
 }
 
@@ -75,22 +79,17 @@ private struct ContinueButton: View {
     
     @EnvironmentObject var viewModel: CreateAccountViewModel
     
-    var isNameNotEmpty: Binding<Bool> {
-        Binding<Bool>(
-            get: { !viewModel.username.isEmpty },
-            set: { _ in }
-        )
-    }
-    
     var body: some View {
-        Button {
+        ActionButtonView(
+            title: "Continue to Passion",
+            mode: .filled,
+            isDisabled: viewModel.username.isEmpty
+        ) {
             viewModel.verifyUsernameAvailability()
-        } label: {
-            WhiteButtonView(buttonActive: isNameNotEmpty, text: "Continue")
         }
-        .disabled(viewModel.username.isEmpty)
     }
 }
+
 
 struct EnterNameView_Previews: PreviewProvider {
     static var previews: some View {
