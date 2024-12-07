@@ -31,6 +31,8 @@ private struct MainContent: View {
         VStack {
             Image("onboarding_logo")
                 .resizable()
+                .renderingMode(.template)
+                .foregroundColor(.white)
                 .aspectRatio(contentMode: .fit)
                 .padding(.top, 50)
             Text("Find Your Perfect Match!")

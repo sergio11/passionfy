@@ -14,26 +14,22 @@ struct EnterPhoneNumberView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                Color.black.ignoresSafeArea()
+            VStack {
                 TopBarView(backButtonAction: {
                     viewModel.previousFlowStep()
                 })
-                VStack {
-                    PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Create you account using your phone number", label: "Your Phone")
-                    Spacer()
-                    AgreementTextView()
-                    ContinueButton()
-                }.padding(.bottom, 40)
-            }
+                OnboardingAccountLogoView()
+                Spacer()
+                PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Create you account using your phone number", label: "Your Phone")
+                Spacer()
+                AgreementTextView()
+                ContinueButton()
+            }.padding()
         }
         .sheet(isPresented: $viewModel.showCountryList) {
             SelectCountryView(countryChosen: $viewModel.country)
         }
-        .overlay {
-            LoadingView()
-                .opacity(viewModel.isLoading ? 1 : 0)
-        }
+        .background(AnimatedRadialGradientView())
         .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
     }
 }
@@ -45,10 +41,11 @@ private struct ContinueButton: View {
     var body: some View {
         ActionButtonView(
             title: "Continue",
-            mode: .filled
+            mode: .filled,
+            isDisabled: viewModel.phoneNumber.isEmpty
         ) {
             viewModel.sendOtp()
-        }.disabled(viewModel.phoneNumber.isEmpty)
+        }
     }
 }
 

@@ -14,25 +14,24 @@ struct EnterNameView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                AnimatedRadialGradientView()
-                VStack {
-                    TopBarView(backButtonAction: {
-                        dismiss()
-                    })
-                    NameInputView()
-                    Spacer()
-                    Text("Choose a username that reflects you. It's how others will recognize and connect with you on Passionfy.")
-                        .customFont(.semiBold, 14)
-                        .foregroundColor(Color.pink.opacity(0.6))
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
-                    ContinueButton()
-                }
-                .animation(nil)
-                .padding()
+            VStack {
+                TopBarView(backButtonAction: {
+                    dismiss()
+                })
+                OnboardingAccountLogoView()
+                Spacer()
+                NameInputView()
+                Spacer()
+                Text("Choose a username that reflects you. It's how others will recognize and connect with you on Passionfy.")
+                    .customFont(.semiBold, 14)
+                    .foregroundColor(Color.pink.opacity(0.6))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+                ContinueButton()
             }
+            .padding()
         }
+        .background(AnimatedRadialGradientView())
         .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
     }
 }
@@ -68,7 +67,6 @@ private struct NameInputView: View {
                     )
                     .padding(.top, 5)
             }
-            .foregroundColor(.white)
             Spacer()
         }
         .padding(.top)
