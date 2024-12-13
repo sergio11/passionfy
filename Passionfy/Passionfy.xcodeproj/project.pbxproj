@@ -52,11 +52,14 @@
 		3D185E012D0333FC009A4935 /* GetSuggestionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185E002D0333FC009A4935 /* GetSuggestionsUseCase.swift */; };
 		3D185E032D03341D009A4935 /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185E022D03341D009A4935 /* SignUpUseCase.swift */; };
 		3D185E052D033443009A4935 /* UpdateUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185E042D033443009A4935 /* UpdateUserUseCase.swift */; };
+		3D2870892D0CACF90044998C /* SelectGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2870882D0CACF90044998C /* SelectGenderView.swift */; };
+		3D28708B2D0CAD7A0044998C /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D28708A2D0CAD7A0044998C /* Gender.swift */; };
 		3D7B65772D044EE30002364F /* LoadingAndErrorOverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B65762D044EE30002364F /* LoadingAndErrorOverlayModifier.swift */; };
 		3D7B65792D045C120002364F /* AnimatedRadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B65782D045C120002364F /* AnimatedRadialGradientView.swift */; };
 		3D7B657B2D046BCA0002364F /* NumericInputModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B657A2D046BCA0002364F /* NumericInputModifier.swift */; };
 		3D7B657E2D04744B0002364F /* AgreementTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B657D2D04744B0002364F /* AgreementTextView.swift */; };
 		3D7B65802D0484890002364F /* OnboardingAccountLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B657F2D0484890002364F /* OnboardingAccountLogoView.swift */; };
+		3D7B65822D048B5E0002364F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D7B65812D048B5E0002364F /* Launch Screen.storyboard */; };
 		3D7EF5D82D037A1B0021E04E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7EF5D72D037A1B0021E04E /* LoadingView.swift */; };
 		3D7EF5DB2D037A540021E04E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7EF5DA2D037A540021E04E /* OnboardingView.swift */; };
 		3D7EF5DE2D037A7D0021E04E /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7EF5DD2D037A7D0021E04E /* BackgroundImage.swift */; };
@@ -154,11 +157,14 @@
 		3D185E002D0333FC009A4935 /* GetSuggestionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSuggestionsUseCase.swift; sourceTree = "<group>"; };
 		3D185E022D03341D009A4935 /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		3D185E042D033443009A4935 /* UpdateUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserUseCase.swift; sourceTree = "<group>"; };
+		3D2870882D0CACF90044998C /* SelectGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGenderView.swift; sourceTree = "<group>"; };
+		3D28708A2D0CAD7A0044998C /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		3D7B65762D044EE30002364F /* LoadingAndErrorOverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAndErrorOverlayModifier.swift; sourceTree = "<group>"; };
 		3D7B65782D045C120002364F /* AnimatedRadialGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedRadialGradientView.swift; sourceTree = "<group>"; };
 		3D7B657A2D046BCA0002364F /* NumericInputModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericInputModifier.swift; sourceTree = "<group>"; };
 		3D7B657D2D04744B0002364F /* AgreementTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementTextView.swift; sourceTree = "<group>"; };
 		3D7B657F2D0484890002364F /* OnboardingAccountLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccountLogoView.swift; sourceTree = "<group>"; };
+		3D7B65812D048B5E0002364F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3D7EF5D72D037A1B0021E04E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		3D7EF5DA2D037A540021E04E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		3D7EF5DD2D037A7D0021E04E /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
@@ -320,6 +326,7 @@
 				3DC37E432CF7A8A200E7FB1B /* User.swift */,
 				3D185DD92D033071009A4935 /* Birthdate.swift */,
 				3D185DDB2D033084009A4935 /* Country.swift */,
+				3D28708A2D0CAD7A0044998C /* Gender.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -515,6 +522,7 @@
 				3D7EF5EB2D037B780021E04E /* ValidateOTPView.swift */,
 				3D7EF5ED2D037B910021E04E /* AccountCreatedView.swift */,
 				3D7EF5F72D037CE70021E04E /* SelectCountryView.swift */,
+				3D2870882D0CACF90044998C /* SelectGenderView.swift */,
 			);
 			path = CreateAccount;
 			sourceTree = "<group>";
@@ -603,6 +611,7 @@
 				3DC37E252CF78F9900E7FB1B /* App */,
 				3DC37E1B2CF78F6500E7FB1B /* Assets.xcassets */,
 				3DC37E1D2CF78F6500E7FB1B /* Preview Content */,
+				3D7B65812D048B5E0002364F /* Launch Screen.storyboard */,
 			);
 			path = Passionfy;
 			sourceTree = "<group>";
@@ -808,6 +817,7 @@
 				3DC37E1F2CF78F6500E7FB1B /* Preview Assets.xcassets in Resources */,
 				3D7EF62D2D0390A70021E04E /* Outfit-Thin.ttf in Resources */,
 				3DC37E1C2CF78F6500E7FB1B /* Assets.xcassets in Resources */,
+				3D7B65822D048B5E0002364F /* Launch Screen.storyboard in Resources */,
 				3D7EF62A2D0390A70021E04E /* Outfit-SemiBold.ttf in Resources */,
 				3D7EF6192D038E730021E04E /* countries.json in Resources */,
 				3D7EF62F2D0390A70021E04E /* Outfit-Black.ttf in Resources */,
@@ -831,6 +841,7 @@
 				3D185DD62D032E51009A4935 /* FirebaseAuthenticationDataSourceImpl.swift in Sources */,
 				3D185D9B2D03108F009A4935 /* EditProfileView.swift in Sources */,
 				3D7EF60D2D037FA20021E04E /* MainViewModel.swift in Sources */,
+				3D28708B2D0CAD7A0044998C /* Gender.swift in Sources */,
 				3D7EF6132D0386D50021E04E /* AnimatedGradientView.swift in Sources */,
 				3DC37E3C2CF79E5D00E7FB1B /* ImageScrollingOverlay.swift in Sources */,
 				3D185D902D03025B009A4935 /* UserProfileView.swift in Sources */,
@@ -888,6 +899,7 @@
 				3D185DCE2D032D61009A4935 /* UserDataSource.swift in Sources */,
 				3D7EF5EC2D037B780021E04E /* ValidateOTPView.swift in Sources */,
 				3DC37E182CF78F6200E7FB1B /* PassionfyApp.swift in Sources */,
+				3D2870892D0CACF90044998C /* SelectGenderView.swift in Sources */,
 				3D7EF61C2D038FEF0021E04E /* FontExtensions.swift in Sources */,
 				3D7B65802D0484890002364F /* OnboardingAccountLogoView.swift in Sources */,
 				3D185D942D0306F8009A4935 /* CurrentUserProfile.swift in Sources */,
@@ -1042,9 +1054,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Passionfy/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1072,9 +1086,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Passionfy/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
