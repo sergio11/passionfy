@@ -23,5 +23,16 @@
 		<string>Outfit-Thin.ttf</string>
 		<string>Outfit-ExtraLight.ttf</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>app-1-1098126610643-ios-f32fb34f8e0202e03f8426</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
