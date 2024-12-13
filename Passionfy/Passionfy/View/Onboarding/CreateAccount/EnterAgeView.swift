@@ -13,26 +13,12 @@ struct EnterAgeView: View {
     @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
-        VStack {
-            VStack {
-                TopBarView(backButtonAction: {
-                    viewModel.previousFlowStep()
-                })
-                OnboardingAccountLogoView()
-                Spacer()
-                DateInputView()
-                Spacer()
-                Text("We just need to verify your age to ensure you're ready for Passionfy.")
-                    .customFont(.semiBold, 14)
-                    .foregroundColor(Color.pink.opacity(0.6))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-                ContinueButton()
-            }
-            .padding()
+        OnboardingStepView(
+            message: "We just need to verify your age to ensure you're ready for Passionfy.",
+            isContinueButtonDisabled: !viewModel.birthdate.hasDataValid()
+        ) {
+            DateInputView()
         }
-        .background(AnimatedRadialGradientView())
-        .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
     }
 }
 
@@ -94,20 +80,6 @@ private struct InputField: View {
         }
 }
 
-private struct ContinueButton: View {
-    
-    @EnvironmentObject var viewModel: CreateAccountViewModel
-        
-    var body: some View {
-        ActionButtonView(
-            title: "Continue",
-            mode: .filled,
-            isDisabled: !viewModel.birthdate.hasDataValid()
-        ) {
-            viewModel.nextFlowStep()
-        }
-    }
-}
 
 struct EnterAgeView_Previews: PreviewProvider {
     static var previews: some View {

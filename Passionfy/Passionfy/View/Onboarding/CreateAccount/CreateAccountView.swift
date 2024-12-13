@@ -13,29 +13,27 @@ struct CreateAccountView: View {
     @StateObject var viewModel = CreateAccountViewModel()
     
     var body: some View {
-        switch viewModel.accountFlowStep {
-        case .username:
-            EnterNameView()
-                .environmentObject(viewModel)
-        case .birthdate:
-            EnterAgeView()
-                .environmentObject(viewModel)
-        case .gender:
-            SelectGenderView()
-                .environmentObject(viewModel)
-        case .preference:
-            SelectPreferencesView()
-                .environmentObject(viewModel)
-        case .phoneNumber:
-            EnterPhoneNumberView()
-                .environmentObject(viewModel)
-        case .otp:
-            ValidateOTPView()
-                .environmentObject(viewModel)
-        case .completed:
-            AccountCreatedView(isAccountCreated: $isAccountCreated)
-                .environmentObject(viewModel)
+        Group {
+            switch viewModel.accountFlowStep {
+            case .username:
+                EnterNameView()
+            case .birthdate:
+                EnterAgeView()
+            case .gender:
+                SelectGenderView()
+            case .interest:
+                SelectInterestView()
+            case .preference:
+                SelectPreferencesView()
+            case .phoneNumber:
+                EnterPhoneNumberView()
+            case .otp:
+                ValidateOTPView()
+            case .completed:
+                AccountCreatedView(isAccountCreated: $isAccountCreated)
+            }
         }
+        .environmentObject(viewModel)
     }
 }
 

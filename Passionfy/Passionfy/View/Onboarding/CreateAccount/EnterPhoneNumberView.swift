@@ -13,42 +13,19 @@ struct EnterPhoneNumberView: View {
     @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
-        VStack {
-            VStack {
-                TopBarView(backButtonAction: {
-                    viewModel.previousFlowStep()
-                })
-                OnboardingAccountLogoView()
-                Spacer()
-                PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Create you account using your phone number", label: "Your Phone")
-                Spacer()
-                AgreementTextView()
-                ContinueButton()
-            }.padding()
-        }
-        .sheet(isPresented: $viewModel.showCountryList) {
+        OnboardingStepView(
+            message: "We’ll send a verification code to your phone to complete the registration.",
+            onContinue: {
+                viewModel.sendOtp()
+            },
+            isContinueButtonDisabled: viewModel.phoneNumber.isEmpty
+        ) {
+            PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Create you account using your phone number", label: "Your Phone")
+        }.sheet(isPresented: $viewModel.showCountryList) {
             SelectCountryView(countryChosen: $viewModel.country)
         }
-        .background(AnimatedRadialGradientView())
-        .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
     }
 }
-
-private struct ContinueButton: View {
-    
-    @EnvironmentObject var viewModel: CreateAccountViewModel
-    
-    var body: some View {
-        ActionButtonView(
-            title: "Continue",
-            mode: .filled,
-            isDisabled: viewModel.phoneNumber.isEmpty
-        ) {
-            viewModel.sendOtp()
-        }
-    }
-}
-
 
 struct EnterPhoneNumberView_Previews: PreviewProvider {
     static var previews: some View {

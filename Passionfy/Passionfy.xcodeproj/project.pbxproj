@@ -56,10 +56,12 @@
 		3D28708B2D0CAD7A0044998C /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D28708A2D0CAD7A0044998C /* Gender.swift */; };
 		3D28708D2D0CB18D0044998C /* SelectPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D28708C2D0CB18D0044998C /* SelectPreferencesView.swift */; };
 		3D28708F2D0CB1BE0044998C /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D28708E2D0CB1BE0044998C /* Preference.swift */; };
+		3D2870912D0CB35F0044998C /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2870902D0CB35F0044998C /* Interest.swift */; };
+		3D2870932D0CB3800044998C /* SelectInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2870922D0CB3800044998C /* SelectInterestView.swift */; };
+		3D2870952D0CB4160044998C /* OnboardingStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2870942D0CB4160044998C /* OnboardingStepView.swift */; };
 		3D7B65772D044EE30002364F /* LoadingAndErrorOverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B65762D044EE30002364F /* LoadingAndErrorOverlayModifier.swift */; };
 		3D7B65792D045C120002364F /* AnimatedRadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B65782D045C120002364F /* AnimatedRadialGradientView.swift */; };
 		3D7B657B2D046BCA0002364F /* NumericInputModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B657A2D046BCA0002364F /* NumericInputModifier.swift */; };
-		3D7B657E2D04744B0002364F /* AgreementTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B657D2D04744B0002364F /* AgreementTextView.swift */; };
 		3D7B65802D0484890002364F /* OnboardingAccountLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B657F2D0484890002364F /* OnboardingAccountLogoView.swift */; };
 		3D7B65822D048B5E0002364F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D7B65812D048B5E0002364F /* Launch Screen.storyboard */; };
 		3D7EF5D82D037A1B0021E04E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7EF5D72D037A1B0021E04E /* LoadingView.swift */; };
@@ -163,10 +165,12 @@
 		3D28708A2D0CAD7A0044998C /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		3D28708C2D0CB18D0044998C /* SelectPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPreferencesView.swift; sourceTree = "<group>"; };
 		3D28708E2D0CB1BE0044998C /* Preference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
+		3D2870902D0CB35F0044998C /* Interest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
+		3D2870922D0CB3800044998C /* SelectInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestView.swift; sourceTree = "<group>"; };
+		3D2870942D0CB4160044998C /* OnboardingStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStepView.swift; sourceTree = "<group>"; };
 		3D7B65762D044EE30002364F /* LoadingAndErrorOverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAndErrorOverlayModifier.swift; sourceTree = "<group>"; };
 		3D7B65782D045C120002364F /* AnimatedRadialGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedRadialGradientView.swift; sourceTree = "<group>"; };
 		3D7B657A2D046BCA0002364F /* NumericInputModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericInputModifier.swift; sourceTree = "<group>"; };
-		3D7B657D2D04744B0002364F /* AgreementTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementTextView.swift; sourceTree = "<group>"; };
 		3D7B657F2D0484890002364F /* OnboardingAccountLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccountLogoView.swift; sourceTree = "<group>"; };
 		3D7B65812D048B5E0002364F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3D7EF5D72D037A1B0021E04E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -332,6 +336,7 @@
 				3D185DDB2D033084009A4935 /* Country.swift */,
 				3D28708A2D0CAD7A0044998C /* Gender.swift */,
 				3D28708E2D0CB1BE0044998C /* Preference.swift */,
+				3D2870902D0CB35F0044998C /* Interest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -468,7 +473,6 @@
 		3D7B657C2D04743F0002364F /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				3D7B657D2D04744B0002364F /* AgreementTextView.swift */,
 				3D7B657F2D0484890002364F /* OnboardingAccountLogoView.swift */,
 			);
 			path = Components;
@@ -529,6 +533,7 @@
 				3D7EF5F72D037CE70021E04E /* SelectCountryView.swift */,
 				3D2870882D0CACF90044998C /* SelectGenderView.swift */,
 				3D28708C2D0CB18D0044998C /* SelectPreferencesView.swift */,
+				3D2870922D0CB3800044998C /* SelectInterestView.swift */,
 			);
 			path = CreateAccount;
 			sourceTree = "<group>";
@@ -537,6 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				3D7EF6022D037E2E0021E04E /* ExplanationText.swift */,
+				3D2870942D0CB4160044998C /* OnboardingStepView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -850,6 +856,7 @@
 				3D28708B2D0CAD7A0044998C /* Gender.swift in Sources */,
 				3D7EF6132D0386D50021E04E /* AnimatedGradientView.swift in Sources */,
 				3DC37E3C2CF79E5D00E7FB1B /* ImageScrollingOverlay.swift in Sources */,
+				3D2870952D0CB4160044998C /* OnboardingStepView.swift in Sources */,
 				3D185D902D03025B009A4935 /* UserProfileView.swift in Sources */,
 				3D185DF92D033364009A4935 /* SignOutUseCase.swift in Sources */,
 				3D185DE32D033144009A4935 /* UserProfileRepository.swift in Sources */,
@@ -878,8 +885,10 @@
 				3D7B65792D045C120002364F /* AnimatedRadialGradientView.swift in Sources */,
 				3D185DA62D031B77009A4935 /* MatchManager.swift in Sources */,
 				3D185DD82D032E72009A4935 /* FirestoreStorageFilesDataSourceImpl.swift in Sources */,
+				3D2870932D0CB3800044998C /* SelectInterestView.swift in Sources */,
 				3D185DE52D033170009A4935 /* AuthenticationRepository.swift in Sources */,
 				3D7EF5E62D037B360021E04E /* EnterAgeView.swift in Sources */,
+				3D2870912D0CB35F0044998C /* Interest.swift in Sources */,
 				3D7EF5DB2D037A540021E04E /* OnboardingView.swift in Sources */,
 				3D185DFF2D0333C0009A4935 /* GetCurrentUserUseCase.swift in Sources */,
 				3D7B65772D044EE30002364F /* LoadingAndErrorOverlayModifier.swift in Sources */,
@@ -892,7 +901,6 @@
 				3D7EF5E82D037B530021E04E /* EnterNameView.swift in Sources */,
 				3D185DBF2D0329E9009A4935 /* Container.swift in Sources */,
 				3D185DC82D032A61009A4935 /* UserDTO.swift in Sources */,
-				3D7B657E2D04744B0002364F /* AgreementTextView.swift in Sources */,
 				3D7EF6002D037D7E0021E04E /* ViewExtensions.swift in Sources */,
 				3D185DA32D03184E009A4935 /* UserMatchView.swift in Sources */,
 				3DC37E402CF7A61400E7FB1B /* CardStackView.swift in Sources */,

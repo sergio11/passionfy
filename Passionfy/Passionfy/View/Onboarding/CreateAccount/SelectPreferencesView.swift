@@ -12,28 +12,12 @@ struct SelectPreferencesView: View {
     @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
-        VStack {
-            VStack {
-                TopBarView(backButtonAction: {
-                    viewModel.previousFlowStep()
-                })
-                OnboardingAccountLogoView()
-                Spacer()
-                PreferencesSelectionView(selectedPreference: $viewModel.selectedPreference)
-                Spacer()
-                Text("Let us know what you're looking for, so we can find your perfect match. 💕")
-                    .customFont(.semiBold, 14)
-                    .foregroundColor(Color.pink.opacity(0.6))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-                ContinueButton(isDisabled: viewModel.selectedPreference == nil) {
-                    viewModel.nextFlowStep()
-                }
-            }
-            .padding()
+        OnboardingStepView(
+            message: "Let us know what you're looking for, so we can find your perfect match. 💕",
+            isContinueButtonDisabled: viewModel.selectedPreference == nil
+        ) {
+            PreferencesSelectionView(selectedPreference: $viewModel.selectedPreference)
         }
-        .background(AnimatedRadialGradientView())
-        .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
     }
 }
 
@@ -79,21 +63,6 @@ private struct PreferencesSelectionView: View {
     }
 }
 
-private struct ContinueButton: View {
-    
-    var isDisabled: Bool
-    var onContinueClicked: () -> Void
-    
-    var body: some View {
-        ActionButtonView(
-            title: "Continue",
-            mode: .filled,
-            isDisabled: isDisabled
-        ) {
-            onContinueClicked()
-        }
-    }
-}
 
 struct SelectPreferencesView_Previews: PreviewProvider {
     static var previews: some View {
