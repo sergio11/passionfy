@@ -13,26 +13,18 @@ struct EnterNameView: View {
     @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
-        VStack {
-            VStack {
-                TopBarView(backButtonAction: {
-                    dismiss()
-                })
-                OnboardingAccountLogoView()
-                Spacer()
-                NameInputView()
-                Spacer()
-                Text("Choose a username that reflects you. It's how others will recognize and connect with you on Passionfy.")
-                    .customFont(.semiBold, 14)
-                    .foregroundColor(Color.pink.opacity(0.6))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-                ContinueButton()
-            }
-            .padding()
+        OnboardingStepView(
+            message: "Choose a username that reflects you. It's how others will recognize and connect with you on Passionfy.",
+            onContinue: {
+                viewModel.verifyUsernameAvailability()
+            },
+            onBack: {
+                dismiss()
+            },
+            isContinueButtonDisabled: viewModel.username.isEmpty
+        ) {
+            NameInputView()
         }
-        .background(AnimatedRadialGradientView())
-        .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
     }
 }
 
@@ -70,21 +62,6 @@ private struct NameInputView: View {
             Spacer()
         }
         .padding(.top)
-    }
-}
-
-private struct ContinueButton: View {
-    
-    @EnvironmentObject var viewModel: CreateAccountViewModel
-    
-    var body: some View {
-        ActionButtonView(
-            title: "Continue to Passion",
-            mode: .filled,
-            isDisabled: viewModel.username.isEmpty
-        ) {
-            viewModel.verifyUsernameAvailability()
-        }
     }
 }
 
