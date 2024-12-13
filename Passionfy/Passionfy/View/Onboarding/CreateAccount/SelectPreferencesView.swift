@@ -25,7 +25,7 @@ private struct PreferencesSelectionView: View {
     @Binding var selectedPreference: Preference?
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .center, spacing: 16) {
             Text("What are you looking for?")
                 .customFont(.semiBold, 16)
                 .foregroundColor(Color.pink.opacity(0.8))
