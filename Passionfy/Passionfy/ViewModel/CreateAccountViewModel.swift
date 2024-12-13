@@ -12,6 +12,7 @@ class CreateAccountViewModel: BaseAuthViewModel {
     
     @Published var username = ""
     @Published var birthdate = Birthdate(day: "", month: "", year: "")
+    @Published var gender: Gender? = nil
     @Published var accountFlowStep: AccountFlowStepEnum = .username
     
     @Injected(\.verifyUsernameAvailabilityUseCase) private var verifyUsernameAvailabilityUseCase: VerifyUsernameAvailabilityUseCase
@@ -61,6 +62,8 @@ class CreateAccountViewModel: BaseAuthViewModel {
         case .username:
             accountFlowStep = .birthdate
         case .birthdate:
+            accountFlowStep = .gender
+        case .gender:
             accountFlowStep = .phoneNumber
         case .phoneNumber:
             accountFlowStep = .otp
@@ -77,8 +80,10 @@ class CreateAccountViewModel: BaseAuthViewModel {
             break
         case .birthdate:
             accountFlowStep = .username
-        case .phoneNumber:
+        case .gender:
             accountFlowStep = .birthdate
+        case .phoneNumber:
+            accountFlowStep = .gender
         case .otp:
             accountFlowStep = .phoneNumber
         case .completed:
@@ -90,6 +95,7 @@ class CreateAccountViewModel: BaseAuthViewModel {
 enum AccountFlowStepEnum {
     case username
     case birthdate
+    case gender
     case phoneNumber
     case otp
     case completed
