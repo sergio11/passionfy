@@ -26,31 +26,35 @@ private struct GenderSelectionView: View {
     @Binding var selectedGender: Gender?
     
     var body: some View {
-        ScrollView { // Make the list scrollable
-            VStack(alignment: .leading, spacing: 16) {
-                ForEach(Gender.allCases, id: \.self) { gender in
-                    HStack {
-                        Text(gender.rawValue)
-                            .customFont(.regular, 14)
-                            .foregroundColor(.pink.opacity(0.8))
-                        Spacer()
-                        if selectedGender == gender {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.pink)
+        VStack(alignment: .center, spacing: 16) {
+            Text("What’s Your Gender? 💫")
+                .customFont(.semiBold, 16)
+                .foregroundColor(Color.pink.opacity(0.8))
+            ScrollView { // Make the list scrollable
+                VStack(alignment: .leading, spacing: 8) {
+                    ForEach(Gender.allCases, id: \.self) { gender in
+                        HStack {
+                            Text(gender.rawValue)
+                                .customFont(.regular, 14)
+                                .foregroundColor(.pink.opacity(0.8))
+                            Spacer()
+                            if selectedGender == gender {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.pink)
+                            }
                         }
-                    }
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(selectedGender == gender ? Color.pink : Color.clear, lineWidth: 2)
-                    )
-                    .onTapGesture {
-                        selectedGender = gender
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(selectedGender == gender ? Color.pink : Color.clear, lineWidth: 2)
+                        )
+                        .onTapGesture {
+                            selectedGender = gender
+                        }
                     }
                 }
             }
-            .padding(.horizontal)
-        }
+        }.padding(.horizontal)
     }
 }
 

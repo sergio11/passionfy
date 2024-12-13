@@ -23,7 +23,6 @@ struct AuthenticationView: View {
                 Spacer()
                 PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Sign in securely by providing your phone number", label: "Your Phone")
                 Spacer()
-                AgreementTextView()
                 ContinueButton(
                     isPhoneNumberEmpty: viewModel.phoneNumber.isEmpty
                 ) {

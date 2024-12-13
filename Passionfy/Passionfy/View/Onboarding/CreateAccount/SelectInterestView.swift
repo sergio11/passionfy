@@ -27,28 +27,35 @@ private struct InterestSelectionView: View {
     @Binding var selectedInterest: Interest?
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            // Loop through all interest options
-            ForEach(Interest.allCases, id: \.self) { interest in
-                HStack {
-                    Text(interest.rawValue) // Display interest name
-                        .customFont(.regular, 14)
-                        .foregroundColor(.pink.opacity(0.8))
-                    Spacer()
-                    // Show a checkmark if this interest is selected
-                    if selectedInterest == interest {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(.pink)
+        VStack(alignment: .center, spacing: 16) {
+            Text("What Sparks Your Interest? ✨")
+                .customFont(.semiBold, 16)
+                .foregroundColor(Color.pink.opacity(0.8))
+            ScrollView { // Make the list scrollable
+                VStack(alignment: .leading, spacing: 8) {
+                    // Loop through all interest options
+                    ForEach(Interest.allCases, id: \.self) { interest in
+                        HStack {
+                            Text(interest.rawValue) // Display interest name
+                                .customFont(.regular, 14)
+                                .foregroundColor(.pink.opacity(0.8))
+                            Spacer()
+                            // Show a checkmark if this interest is selected
+                            if selectedInterest == interest {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.pink)
+                            }
+                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(selectedInterest == interest ? Color.pink : Color.clear, lineWidth: 2)
+                        )
+                        .onTapGesture {
+                            // Update the selected interest
+                            selectedInterest = interest
+                        }
                     }
-                }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(selectedInterest == interest ? Color.pink : Color.clear, lineWidth: 2)
-                )
-                .onTapGesture {
-                    // Update the selected interest
-                    selectedInterest = interest
                 }
             }
         }
