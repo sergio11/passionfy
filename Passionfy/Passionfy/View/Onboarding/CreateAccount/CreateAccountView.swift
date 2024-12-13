@@ -23,6 +23,9 @@ struct CreateAccountView: View {
         case .gender:
             SelectGenderView()
                 .environmentObject(viewModel)
+        case .preference:
+            SelectPreferencesView()
+                .environmentObject(viewModel)
         case .phoneNumber:
             EnterPhoneNumberView()
                 .environmentObject(viewModel)
