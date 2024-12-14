@@ -16,6 +16,8 @@ struct CreateAccountView: View {
         ZStack {
             TransitioningView(transition: .opacity) {
                 switch viewModel.accountFlowStep {
+                case .welcome:
+                    WelcomeOnboardingView()
                 case .username:
                     EnterNameView()
                 case .birthdate:
