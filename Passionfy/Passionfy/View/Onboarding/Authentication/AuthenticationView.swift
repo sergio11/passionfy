@@ -32,11 +32,19 @@ struct AuthenticationView: View {
             SelectCountryView(countryChosen: $viewModel.country)
         }
         .sheet(isPresented: $viewModel.showEnterCodeView) {
-            EnterCodeView(phoneCode: $viewModel.country.phoneCode, phoneNumber: $viewModel.phoneNumber, otpText: $viewModel.otpText, isLoading: $viewModel.isLoading, onBack: {
-                viewModel.showEnterCodeView = false
-            }, onVerifyOTP: {
-                viewModel.signIn()
-            })
+            EnterCodeView(
+                phoneCode: $viewModel.country.phoneCode,
+                phoneNumber: $viewModel.phoneNumber,
+                otpText: $viewModel.otpText,
+                isLoading: $viewModel.isLoading,
+                errorMessage: $viewModel.errorMessage,
+                onBack: {
+                    viewModel.showEnterCodeView = false
+                },
+                onVerifyOTP: {
+                    viewModel.signIn()
+                }
+            )
         }
         .onReceive(viewModel.$signInSuccess) { success in
             if success {

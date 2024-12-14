@@ -66,11 +66,15 @@ struct PictureSelectionGridView: View {
         ZStack(alignment: .bottomTrailing) {
             Image("onboarding_account_logo")
                 .resizable()
-                .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
-                .frame(width: imageWidth, height: imageHeight)
                 .scaledToFit()
+                .frame(width: imageWidth, height: imageHeight)
                 .background(Color.white)
-                .cornerRadius(cornerRadius)
+                .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+                .overlay(
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                )
+                .shadow(color: .gray.opacity(0.3), radius: 4, x: 0, y: 2)
                 .onTapGesture {
                     viewModel.selectedIndex = index
                     viewModel.showImagePicker = true

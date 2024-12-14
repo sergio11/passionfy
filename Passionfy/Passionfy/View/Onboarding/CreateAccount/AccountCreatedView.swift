@@ -16,11 +16,14 @@ struct AccountCreatedView: View {
     var body: some View {
         ZStack {
             BackgroundImage(imageName: "account_created_background")
+            AnimatedGradientView()
             VStack {
                 MainContent(username: $viewModel.username)
                 Actions(isAccountCreated: $isAccountCreated)
-            }.padding(.horizontal, 30)
+            }
+            .padding()
         }
+        .ignoresSafeArea()
         .statusBar(hidden: true)
     }
 }
@@ -33,49 +36,48 @@ private struct MainContent: View {
         VStack {
             Image("onboarding_logo")
                 .resizable()
+                .renderingMode(.template)
+                .foregroundColor(.white)
                 .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: .infinity)
-                .edgesIgnoringSafeArea(.all)
                 .padding(.top, 50)
-            Text("\(username) - your account has been created successfully!")
-                 .font(.title)
-                .fontWeight(.bold)
+            Text("Congratulations, \(username)!")
+                .customFont(.bold, 28)
                 .foregroundColor(.white)
-                .padding()
-            Text("You are now part of the RealInsight community. Start exploring and sharing genuine moments with others.")
-                .font(.title3)
-                .foregroundColor(.white)
+                .padding(.top)
+            Text("Your account is ready to go! You're now part of the Passionfy family—where amazing connections await.")
+                .customFont(.regular, 20)
+                .foregroundColor(.white.opacity(0.8))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
+                .padding(.top, 10)
             Spacer()
-        }.padding(.horizontal, 30)
+        }
     }
 }
+
 
 private struct Actions: View {
     
     @Binding var isAccountCreated: Bool
     
     var body: some View {
-        VStack {
-            Button(action: {
-                isAccountCreated = true
-            }) {
-                Text("Start Exploring!")
-                    .foregroundColor(.black)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
-            }
-            .padding(.bottom, 30)
-            .padding(.top, 20)
-            Text("Build with passion by dreamsoftware. Sergio Sánchez Sánchez © 2024")
-                .font(.footnote)
-                .fontWeight(.bold)
+        VStack(spacing: 16) {
+            Text("Ready to discover your perfect match?")
+                .customFont(.medium, 18)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
-                .padding(.bottom, 10)
-        }.padding(.horizontal, 30)
+            
+            ActionButtonView(title: "Start Your Journey", mode: .filled) {
+                isAccountCreated = true
+            }
+            .padding(.horizontal, 20)
+            
+            Text("Made with love and dedication by DreamSoftware.\nSergio Sánchez Sánchez © 2024")
+                .customFont(.medium, 14)
+                .foregroundColor(.white.opacity(0.7))
+                .multilineTextAlignment(.center)
+                .padding(.top, 30)
+        }
     }
 }
 
