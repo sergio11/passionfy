@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Interest: String, CaseIterable {
+enum Interest: String, CaseIterable, Decodable {
     case men = "Men"
     case women = "Women"
     case everyone = "Everyone"

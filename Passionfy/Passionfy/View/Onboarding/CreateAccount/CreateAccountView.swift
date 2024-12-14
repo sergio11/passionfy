@@ -30,6 +30,8 @@ struct CreateAccountView: View {
                     SelectPreferencesView()
                 case .occupation:
                     EnterOccupationView()
+                case .pictures:
+                    AddRecentPicturesView()
                 case .phoneNumber:
                     EnterPhoneNumberView()
                 case .otp:

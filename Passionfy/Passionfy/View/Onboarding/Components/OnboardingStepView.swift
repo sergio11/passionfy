@@ -11,27 +11,42 @@ import SwiftUI
 /// This view includes a top bar, logo, customizable content, a message, and a continue button.
 struct OnboardingStepView<Content: View>: View {
     
-    @EnvironmentObject var viewModel: CreateAccountViewModel
-
+    /// Binding to track the loading state, allowing the parent view to observe and update this value.
+    @Binding private var isLoading: Bool
+    /// Binding to hold and display error messages, allowing two-way communication with the parent view.
+    @Binding private var errorMessage: String?
     /// A message displayed below the content, providing context to the user.
-    let message: String
+    private let message: String
     /// The action to execute when the user taps the continue button.
-    let onContinue: (() -> Void)?
+    private let onContinue: (() -> Void)?
     /// The action to execute when the user taps the back button.
-    let onBack: (() -> Void)?
+    private let onBack: (() -> Void)?
     /// A flag indicating whether the continue button should be disabled.
-    let isContinueButtonDisabled: Bool
+    private let isContinueButtonDisabled: Bool
     /// The customizable content for each specific onboarding step.
-    @ViewBuilder var content: () -> Content
+    @ViewBuilder private var content: () -> Content
     
     /// Initializes the reusable onboarding step view.
+        ///
+        /// - Parameters:
+        ///   - isLoading: A binding to a boolean that tracks the loading state.
+        ///   - errorMessage: A binding to an optional string for error messages.
+        ///   - message: A string providing context or instructions for the current onboarding step.
+        ///   - onContinue: A closure to execute when the continue button is tapped. Defaults to `nil`.
+        ///   - onBack: A closure to execute when the back button is tapped. Defaults to `nil`.
+        ///   - isContinueButtonDisabled: A boolean indicating whether the continue button is disabled. Defaults to `false`.
+        ///   - content: A `ViewBuilder` closure providing the content for the step.
     init(
+        isLoading: Binding<Bool>,
+        errorMessage: Binding<String?>,
         message: String,
         onContinue: (() -> Void)? = nil,
         onBack: (() -> Void)? = nil,
         isContinueButtonDisabled: Bool = false,
         @ViewBuilder content: @escaping () -> Content
     ) {
+        self._isLoading = isLoading
+        self._errorMessage = errorMessage
         self.onContinue = onContinue
         self.onBack = onBack
         self.message = message
@@ -44,13 +59,11 @@ struct OnboardingStepView<Content: View>: View {
             VStack {
                 // Top bar with back button
                 TopBarView {
-                    onBack?() ?? viewModel.previousFlowStep()
+                    onBack?()
                 }
                 
                 // App logo displayed at the top
                 OnboardingAccountLogoView()
-                
-                Spacer()
                 
                 // Customizable content specific to the onboarding step
                 content()
@@ -67,13 +80,13 @@ struct OnboardingStepView<Content: View>: View {
                 
                 // Continue button to proceed to the next step
                 ContinueButton(isDisabled: isContinueButtonDisabled) {
-                    onContinue?() ?? viewModel.nextFlowStep()
+                    onContinue?()
                 }
             }
             .padding()
         }
         .background(AnimatedRadialGradientView())
-        .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
+        .modifier(LoadingAndErrorOverlayModifier(isLoading: $isLoading, errorMessage: $errorMessage))
     }
 }
 

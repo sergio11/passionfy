@@ -14,9 +14,14 @@ struct EnterPhoneNumberView: View {
     
     var body: some View {
         OnboardingStepView(
+            isLoading: $viewModel.isLoading,
+            errorMessage: $viewModel.errorMessage,
             message: "We’ll send a verification code to your phone to complete the registration.",
             onContinue: {
                 viewModel.sendOtp()
+            },
+            onBack: {
+                viewModel.previousFlowStep()
             },
             isContinueButtonDisabled: viewModel.phoneNumber.isEmpty
         ) {

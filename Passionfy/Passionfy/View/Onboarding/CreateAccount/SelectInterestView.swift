@@ -13,7 +13,15 @@ struct SelectInterestView: View {
     
     var body: some View {
         OnboardingStepView(
+            isLoading: $viewModel.isLoading,
+            errorMessage: $viewModel.errorMessage,
             message: "Tell us who you're interested in, and we'll personalize your matches. 💖",
+            onContinue: {
+                viewModel.nextFlowStep()
+            },
+            onBack: {
+                viewModel.previousFlowStep()
+            },
             isContinueButtonDisabled: viewModel.selectedInterest == nil
         ) {
             InterestSelectionView(selectedInterest: $viewModel.selectedInterest)

@@ -16,7 +16,13 @@ class CreateAccountViewModel: BaseAuthViewModel {
     @Published var gender: Gender? = nil
     @Published var selectedPreference: Preference? = nil
     @Published var selectedInterest: Interest? = nil
+    @Published var profileImages: [UIImage] = []
     @Published var accountFlowStep: AccountFlowStepEnum = .welcome
+    
+    @Published var showImagePicker = false
+    @Published var selectedIndex: Int?
+    
+    let maxImages = 6
     
     @Injected(\.verifyUsernameAvailabilityUseCase) private var verifyUsernameAvailabilityUseCase: VerifyUsernameAvailabilityUseCase
     @Injected(\.sendOtpUseCase) private var sendOtpUseCase: SendOtpUseCase
@@ -51,14 +57,47 @@ class CreateAccountViewModel: BaseAuthViewModel {
     }
     
     func signUp() {
+        let imageDatas: [Data] = self.profileImages.compactMap ({ image in
+            image.jpegData(compressionQuality: 0.5)
+        })
+        guard
+            let gender = self.gender,
+            let preference = self.selectedPreference,
+            let interest = self.selectedInterest,
+            !self.username.isEmpty,
+            !self.phoneNumber.isEmpty,
+            !self.otpText.isEmpty
+        else {
+            return
+        }
         executeAsyncTask {
-            return try await self.signUpUseCase.execute(params: SignUpParams(name: self.username, birthdate: self.birthdate.date, phoneNumber: self.phoneNumber, verificationCode: self.verificationCode, otpText: self.otpText))
+            return try await self.signUpUseCase.execute(params: SignUpParams(
+                name: self.username,
+                birthdate: self.birthdate.date,
+                occupation: self.occupation,
+                gender: gender,
+                selectedPreference: preference,
+                selectedInterest: interest,
+                profileImages: imageDatas,
+                phoneNumber: self.phoneNumber,
+                verificationCode: self.verificationCode,
+                otpText: self.otpText
+            ))
         } completion: { [weak self] result in
             guard let self = self, case .success = result else { return }
             self.nextFlowStep()
         }
     }
     
+    func onNewProfileImageSelected(image: UIImage) {
+        if let index = selectedIndex {
+            if index < profileImages.count {
+                profileImages[index] = image
+            } else if profileImages.count < maxImages {
+                profileImages.append(image)
+            }
+        }
+    }
     
     func nextFlowStep() {
         switch accountFlowStep {
@@ -75,6 +114,8 @@ class CreateAccountViewModel: BaseAuthViewModel {
         case .preference:
             accountFlowStep = .occupation
         case .occupation:
+            accountFlowStep = .pictures
+        case .pictures:
             accountFlowStep = .phoneNumber
         case .phoneNumber:
             accountFlowStep = .otp
@@ -101,8 +142,10 @@ class CreateAccountViewModel: BaseAuthViewModel {
             accountFlowStep = .interest
         case .occupation:
             accountFlowStep = .preference
-        case .phoneNumber:
+        case .pictures:
             accountFlowStep = .occupation
+        case .phoneNumber:
+            accountFlowStep = .pictures
         case .otp:
             accountFlowStep = .phoneNumber
         case .completed:
@@ -119,6 +162,7 @@ enum AccountFlowStepEnum {
     case preference
     case interest
     case occupation
+    case pictures
     case phoneNumber
     case otp
     case completed

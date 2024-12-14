@@ -8,31 +8,70 @@
 import Foundation
 
 struct MockData {
-    
     static let users: [User] = [
         .init(
             id: NSUUID().uuidString,
             username: "MeganFox",
-            phone: "+15551234567",
-            birthdate: "1987-05-16",
-            fullname: "Megan Fox",
-            profileImageUrls: ["example"]
+            birthdate: "1986-05-16",
+            phoneNumber: "+15551234567",
+            occupation: "Actress",
+            gender: .female,
+            preference: .seriousRelationship,
+            interest: .men,
+            profileImageUrls: [
+                "example",
+                "example"
+            ],
+            location: "Los Angeles, CA",
+            bio: "Lover of cinema and fine art. 🌟"
         ),
         .init(
             id: NSUUID().uuidString,
             username: "DavidBeckham",
-            phone: "+447556547890",
-            birthdate: "1987-03-16",
-            fullname: "David Beckham",
-            profileImageUrls: ["example"]
+            birthdate: "1975-05-02",
+            phoneNumber: "+447556547890",
+            occupation: "Athlete",
+            gender: .male,
+            preference: .longTermPartner,
+            interest: .women,
+            profileImageUrls: [
+                "example",
+                "example"
+            ],
+            location: "London, UK",
+            bio: "Football is life. 🏆"
         ),
         .init(
             id: NSUUID().uuidString,
             username: "Conor",
-            phone: "+353876321456",
-            birthdate: "1987-07-14",
-            fullname: "Conor McGregor",
-            profileImageUrls: ["example"]
+            birthdate: "1988-07-14",
+            phoneNumber: "+353876321456",
+            occupation: "MMA Fighter",
+            gender: .male,
+            preference: .casualDating,
+            interest: .women,
+            profileImageUrls: [
+                "example",
+                "example"
+            ],
+            location: "Dublin, Ireland",
+            bio: "Knockout artist and whiskey enthusiast. 🥃"
+        ),
+        .init(
+            id: NSUUID().uuidString,
+            username: "TaylorSwift",
+            birthdate: "1989-12-13",
+            phoneNumber: "+15559876543",
+            occupation: "Singer",
+            gender: .female,
+            preference: .exploringOptions,
+            interest: .everyone,
+            profileImageUrls: [
+                "example",
+                "example"
+            ],
+            location: "Nashville, TN",
+            bio: "Writing songs about life and love. 🎶"
         )
     ]
 }

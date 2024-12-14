@@ -13,7 +13,15 @@ struct SelectPreferencesView: View {
     
     var body: some View {
         OnboardingStepView(
+            isLoading: $viewModel.isLoading,
+            errorMessage: $viewModel.errorMessage,
             message: "Let us know what you're looking for, so we can find your perfect match. 💕",
+            onContinue: {
+                viewModel.nextFlowStep()
+            },
+            onBack: {
+                viewModel.previousFlowStep()
+            },
             isContinueButtonDisabled: viewModel.selectedPreference == nil
         ) {
             PreferencesSelectionView(selectedPreference: $viewModel.selectedPreference)

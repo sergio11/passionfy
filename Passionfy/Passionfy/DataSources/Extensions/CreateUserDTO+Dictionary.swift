@@ -13,7 +13,14 @@ internal extension CreateUserDTO {
             "userId": userId,
             "username": username,
             "birthdate": birthdate,
-            "phoneNumber": phoneNumber
+            "phoneNumber": phoneNumber,
+            "occupation": occupation,
+            "gender": gender,
+            "preference": preference,
+            "interest": interest,
+            "location": "",
+            "bio": "",
+            "profileImageUrls": profileImageUrls
         ]
     }
 }

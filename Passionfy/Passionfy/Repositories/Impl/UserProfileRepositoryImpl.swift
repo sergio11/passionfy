@@ -50,17 +50,12 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
         }
     }
     
-    /// Creates a new user account asynchronously.
-        /// - Parameters:
-        ///   - userId: The ID of the new user account.
-        ///   - username: The username of the new user account.
-        ///   - birthdate: The birthdate of the new user account.
-        ///   - phoneNumber: The phone number of the new user account.
-        /// - Returns: The created `User` object.
-        /// - Throws: An error if the operation fails.
-    func createUser(userId: String, username: String, birthdate: String, phoneNumber: String) async throws -> User {
+    func createUser(data: CreateUser) async throws -> User {
         do {
-            let userData = try await userDataSource.createUser(data: CreateUserDTO(userId: userId, username: username, birthdate: birthdate, phoneNumber: phoneNumber, profileImageUrls: []))
+            let profileImageUrls: [String] = try await data.profileImages.asyncMap {
+                try await storageFilesDataSource.uploadImage(imageData: $0)
+            }
+            let userData = try await userDataSource.createUser(data: CreateUserDTO(userId: data.id, username: data.username, birthdate: data.birthdate, phoneNumber: data.phoneNumber, occupation: data.occupation, gender: data.gender.rawValue, preference: data.preference.rawValue, interest: data.interest.rawValue, profileImageUrls: profileImageUrls))
             return userMapper.map(userData)
         } catch {
             print(error.localizedDescription)

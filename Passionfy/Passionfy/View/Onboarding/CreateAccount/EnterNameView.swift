@@ -13,9 +13,14 @@ struct EnterNameView: View {
     
     var body: some View {
         OnboardingStepView(
+            isLoading: $viewModel.isLoading,
+            errorMessage: $viewModel.errorMessage,
             message: "Choose a username that reflects you. It's how others will recognize and connect with you on Passionfy.",
             onContinue: {
                 viewModel.verifyUsernameAvailability()
+            },
+            onBack: {
+                viewModel.previousFlowStep()
             },
             isContinueButtonDisabled: viewModel.username.isEmpty
         ) {

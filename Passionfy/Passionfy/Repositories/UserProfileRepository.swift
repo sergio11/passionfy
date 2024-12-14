@@ -22,15 +22,7 @@ protocol UserProfileRepository {
     /// - Throws: An error if the profile update fails.
     func updateUser(userId: String, fullname: String, username: String?, location: String?, bio: String?, birthdate: String?, selectedImage: Data?) async throws -> User
 
-    /// Creates a new user asynchronously.
-    /// - Parameters:
-    ///   - userId: The ID of the new user.
-    ///   - username: The username of the new user.
-    ///   - birthdate: The birthdate of the new user.
-    ///   - phoneNumber: The phone number of the new user.
-    /// - Returns: A `User` object representing the newly created user.
-    /// - Throws: An error if user creation fails.
-    func createUser(userId: String, username: String, birthdate: String, phoneNumber: String) async throws -> User
+    func createUser(data: CreateUser) async throws -> User
 
     /// Retrieves user information asynchronously.
     /// - Parameter userId: The ID of the user to retrieve.

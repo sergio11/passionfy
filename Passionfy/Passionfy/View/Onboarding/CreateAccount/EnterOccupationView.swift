@@ -13,7 +13,15 @@ struct EnterOccupationView: View {
     
     var body: some View {
         OnboardingStepView(
+            isLoading: $viewModel.isLoading,
+            errorMessage: $viewModel.errorMessage,
             message: "This is how your occupation will appear on your profile. Don't worry, you can always update it later.",
+            onContinue: {
+                viewModel.nextFlowStep()
+            },
+            onBack: {
+                viewModel.previousFlowStep()
+            },
             isContinueButtonDisabled: viewModel.occupation.isEmpty
         ) {
             OccupationInputView()

@@ -14,8 +14,12 @@ struct WelcomeOnboardingView: View {
     
     var body: some View {
         OnboardingStepView(
+            isLoading: $viewModel.isLoading,
+            errorMessage: $viewModel.errorMessage,
             message: "Welcome to Passionfy! Get ready to connect with like-minded individuals and create meaningful relationships.",
-            onBack: {
+            onContinue: {
+                viewModel.nextFlowStep()
+            }, onBack: {
                 dismiss()
             }
         ) {

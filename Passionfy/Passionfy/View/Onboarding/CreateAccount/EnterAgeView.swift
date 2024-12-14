@@ -14,7 +14,15 @@ struct EnterAgeView: View {
     
     var body: some View {
         OnboardingStepView(
+            isLoading: $viewModel.isLoading,
+            errorMessage: $viewModel.errorMessage,
             message: "We just need to verify your age to ensure you're ready for Passionfy.",
+            onContinue: {
+                viewModel.nextFlowStep()
+            },
+            onBack: {
+                viewModel.previousFlowStep()
+            },
             isContinueButtonDisabled: !viewModel.birthdate.hasDataValid()
         ) {
             DateInputView()
