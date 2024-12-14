@@ -10,6 +10,11 @@ import Foundation
 struct SignUpParams {
     let name: String
     let birthdate: String
+    let occupation: String
+    let gender: Gender
+    let selectedPreference: Preference
+    let selectedInterest: Interest
+    let profileImages: [Data]
     let phoneNumber: String
     let verificationCode: String
     let otpText: String
@@ -26,6 +31,8 @@ struct SignUpUseCase {
         /// - Throws: An error if the sign-up operation fails.
     func execute(params: SignUpParams) async throws -> User {
         let userId = try await authRepository.verifyOTP(verificationCode: params.verificationCode, otpCode: params.otpText)
-        return try await userRepository.createUser(userId: userId, username: params.name, birthdate: params.birthdate, phoneNumber: params.phoneNumber)
+        return try await userRepository.createUser(data: CreateUser(
+            id: userId, username: params.name, birthdate: params.birthdate, occupation: params.occupation, gender: params.gender, phoneNumber: params.phoneNumber, preference: params.selectedPreference, interest: params.selectedInterest, profileImages: params.profileImages
+        ))
     }
 }

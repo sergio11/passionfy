@@ -26,7 +26,7 @@ struct CurrentUserProfile: View {
                     HStack {
                         Text("Name")
                         Spacer()
-                        Text(user.fullname)
+                        Text(user.username)
                     }
                     HStack {
                         Text("Email")

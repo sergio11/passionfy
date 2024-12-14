@@ -17,7 +17,7 @@ struct UserProfileView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(user.fullname)
+                Text(user.username)
                     .font(.title2)
                     .fontWeight(.semibold)
                 

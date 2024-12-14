@@ -22,7 +22,7 @@ struct UserMatchView: View {
                 VStack {
                     Image(systemName: "circle")
                     
-                    if let fullname = matchManager.matchedUser?.fullname {
+                    if let fullname = matchManager.matchedUser?.username {
                         Text("You and \(fullname) liked each other.")
                             .foregroundColor(.white)
                     }

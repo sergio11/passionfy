@@ -38,7 +38,7 @@ struct CurrentUserProfileHeaderView: View {
                     .offset(x: -8, y: 10)
             }
             
-            Text("\(user.fullname), \(user.birthdate)")
+            Text("\(user.username), \(user.birthdate)")
                 .font(.title2)
                 .fontWeight(.light)
         }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Preference: String, CaseIterable {
+enum Preference: String, CaseIterable, Decodable {
     case friendship = "Friendship"
     case casualDating = "Casual Dating"
     case seriousRelationship = "Serious Relationship"

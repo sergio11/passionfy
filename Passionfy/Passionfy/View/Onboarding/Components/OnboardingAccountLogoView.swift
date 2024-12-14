@@ -13,8 +13,8 @@ struct OnboardingAccountLogoView: View {
             .resizable()
             .renderingMode(.template)
             .foregroundColor(Color.pink.opacity(0.8))
+            .frame(width: 300, height: 180)
             .scaledToFit()
-            .frame(width: 300)
             .padding(.top)
     }
 }

@@ -12,8 +12,11 @@ internal struct UserDTO: Decodable {
     var username: String
     var birthdate: String
     var phoneNumber: String
-    var fullname: String
-    var location: String?
-    var bio: String?
+    var occupation: String
+    var gender: String
+    let preference: String
+    let interest: String
     var profileImageUrls: [String]
+    var location: String
+    var bio: String
 }

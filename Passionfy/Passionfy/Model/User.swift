@@ -10,10 +10,13 @@ import Foundation
 struct User: Decodable, Identifiable, Hashable {
     var id: String
     var username: String
-    var phone: String
     var birthdate: String
-    var fullname: String
+    var phoneNumber: String
+    var occupation: String
+    var gender: Gender
+    let preference: Preference
+    let interest: Interest
     var profileImageUrls: [String]
-    var bio: String?
-    var location: String?
+    var location: String
+    var bio: String
 }

@@ -12,7 +12,6 @@ class BaseUserViewModel: BaseViewModel {
     
     @Injected(\.getCurrentUserUseCase) private var getCurrentUserUseCase: GetCurrentUserUseCase
     
-    @Published var authUserFullName: String = ""
     @Published var authUserUsername: String = ""
     
     func loadCurrentUser() {
@@ -27,7 +26,6 @@ class BaseUserViewModel: BaseViewModel {
     }
     
     internal func onCurrentUserLoaded(user: User) {
-        self.authUserFullName = user.fullname
         self.authUserUsername = user.username
     }
 }

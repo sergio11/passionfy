@@ -15,12 +15,15 @@ class UserMapper: Mapper {
         return User(
             id: input.userId,
             username: input.username,
-            phone: input.phoneNumber,
             birthdate: input.birthdate,
-            fullname: input.fullname,
+            phoneNumber: input.phoneNumber,
+            occupation: input.occupation,
+            gender: Gender(rawValue: input.gender) ?? .other,
+            preference: Preference(rawValue: input.preference) ?? .exploringOptions,
+            interest: Interest(rawValue: input.interest) ?? .everyone,
             profileImageUrls: input.profileImageUrls,
-            bio: input.bio,
-            location: input.location
+            location: input.location,
+            bio: input.bio
         )
     }
 }

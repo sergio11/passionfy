@@ -12,7 +12,15 @@ struct SelectGenderView: View {
     
     var body: some View {
         OnboardingStepView(
+            isLoading: $viewModel.isLoading,
+            errorMessage: $viewModel.errorMessage,
             message: "Choose the gender that best represents you. Passionfy is a safe space for everyone. 🌈",
+            onContinue: {
+                viewModel.nextFlowStep()
+            },
+            onBack: {
+                viewModel.previousFlowStep()
+            },
             isContinueButtonDisabled: viewModel.gender == nil
         ) {
             // Gender selection content

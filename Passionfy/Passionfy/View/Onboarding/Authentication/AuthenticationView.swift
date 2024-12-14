@@ -14,23 +14,20 @@ struct AuthenticationView: View {
     @StateObject var viewModel = AuthenticationViewModel()
     
     var body: some View {
-        VStack {
-            VStack {
-                TopBarView(backButtonAction: {
-                    dismiss()
-                })
-                OnboardingAccountLogoView()
-                Spacer()
-                PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Sign in securely by providing your phone number", label: "Your Phone")
-                Spacer()
-                ContinueButton(
-                    isPhoneNumberEmpty: viewModel.phoneNumber.isEmpty
-                ) {
-                    viewModel.sendOtp()
-                }
-            }.padding()
+        OnboardingStepView(
+            isLoading: $viewModel.isLoading,
+            errorMessage: $viewModel.errorMessage,
+            message: "By Tapping \"Continue\" you agree to our Terms. Lear how we process your data in our rivacy and Cookies Policy",
+            onContinue: {
+                viewModel.sendOtp()
+            },
+            onBack: {
+                dismiss()
+            },
+            isContinueButtonDisabled: viewModel.phoneNumber.isEmpty
+        ) {
+            PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Sign in securely by providing your phone number", label: "Your Phone")
         }
-        .background(AnimatedRadialGradientView())
         .sheet(isPresented: $viewModel.showCountryList) {
             SelectCountryView(countryChosen: $viewModel.country)
         }
@@ -46,22 +43,6 @@ struct AuthenticationView: View {
                 isAuthenticated = true
             }
         }
-        .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
-    }
-}
-
-private struct ContinueButton: View {
-
-    var isPhoneNumberEmpty: Bool
-    var onClicked: (() -> Void)? = nil
-    
-    var body: some View {
-        ActionButtonView(
-            title: "Continue",
-            mode: .filled
-        ) {
-            onClicked?()
-        }.disabled(isPhoneNumberEmpty)
     }
 }
 
