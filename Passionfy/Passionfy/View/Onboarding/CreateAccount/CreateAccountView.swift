@@ -14,31 +14,27 @@ struct CreateAccountView: View {
     
     var body: some View {
         ZStack {
-            switch viewModel.accountFlowStep {
-            case .username:
-                EnterNameView()
-                    .transition(.slide)
-            case .birthdate:
-                EnterAgeView()
-                    .transition(.slide)
-            case .gender:
-                SelectGenderView()
-                    .transition(.slide)
-            case .interest:
-                SelectInterestView()
-                    .transition(.slide)
-            case .preference:
-                SelectPreferencesView()
-                    .transition(.slide)
-            case .phoneNumber:
-                EnterPhoneNumberView()
-                    .transition(.slide)
-            case .otp:
-                ValidateOTPView()
-                    .transition(.slide)
-            case .completed:
-                AccountCreatedView(isAccountCreated: $isAccountCreated)
-                    .transition(.slide)
+            TransitioningView(transition: .opacity) {
+                switch viewModel.accountFlowStep {
+                case .username:
+                    EnterNameView()
+                case .birthdate:
+                    EnterAgeView()
+                case .gender:
+                    SelectGenderView()
+                case .interest:
+                    SelectInterestView()
+                case .preference:
+                    SelectPreferencesView()
+                case .occupation:
+                    EnterOccupationView()
+                case .phoneNumber:
+                    EnterPhoneNumberView()
+                case .otp:
+                    ValidateOTPView()
+                case .completed:
+                    AccountCreatedView(isAccountCreated: $isAccountCreated)
+                }
             }
         }
         .animation(.easeInOut(duration: 0.5), value: viewModel.accountFlowStep)

@@ -12,6 +12,7 @@ class CreateAccountViewModel: BaseAuthViewModel {
     
     @Published var username = ""
     @Published var birthdate = Birthdate(day: "", month: "", year: "")
+    @Published var occupation: String = ""
     @Published var gender: Gender? = nil
     @Published var selectedPreference: Preference? = nil
     @Published var selectedInterest: Interest? = nil
@@ -70,6 +71,8 @@ class CreateAccountViewModel: BaseAuthViewModel {
         case .interest:
             accountFlowStep = .preference
         case .preference:
+            accountFlowStep = .occupation
+        case .occupation:
             accountFlowStep = .phoneNumber
         case .phoneNumber:
             accountFlowStep = .otp
@@ -92,8 +95,10 @@ class CreateAccountViewModel: BaseAuthViewModel {
             accountFlowStep = .gender
         case .preference:
             accountFlowStep = .interest
-        case .phoneNumber:
+        case .occupation:
             accountFlowStep = .preference
+        case .phoneNumber:
+            accountFlowStep = .occupation
         case .otp:
             accountFlowStep = .phoneNumber
         case .completed:
@@ -108,6 +113,7 @@ enum AccountFlowStepEnum {
     case gender
     case preference
     case interest
+    case occupation
     case phoneNumber
     case otp
     case completed
