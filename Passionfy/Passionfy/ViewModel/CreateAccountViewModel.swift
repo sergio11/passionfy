@@ -16,7 +16,7 @@ class CreateAccountViewModel: BaseAuthViewModel {
     @Published var gender: Gender? = nil
     @Published var selectedPreference: Preference? = nil
     @Published var selectedInterest: Interest? = nil
-    @Published var accountFlowStep: AccountFlowStepEnum = .username
+    @Published var accountFlowStep: AccountFlowStepEnum = .welcome
     
     @Injected(\.verifyUsernameAvailabilityUseCase) private var verifyUsernameAvailabilityUseCase: VerifyUsernameAvailabilityUseCase
     @Injected(\.sendOtpUseCase) private var sendOtpUseCase: SendOtpUseCase
@@ -62,6 +62,8 @@ class CreateAccountViewModel: BaseAuthViewModel {
     
     func nextFlowStep() {
         switch accountFlowStep {
+        case .welcome:
+            accountFlowStep = .username
         case .username:
             accountFlowStep = .birthdate
         case .birthdate:
@@ -85,8 +87,10 @@ class CreateAccountViewModel: BaseAuthViewModel {
     
     func previousFlowStep() {
         switch accountFlowStep {
-        case .username:
+        case .welcome:
             break
+        case .username:
+            accountFlowStep = .welcome
         case .birthdate:
             accountFlowStep = .username
         case .gender:
@@ -108,6 +112,7 @@ class CreateAccountViewModel: BaseAuthViewModel {
 }
 
 enum AccountFlowStepEnum {
+    case welcome
     case username
     case birthdate
     case gender

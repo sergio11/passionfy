@@ -9,7 +9,6 @@ import SwiftUI
 
 struct EnterNameView: View {
     
-    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
@@ -17,9 +16,6 @@ struct EnterNameView: View {
             message: "Choose a username that reflects you. It's how others will recognize and connect with you on Passionfy.",
             onContinue: {
                 viewModel.verifyUsernameAvailability()
-            },
-            onBack: {
-                dismiss()
             },
             isContinueButtonDisabled: viewModel.username.isEmpty
         ) {

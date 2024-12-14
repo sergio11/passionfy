@@ -29,7 +29,7 @@ struct OnboardingStepView<Content: View>: View {
         message: String,
         onContinue: (() -> Void)? = nil,
         onBack: (() -> Void)? = nil,
-        isContinueButtonDisabled: Bool,
+        isContinueButtonDisabled: Bool = false,
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.onContinue = onContinue

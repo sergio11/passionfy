@@ -61,6 +61,7 @@
 		3D2870952D0CB4160044998C /* OnboardingStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2870942D0CB4160044998C /* OnboardingStepView.swift */; };
 		3D7ABE872D0D932B00D42CE3 /* EnterOccupationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7ABE862D0D932B00D42CE3 /* EnterOccupationView.swift */; };
 		3D7ABE892D0D969100D42CE3 /* TransitioningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7ABE882D0D969000D42CE3 /* TransitioningView.swift */; };
+		3D7ABE8B2D0D984400D42CE3 /* WelcomeOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7ABE8A2D0D984400D42CE3 /* WelcomeOnboardingView.swift */; };
 		3D7B65772D044EE30002364F /* LoadingAndErrorOverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B65762D044EE30002364F /* LoadingAndErrorOverlayModifier.swift */; };
 		3D7B65792D045C120002364F /* AnimatedRadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B65782D045C120002364F /* AnimatedRadialGradientView.swift */; };
 		3D7B657B2D046BCA0002364F /* NumericInputModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B657A2D046BCA0002364F /* NumericInputModifier.swift */; };
@@ -172,6 +173,7 @@
 		3D2870942D0CB4160044998C /* OnboardingStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStepView.swift; sourceTree = "<group>"; };
 		3D7ABE862D0D932B00D42CE3 /* EnterOccupationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterOccupationView.swift; sourceTree = "<group>"; };
 		3D7ABE882D0D969000D42CE3 /* TransitioningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitioningView.swift; sourceTree = "<group>"; };
+		3D7ABE8A2D0D984400D42CE3 /* WelcomeOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeOnboardingView.swift; sourceTree = "<group>"; };
 		3D7B65762D044EE30002364F /* LoadingAndErrorOverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAndErrorOverlayModifier.swift; sourceTree = "<group>"; };
 		3D7B65782D045C120002364F /* AnimatedRadialGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedRadialGradientView.swift; sourceTree = "<group>"; };
 		3D7B657A2D046BCA0002364F /* NumericInputModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericInputModifier.swift; sourceTree = "<group>"; };
@@ -540,6 +542,7 @@
 				3D28708C2D0CB18D0044998C /* SelectPreferencesView.swift */,
 				3D2870922D0CB3800044998C /* SelectInterestView.swift */,
 				3D7ABE862D0D932B00D42CE3 /* EnterOccupationView.swift */,
+				3D7ABE8A2D0D984400D42CE3 /* WelcomeOnboardingView.swift */,
 			);
 			path = CreateAccount;
 			sourceTree = "<group>";
@@ -931,6 +934,7 @@
 				3D185E032D03341D009A4935 /* SignUpUseCase.swift in Sources */,
 				3D185DFD2D0333A3009A4935 /* SendOtpUseCase.swift in Sources */,
 				3D7EF5F62D037CAC0021E04E /* AuthenticationViewModel.swift in Sources */,
+				3D7ABE8B2D0D984400D42CE3 /* WelcomeOnboardingView.swift in Sources */,
 				3D7EF5F22D037BE80021E04E /* TopBarView.swift in Sources */,
 				3D185E052D033443009A4935 /* UpdateUserUseCase.swift in Sources */,
 				3D185DFB2D033378009A4935 /* SignInUseCase.swift in Sources */,
