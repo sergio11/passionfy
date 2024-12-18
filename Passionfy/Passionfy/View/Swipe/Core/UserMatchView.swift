@@ -10,7 +10,7 @@ import SwiftUI
 struct UserMatchView: View {
     
     @Binding var show: Bool
-    @EnvironmentObject var matchManager: MatchManager
+    let matchedUser: User
     
     var body: some View {
         ZStack {
@@ -22,14 +22,12 @@ struct UserMatchView: View {
                 VStack {
                     Image(systemName: "circle")
                     
-                    if let fullname = matchManager.matchedUser?.username {
-                        Text("You and \(fullname) liked each other.")
-                            .foregroundColor(.white)
-                    }
+                    Text("You and \(matchedUser.username) liked each other.")
+                        .foregroundColor(.white)
                 }
                     
                 HStack(spacing: 16) {
-                    Image(MockData.users[0].profileImageUrls[0])
+                    Image(matchedUser.profileImageUrls[0])
                         .resizable()
                         .scaledToFill()
                         .frame(width: 150, height: 150)
@@ -40,18 +38,16 @@ struct UserMatchView: View {
                                 .shadow(radius: 4)
                         }
                     
-                    if let matchedUser = matchManager.matchedUser {
-                        Image(matchedUser.profileImageUrls[0])
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 150, height: 150)
-                            .clipShape(Circle())
-                            .overlay {
-                                Circle()
-                                    .stroke(.white, lineWidth: 2)
-                                    .shadow(radius: 4)
-                            }
-                    }
+                    Image(matchedUser.profileImageUrls[0])
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 150, height: 150)
+                        .clipShape(Circle())
+                        .overlay {
+                            Circle()
+                                .stroke(.white, lineWidth: 2)
+                                .shadow(radius: 4)
+                        }
                 }
                 
                 VStack(spacing: 16) {
@@ -89,7 +85,6 @@ struct UserMatchView: View {
 
 struct UserMatchView_Previews: PreviewProvider {
     static var previews: some View {
-        UserMatchView(show: .constant(true))
-            .environmentObject(MatchManager())
+        UserMatchView(show: .constant(true), matchedUser: MockData.users[0])
     }
 }

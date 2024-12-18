@@ -27,12 +27,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct PassionfyApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject var matchManager = MatchManager()
     
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(matchManager)
         }
     }
 }
