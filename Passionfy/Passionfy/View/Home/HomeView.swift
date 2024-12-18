@@ -24,7 +24,7 @@ struct HomeView: View {
                     Image(systemName: "message") }
                 .tag(2)
             
-            CurrentUserProfile(user: MockData.users[1])
+            CurrentUserProfile()
                 .tabItem { Image(systemName: "person") }
                 .tag(3)
         }

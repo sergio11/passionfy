@@ -15,18 +15,11 @@ struct CurrentUserProfileHeaderView: View {
         VStack {
             ZStack(alignment: .topTrailing) {
                 
-                Image(user.profileImageUrls[0])
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 120, height: 120)
-                    .clipShape(Circle())
-                    .background {
-                        Circle()
-                            .fill(Color(.systemGray6))
-                            .frame(width: 128, height: 128)
-                            .shadow(radius: 10)
-                    }
-                
+                CircularProfileImageView(
+                    profileImageUrl: user.profileImageUrls[0],
+                    size: .xxLarge
+                )
+        
                 Image(systemName: "pencil")
                     .imageScale(.small)
                     .foregroundStyle(.gray)
@@ -38,9 +31,14 @@ struct CurrentUserProfileHeaderView: View {
                     .offset(x: -8, y: 10)
             }
             
-            Text("\(user.username), \(user.birthdate)")
-                .font(.title2)
-                .fontWeight(.light)
+            if let birthdate = user.birthdate.toDate() {
+                Text("\(user.username), \(birthdate.age)")
+                    .customFont(.semiBold, 20)
+            } else {
+                Text("\(user.username) - \(user.birthdate)")
+                    .customFont(.semiBold, 20)
+            }
+            
         }
         .frame(maxWidth: .infinity)
         .frame(height: 240)

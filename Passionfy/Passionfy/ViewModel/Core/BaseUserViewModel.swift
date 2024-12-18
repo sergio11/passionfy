@@ -12,7 +12,7 @@ class BaseUserViewModel: BaseViewModel {
     
     @Injected(\.getCurrentUserUseCase) private var getCurrentUserUseCase: GetCurrentUserUseCase
     
-    @Published var authUserUsername: String = ""
+    @Published var user: User? = nil
     
     func loadCurrentUser() {
         executeAsyncTask {
@@ -26,6 +26,6 @@ class BaseUserViewModel: BaseViewModel {
     }
     
     internal func onCurrentUserLoaded(user: User) {
-        self.authUserUsername = user.username
+        self.user = user
     }
 }

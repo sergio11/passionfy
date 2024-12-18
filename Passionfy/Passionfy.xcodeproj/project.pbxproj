@@ -59,6 +59,12 @@
 		3D2870912D0CB35F0044998C /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2870902D0CB35F0044998C /* Interest.swift */; };
 		3D2870932D0CB3800044998C /* SelectInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2870922D0CB3800044998C /* SelectInterestView.swift */; };
 		3D2870952D0CB4160044998C /* OnboardingStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2870942D0CB4160044998C /* OnboardingStepView.swift */; };
+		3D6515492D133ACF00621998 /* CurrentUserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6515482D133ACF00621998 /* CurrentUserProfileViewModel.swift */; };
+		3D65154B2D133C3F00621998 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65154A2D133C3F00621998 /* EditProfileViewModel.swift */; };
+		3D65154E2D133E3500621998 /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65154D2D133E3500621998 /* TermsOfServiceView.swift */; };
+		3D6515502D133F0300621998 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65154F2D133F0300621998 /* StringExtensions.swift */; };
+		3D6515522D133F2400621998 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6515512D133F2400621998 /* DateExtensions.swift */; };
+		3D6515542D13424A00621998 /* CircularProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6515532D13424A00621998 /* CircularProfileImageView.swift */; };
 		3D7A20002D0D9D34000BCF54 /* AddRecentPicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A1FFF2D0D9D34000BCF54 /* AddRecentPicturesView.swift */; };
 		3D7A20022D0D9D8C000BCF54 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A20012D0D9D8C000BCF54 /* ImagePicker.swift */; };
 		3D7A20052D0D9DEC000BCF54 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A20042D0D9DEC000BCF54 /* ArrayExtensions.swift */; };
@@ -175,6 +181,12 @@
 		3D2870902D0CB35F0044998C /* Interest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
 		3D2870922D0CB3800044998C /* SelectInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestView.swift; sourceTree = "<group>"; };
 		3D2870942D0CB4160044998C /* OnboardingStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStepView.swift; sourceTree = "<group>"; };
+		3D6515482D133ACF00621998 /* CurrentUserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileViewModel.swift; sourceTree = "<group>"; };
+		3D65154A2D133C3F00621998 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		3D65154D2D133E3500621998 /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
+		3D65154F2D133F0300621998 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		3D6515512D133F2400621998 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		3D6515532D13424A00621998 /* CircularProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProfileImageView.swift; sourceTree = "<group>"; };
 		3D7A1FFF2D0D9D34000BCF54 /* AddRecentPicturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecentPicturesView.swift; sourceTree = "<group>"; };
 		3D7A20012D0D9D8C000BCF54 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		3D7A20042D0D9DEC000BCF54 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
@@ -385,6 +397,7 @@
 		3D185DAD2D0326A9009A4935 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3D65154C2D133E2200621998 /* TermsOfService */,
 				3D7B65752D044EBC0002364F /* Core */,
 				3D7EF6092D037F720021E04E /* Home */,
 				3D7EF6062D037F550021E04E /* Main */,
@@ -406,6 +419,8 @@
 				3D7EF5F32D037C930021E04E /* CreateAccountViewModel.swift */,
 				3D7EF5F52D037CAC0021E04E /* AuthenticationViewModel.swift */,
 				3D7EF60C2D037FA20021E04E /* MainViewModel.swift */,
+				3D6515482D133ACF00621998 /* CurrentUserProfileViewModel.swift */,
+				3D65154A2D133C3F00621998 /* EditProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -465,6 +480,14 @@
 				3D185DF22D033313009A4935 /* BaseAuthViewModel.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		3D65154C2D133E2200621998 /* TermsOfService */ = {
+			isa = PBXGroup;
+			children = (
+				3D65154D2D133E3500621998 /* TermsOfServiceView.swift */,
+			);
+			path = TermsOfService;
 			sourceTree = "<group>";
 		};
 		3D7A20032D0D9DA3000BCF54 /* ViewController */ = {
@@ -534,6 +557,7 @@
 				3D7EF6162D038B800021E04E /* ActionButtonView.swift */,
 				3D7B65782D045C120002364F /* AnimatedRadialGradientView.swift */,
 				3D7ABE882D0D969000D42CE3 /* TransitioningView.swift */,
+				3D6515532D13424A00621998 /* CircularProfileImageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -678,6 +702,8 @@
 				3D7EF5FF2D037D7E0021E04E /* ViewExtensions.swift */,
 				3D7EF61B2D038FEF0021E04E /* FontExtensions.swift */,
 				3D7A20042D0D9DEC000BCF54 /* ArrayExtensions.swift */,
+				3D65154F2D133F0300621998 /* StringExtensions.swift */,
+				3D6515512D133F2400621998 /* DateExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -881,7 +907,9 @@
 				3D185DED2D0332C9009A4935 /* EventBus.swift in Sources */,
 				3D185DDC2D033084009A4935 /* Country.swift in Sources */,
 				3D185DD62D032E51009A4935 /* FirebaseAuthenticationDataSourceImpl.swift in Sources */,
+				3D6515542D13424A00621998 /* CircularProfileImageView.swift in Sources */,
 				3D185D9B2D03108F009A4935 /* EditProfileView.swift in Sources */,
+				3D65154E2D133E3500621998 /* TermsOfServiceView.swift in Sources */,
 				3D7EF60D2D037FA20021E04E /* MainViewModel.swift in Sources */,
 				3D28708B2D0CAD7A0044998C /* Gender.swift in Sources */,
 				3D7EF6132D0386D50021E04E /* AnimatedGradientView.swift in Sources */,
@@ -908,7 +936,9 @@
 				3D185DEA2D0331FC009A4935 /* AuthenticationRepositoryImpl.swift in Sources */,
 				3D185DD22D032DBB009A4935 /* StorageFilesDataSource.swift in Sources */,
 				3DC37E542CF7B7B900E7FB1B /* SwipeAction.swift in Sources */,
+				3D65154B2D133C3F00621998 /* EditProfileViewModel.swift in Sources */,
 				3DC37E3E2CF7A2F300E7FB1B /* CardImageIndicatorView.swift in Sources */,
+				3D6515492D133ACF00621998 /* CurrentUserProfileViewModel.swift in Sources */,
 				3D7EF5FC2D037D2B0021E04E /* EnterCodeView.swift in Sources */,
 				3DC37E522CF7B66200E7FB1B /* SwipeActionButtonsView.swift in Sources */,
 				3DC37E472CF7A90C00E7FB1B /* CardModel.swift in Sources */,
@@ -924,6 +954,7 @@
 				3D7EF5DB2D037A540021E04E /* OnboardingView.swift in Sources */,
 				3D7A20022D0D9D8C000BCF54 /* ImagePicker.swift in Sources */,
 				3D185DFF2D0333C0009A4935 /* GetCurrentUserUseCase.swift in Sources */,
+				3D6515522D133F2400621998 /* DateExtensions.swift in Sources */,
 				3D7B65772D044EE30002364F /* LoadingAndErrorOverlayModifier.swift in Sources */,
 				3D185DF52D033335009A4935 /* VerifyUsernameAvailabilityUseCase.swift in Sources */,
 				3D7EF5EE2D037B910021E04E /* AccountCreatedView.swift in Sources */,
@@ -957,6 +988,7 @@
 				3D185E032D03341D009A4935 /* SignUpUseCase.swift in Sources */,
 				3D185DFD2D0333A3009A4935 /* SendOtpUseCase.swift in Sources */,
 				3D7EF5F62D037CAC0021E04E /* AuthenticationViewModel.swift in Sources */,
+				3D6515502D133F0300621998 /* StringExtensions.swift in Sources */,
 				3D7ABE8B2D0D984400D42CE3 /* WelcomeOnboardingView.swift in Sources */,
 				3D7EF5F22D037BE80021E04E /* TopBarView.swift in Sources */,
 				3D185E052D033443009A4935 /* UpdateUserUseCase.swift in Sources */,
