@@ -16,6 +16,7 @@ struct ActionButtonView: View {
     var title: String
     var mode: ButtonStyleMode
     var isDisabled: Bool = false
+    var width: CGFloat? = 350
     var action: (() -> Void)? = nil
 
     var body: some View {
@@ -36,7 +37,7 @@ struct ActionButtonView: View {
                 .opacity(isDisabled ? 0.5 : 1.0)
         }
         .disabled(isDisabled)
-        .frame(width: 350)
+        .frame(width: width)
     }
 
     @ViewBuilder

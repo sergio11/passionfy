@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct EditProfileView: View {
+    
     @Environment(\.dismiss) var dismiss
     
-    @State private var bio = ""
-    @State private var occupation = "Fighter"
-    
-    let user: User
+    @StateObject var viewModel = EditProfileViewModel()
+
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                ProfileImageGridView(user: user)
-                    .padding()
+                
+                if let user = viewModel.user {
+                    ProfileImageGridView(user: user)
+                        .padding()
+                }
+                
                 
                 VStack(spacing: 24) {
                     VStack(alignment: .leading) {
@@ -28,7 +31,7 @@ struct EditProfileView: View {
                             .fontWeight(.bold)
                             .padding(.leading)
                         
-                        TextField("Add your bio", text: $bio, axis: .vertical)
+                        TextField("Add your bio", text: $viewModel.bio, axis: .vertical)
                             .padding()
                             .frame(height: 64, alignment: .top)
                             .background(Color(.secondarySystemBackground))
@@ -45,7 +48,7 @@ struct EditProfileView: View {
                             Image(systemName: "book")
                             Text("Occupation")
                             Spacer()
-                            Text(occupation)
+                            Text(viewModel.occupation)
                                 .font(.footnote)
                         }
                         .padding()
@@ -111,6 +114,6 @@ struct EditProfileView: View {
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileView(user: MockData.users[2])
+        EditProfileView()
     }
 }

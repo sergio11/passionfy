@@ -8,62 +8,126 @@
 import SwiftUI
 
 struct CurrentUserProfile: View {
-    
-    @State private var showEditProfile: Bool = false
-    let user: User
+    @StateObject var viewModel = CurrentUserProfileViewModel()
     
     var body: some View {
         NavigationStack {
             List {
-                // header view
-                CurrentUserProfileHeaderView(user: user)
-                    .onTapGesture {
-                        showEditProfile.toggle()
+                if let user = viewModel.user {
+                    // Header view
+                    Section {
+                        CurrentUserProfileHeaderView(user: user)
+                            .onTapGesture {
+                                withAnimation {
+                                    viewModel.showEditProfile.toggle()
+                                }
+                            }
                     }
-                
-                // account info
-                Section("Account Information") {
-                    HStack {
-                        Text("Name")
-                        Spacer()
-                        Text(user.username)
+                    .listRowInsets(EdgeInsets())
+                    .background(Color(.systemGray6))
+                    
+                    // Account info
+                    Section(header: Text("Account Information")) {
+                        ProfileRow(label: "Name", value: user.username)
+                        if let birthdate = user.birthdate.toDate() {
+                            ProfileRow(label: "Age", value: "\(birthdate.age) years old")
+                        } else {
+                            ProfileRow(label: "Age", value: "N/A")
+                        }
                     }
-                    HStack {
-                        Text("Email")
-                        Spacer()
-                        Text("test@gmail.com")
+                    
+                    // Legal
+                    Section(header: Text("Legal")) {
+                        NavigationLink(destination: TermsOfServiceView()) {
+                            Text("Terms of Service")
+                                .customFont(.medium, 16)
+                        }
+                    }
+                    
+                    // Logout and delete account
+                    Section {
+                        VStack(spacing: 16) {
+                            ActionButtonView(
+                                title: "Logout",
+                                mode: .filled,
+                                width: 300
+                            ) {
+                                viewModel.showSignOutAlert.toggle()
+                            }
+                            
+                            Divider()
+                                .background(Color.gray.opacity(0.5))
+                                .padding(.horizontal)
+                            
+                            ActionButtonView(
+                                title: "Delete Account",
+                                mode: .outlined,
+                                width: 300
+                            ) {
+                                print("DEBUG: Delete account")
+                            }
+                        }
+                        .padding()
+                    }
+                    
+                } else {
+                    // Placeholder for loading or error state
+                    Section {
+                        HStack {
+                            Spacer()
+                            Text("Loading user information...")
+                                .customFont(.medium, 16)
+                                .foregroundColor(.gray)
+                            Spacer()
+                        }
                     }
                 }
-                
-                // legal
-                Section("Legal") {
-                    Text("Terms of Service")
-                }
-                
-                // logout / delete
-                Section {
-                    Button("Logout") {
-                        print("DEBUG: Logout")
-                    }
-                }.foregroundStyle(.red)
-                
-                Section {
-                    Button("Delete Account") {
-                        print("DEBUG: Delete account")
-                    }
-                }.foregroundStyle(.red)
+            }
+            .navigationTitle("Profile")
+            .navigationBarTitleDisplayMode(.inline)
+            .listStyle(.insetGrouped)
+            .fullScreenCover(isPresented: $viewModel.showEditProfile) {
+                EditProfileView()
+            }
+            .onAppear {
+                viewModel.loadCurrentUser()
+            }
+            .alert(isPresented: $viewModel.showSignOutAlert) {
+                Alert(
+                    title: Text("Are you sure?"),
+                    message: Text("Do you really want to sign out?"),
+                    primaryButton: .destructive(Text("Sign Out")) {
+                        viewModel.signOut()
+                    },
+                    secondaryButton: .cancel()
+                )
             }
         }
-        .navigationTitle("Profile")
-        .navigationBarTitleDisplayMode(.inline)
-        .fullScreenCover(isPresented: $showEditProfile) {
-            EditProfileView(user: user)
+    }
+}
+
+// Reusable row for profile info
+private struct ProfileRow: View {
+    let label: String
+    let value: String
+    
+    var body: some View {
+        HStack {
+            Text(label)
+                .customFont(.medium, 16)
+                .foregroundColor(.primary)
+            Spacer()
+            Text(value)
+                .customFont(.regular, 16)
+                .foregroundColor(.secondary)
         }
+        .padding(.vertical, 4)
     }
 }
 
 struct CurrentUserProfile_Previews: PreviewProvider {
     static var previews: some View {
-        CurrentUserProfile(user: MockData.users[0])
+        CurrentUserProfile()
     }
 }
+
