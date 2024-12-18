@@ -11,7 +11,10 @@ import Factory
 class EditProfileViewModel: BaseUserViewModel {
     
     @Published var bio = ""
-    @Published var occupation = "Fighter"
+    @Published var occupation = ""
+    @Published var selectedGender: String = Gender.male.rawValue
+    @Published var selectedPreference: String = Preference.friendship.rawValue
+    @Published var selectedInterest: String = Interest.men.rawValue
 
 }
 

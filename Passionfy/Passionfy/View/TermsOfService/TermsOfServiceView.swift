@@ -82,7 +82,7 @@ struct TermsOfServiceView: View {
     }
 }
 
-struct SectionView: View {
+private struct SectionView: View {
     let title: String
     let content: String
 
