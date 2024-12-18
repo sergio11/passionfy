@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SwipeActionButtonsView: View {
     
-    @ObservedObject var viewModel: CardsViewModel
+    @ObservedObject var viewModel: SwipeViewModel
     
     var body: some View {
         HStack(spacing: 32) {
@@ -48,6 +48,6 @@ struct SwipeActionButtonsView: View {
 
 struct SwipeActionButtonsView_Previews: PreviewProvider {
     static var previews: some View {
-        SwipeActionButtonsView(viewModel: CardsViewModel(service: CardService()))
+        SwipeActionButtonsView(viewModel: SwipeViewModel())
     }
 }

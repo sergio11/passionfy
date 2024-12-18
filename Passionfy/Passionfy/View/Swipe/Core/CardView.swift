@@ -9,8 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     
-    @EnvironmentObject var matchManager: MatchManager
-    @ObservedObject var viewModel: CardsViewModel
+    @ObservedObject var viewModel: SwipeViewModel
     @State private var xOffset: CGFloat = 0
     @State private var degrees: Double = 0
     @State private var currentImageIndex = 0
@@ -76,7 +75,7 @@ private extension CardView {
         xOffset = 500
         degrees = 12
         viewModel.removeCard(model)
-        matchManager.checkForMatch(withUser: user)
+        viewModel.checkForMatch(withUser: user)
     }
     
     func swipeLeft() {
@@ -124,6 +123,6 @@ private extension CardView {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(viewModel: CardsViewModel(service: CardService()), model: CardModel(user: MockData.users[0]))
+        CardView(viewModel: SwipeViewModel(), model: CardModel(user: MockData.users[0]))
     }
 }

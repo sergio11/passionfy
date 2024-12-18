@@ -25,4 +25,21 @@ extension View {
             }
         }
     }
+    
+    func addPassionfyToolbar() -> some View {
+            self.toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack(spacing: 8) {
+                        Image("logo_toolbar")
+                            .resizable()
+                            .frame(width: 42, height: 30)
+                            .scaledToFit()
+                            .padding(.leading)
+                        Text("Passionfy")
+                            .customFont(.semiBold, 20)
+                            .foregroundColor(.pink.opacity(0.8))
+                    }
+                }
+            }
+        }
 }
