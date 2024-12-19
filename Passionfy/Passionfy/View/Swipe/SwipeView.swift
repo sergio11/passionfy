@@ -15,16 +15,16 @@ struct SwipeView: View {
             ZStack {
                 if viewModel.isSwipeLoading {
                     LoadingMatchesView(userPhoto: viewModel.user?.profileImageUrls[0])
-                } else if viewModel.cardModels.isEmpty {
+                } else if viewModel.suggestions.isEmpty {
                     NoNewMatchesView()
                 } else {
                     VStack(spacing: 16) {
                         ZStack {
-                            ForEach(viewModel.cardModels) { card in
+                            ForEach(viewModel.suggestions) { card in
                                 CardView(viewModel: viewModel, model: card)
                             }
                         }
-                        if !viewModel.cardModels.isEmpty {
+                        if !viewModel.suggestions.isEmpty {
                             SwipeActionButtonsView(viewModel: viewModel)
                         }
                     }
@@ -45,6 +45,7 @@ struct SwipeView: View {
             .addPassionfyToolbar()
             .onAppear {
                 viewModel.loadCurrentUser()
+                viewModel.fetchSuggestions()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     viewModel.isSwipeLoading = false
                 }

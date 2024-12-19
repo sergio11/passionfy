@@ -60,8 +60,8 @@ extension Container {
         self { FirestoreUserDataSourceImpl() }.singleton
     }
         
-    var userProfileRepository: Factory<UserProfileRepository> {
-        self { UserProfileRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), userMapper: self.userMapper()) }.singleton
+    var userProfileRepository: Factory<UserRepository> {
+        self { UserRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), userMapper: self.userMapper()) }.singleton
     }
         
     var updateUserUseCase: Factory<UpdateUserUseCase> {

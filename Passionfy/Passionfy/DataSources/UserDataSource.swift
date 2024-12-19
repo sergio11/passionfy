@@ -43,11 +43,15 @@ protocol UserDataSource {
     /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func getUserByIdList(userIds: [String]) async throws -> [UserDTO]
     
-    /// Retrieves suggestions for users based on the authenticated user ID asynchronously.
-    /// - Parameter authUserId: The ID of the authenticated user.
+    /// Retrieves suggestions for users based on the specified gender, target interest, and a list of ignored user IDs.
+    /// - Parameters:
+    ///   - authUserId: The ID of the authenticated user.
+    ///   - targetGender: The gender to filter suggestions.
+    ///   - targetInterest: The interest to filter suggestions based on the authenticated user's gender.
+    ///   - ignoredUserIds: A set of user IDs to exclude from the suggestions (e.g., matches, blocked users).
     /// - Returns: An array of `UserDTO` objects representing user suggestions.
     /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
-    func getSuggestions(authUserId: String) async throws -> [UserDTO]
+    func getSuggestions(authUserId: String, targetGender: String?, targetInterest: String?, ignoredUserIds: Set<String>) async throws -> [UserDTO]
     
     /// Checks the availability of a username asynchronously.
     /// - Parameter username: The username to check for availability.

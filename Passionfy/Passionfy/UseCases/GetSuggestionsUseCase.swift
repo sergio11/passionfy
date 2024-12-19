@@ -13,7 +13,7 @@ enum GetSuggestionsError: Error {
 
 /// An entity responsible for fetching user suggestions.
 struct GetSuggestionsUseCase {
-    let userRepository: UserProfileRepository
+    let userRepository: UserRepository
     let authRepository: AuthenticationRepository
     
     /// Executes the process of fetching user suggestions asynchronously.
