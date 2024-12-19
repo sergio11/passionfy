@@ -9,26 +9,39 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @StateObject var viewModel = HomeViewModel()
+    
     var body: some View {
-        TabView {
-            SwipeView()
-                .tabItem { Image(systemName: "flame") }
-                .tag(0)
+        ZStack {
+            TabView {
+                SwipeView()
+                    .tabItem { Image(systemName: "flame") }
+                    .tag(0)
+                
+                SearchView()
+                    .tabItem { Image(systemName: "magnifyingglass") }
+                    .tag(1)
+                
+                MessagingView()
+                    .tabItem {
+                        Image(systemName: "message") }
+                    .tag(2)
+                
+                CurrentUserProfile()
+                    .tabItem { Image(systemName: "person") }
+                    .tag(3)
+            }
+            .tint(.primary)
+            .blur(radius: viewModel.showMatchView ? 20 : 0)
             
-            SearchView()
-                .tabItem { Image(systemName: "magnifyingglass") }
-                .tag(1)
-            
-            MessagingView()
-                .tabItem {
-                    Image(systemName: "message") }
-                .tag(2)
-            
-            CurrentUserProfile()
-                .tabItem { Image(systemName: "person") }
-                .tag(3)
+            if viewModel.showMatchView, let matchedUser = viewModel.matchedUser{
+                UserMatchView(
+                    show: $viewModel.showMatchView,
+                    matchedUser: matchedUser
+                )
+            }
         }
-        .tint(.primary)
+        
     }
 }
 

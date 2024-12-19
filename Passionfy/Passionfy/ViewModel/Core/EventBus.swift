@@ -23,4 +23,5 @@ class EventBus<Event> {
 enum AppEvent {
     case loggedIn
     case loggedOut
+    case matchOccurred(User)
 }

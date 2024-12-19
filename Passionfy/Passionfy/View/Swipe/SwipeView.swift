@@ -28,17 +28,8 @@ struct SwipeView: View {
                             SwipeActionButtonsView(viewModel: viewModel)
                         }
                     }
-                    .blur(radius: viewModel.showMatchView ? 20 : 0)
-
-                    if viewModel.showMatchView, let matchedUser = viewModel.matchedUser {
-                        UserMatchView(
-                            show: $viewModel.showMatchView,
-                            matchedUser: matchedUser
-                        )
-                    }
                 }
             }
-            .animation(.easeInOut, value: viewModel.showMatchView)
             .onReceive(viewModel.$matchedUser) { user in
                 viewModel.showMatchView = user != nil
             }
