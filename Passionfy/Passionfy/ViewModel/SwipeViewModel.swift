@@ -11,12 +11,13 @@ import Factory
 class SwipeViewModel: BaseUserViewModel {
     
     @Injected(\.getSuggestionsUseCase) private var getSuggestionsUseCase: GetSuggestionsUseCase
+    @Injected(\.eventBus) private var appEventBus: EventBus<AppEvent>
     
     @Published var suggestions = [CardModel]()
     @Published var buttonSwipeAction: SwipeAction?
-    @Published var showMatchView = false
-    @Published var matchedUser: User?
     @Published var isSwipeLoading: Bool = true
+    @Published var matchedUser: User?
+    @Published var showMatchView = false
 
     
     func fetchSuggestions() {
@@ -43,7 +44,7 @@ class SwipeViewModel: BaseUserViewModel {
     func checkForMatch(withUser user: User) {
         let didMatch = Bool.random()
         if didMatch {
-            matchedUser = user
+            appEventBus.publish(event: .matchOccurred(user))
         }
     }
 }

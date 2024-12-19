@@ -52,7 +52,7 @@ class MainViewModel: BaseViewModel {
     private func setupSubscriptions() {
         appEventBus.subscribe()
             .sink { [weak self] event in
-                if event == .loggedOut {
+                if case .loggedOut = event {
                     self?.verifySession()
                 }
             }
