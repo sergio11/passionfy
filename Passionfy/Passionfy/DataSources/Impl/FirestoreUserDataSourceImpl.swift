@@ -91,33 +91,6 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
         return usersData
     }
     
-    /// Retrieves suggestions for users based on the authenticated user ID asynchronously.
-    /// - Parameter authUserId: The ID of the authenticated user.
-    /// - Returns: An array of `UserDTO` objects representing user suggestions.
-    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
-    func getSuggestions(authUserId: String) async throws -> [UserDTO] {
-        let documentSnapshot = try await Firestore
-            .firestore()
-            .collection(usersCollection)
-            .document(authUserId)
-            .getDocument()
-        guard let userData = try? documentSnapshot.data(as: UserDTO.self) else {
-            throw UserDataSourceError.userNotFound
-        }
-        let querySnapshot = try await Firestore
-            .firestore()
-            .collection(usersCollection)
-            .whereField("userId", notIn: [authUserId])
-            .getDocuments()
-        var suggestions: [UserDTO] = []
-        for document in querySnapshot.documents {
-            if let userData = try? document.data(as: UserDTO.self) {
-                suggestions.append(userData)
-            }
-        }
-        return suggestions
-    }
-    
     /// Checks the availability of a username asynchronously.
     /// - Parameter username: The username to check for availability.
     /// - Returns: A Boolean value indicating whether the username is available.
@@ -129,5 +102,54 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             .whereField("username", isEqualTo: username)
             .getDocuments()
         return querySnapshot.isEmpty
+    }
+    
+    /// Retrieves suggestions for users based on the specified gender, target interest, and a list of ignored user IDs.
+    /// - Parameters:
+    ///   - authUserId: The ID of the authenticated user.
+    ///   - targetGender: The gender to filter suggestions.
+    ///   - targetInterest: The interest to filter suggestions based on the authenticated user's gender.
+    ///   - ignoredUserIds: A set of user IDs to exclude from the suggestions (e.g., matches, blocked users).
+    /// - Returns: An array of `UserDTO` objects representing user suggestions.
+    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
+    func getSuggestions(authUserId: String, targetGender: String?, targetInterest: String?, ignoredUserIds: Set<String>) async throws -> [UserDTO] {
+       
+        let documentSnapshot = try await Firestore
+            .firestore()
+            .collection(usersCollection)
+            .document(authUserId)
+            .getDocument()
+        
+        guard let authUserData = try? documentSnapshot.data(as: UserDTO.self) else {
+            throw UserDataSourceError.userNotFound
+        }
+        
+        // Combine ignoredUserIds with the authenticated user's ID to exclude them all
+        var allIgnoredIds = ignoredUserIds
+        allIgnoredIds.insert(authUserId)
+
+        var query: Query = Firestore
+            .firestore()
+            .collection(usersCollection)
+            .whereField("userId", notIn: Array(allIgnoredIds))
+        
+        if let gender = targetGender {
+            query = query.whereField("gender", isEqualTo: gender)
+        }
+        
+        if let interest = targetInterest {
+            query = query.whereField("interest", isEqualTo: interest)
+        }
+        
+        let querySnapshot = try await query.getDocuments()
+        
+        var suggestedUsers: [UserDTO] = []
+        for document in querySnapshot.documents {
+            if let userData = try? document.data(as: UserDTO.self) {
+                suggestedUsers.append(userData)
+            }
+        }
+        
+        return suggestedUsers
     }
 }

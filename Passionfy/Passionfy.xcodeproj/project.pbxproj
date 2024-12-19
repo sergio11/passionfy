@@ -34,9 +34,9 @@
 		3D185DDC2D033084009A4935 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DDB2D033084009A4935 /* Country.swift */; };
 		3D185DDE2D0330CE009A4935 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DDD2D0330CE009A4935 /* Mapper.swift */; };
 		3D185DE12D0330EC009A4935 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DE02D0330EC009A4935 /* UserMapper.swift */; };
-		3D185DE32D033144009A4935 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DE22D033144009A4935 /* UserProfileRepository.swift */; };
+		3D185DE32D033144009A4935 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DE22D033144009A4935 /* UserRepository.swift */; };
 		3D185DE52D033170009A4935 /* AuthenticationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DE42D033170009A4935 /* AuthenticationRepository.swift */; };
-		3D185DE82D033198009A4935 /* UserProfileRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DE72D033198009A4935 /* UserProfileRepositoryImpl.swift */; };
+		3D185DE82D033198009A4935 /* UserRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DE72D033198009A4935 /* UserRepositoryImpl.swift */; };
 		3D185DEA2D0331FC009A4935 /* AuthenticationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DE92D0331FC009A4935 /* AuthenticationRepositoryImpl.swift */; };
 		3D185DED2D0332C9009A4935 /* EventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DEC2D0332C9009A4935 /* EventBus.swift */; };
 		3D185DEF2D0332E1009A4935 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D185DEE2D0332E1009A4935 /* BaseViewModel.swift */; };
@@ -161,9 +161,9 @@
 		3D185DDB2D033084009A4935 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		3D185DDD2D0330CE009A4935 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		3D185DE02D0330EC009A4935 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
-		3D185DE22D033144009A4935 /* UserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRepository.swift; sourceTree = "<group>"; };
+		3D185DE22D033144009A4935 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		3D185DE42D033170009A4935 /* AuthenticationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepository.swift; sourceTree = "<group>"; };
-		3D185DE72D033198009A4935 /* UserProfileRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRepositoryImpl.swift; sourceTree = "<group>"; };
+		3D185DE72D033198009A4935 /* UserRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryImpl.swift; sourceTree = "<group>"; };
 		3D185DE92D0331FC009A4935 /* AuthenticationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepositoryImpl.swift; sourceTree = "<group>"; };
 		3D185DEC2D0332C9009A4935 /* EventBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBus.swift; sourceTree = "<group>"; };
 		3D185DEE2D0332E1009A4935 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
@@ -357,7 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				3D185DE62D03318F009A4935 /* Impl */,
-				3D185DE22D033144009A4935 /* UserProfileRepository.swift */,
+				3D185DE22D033144009A4935 /* UserRepository.swift */,
 				3D185DE42D033170009A4935 /* AuthenticationRepository.swift */,
 			);
 			path = Repositories;
@@ -450,7 +450,7 @@
 		3D185DE62D03318F009A4935 /* Impl */ = {
 			isa = PBXGroup;
 			children = (
-				3D185DE72D033198009A4935 /* UserProfileRepositoryImpl.swift */,
+				3D185DE72D033198009A4935 /* UserRepositoryImpl.swift */,
 				3D185DE92D0331FC009A4935 /* AuthenticationRepositoryImpl.swift */,
 			);
 			path = Impl;
@@ -903,7 +903,7 @@
 				3D7ABE872D0D932B00D42CE3 /* EnterOccupationView.swift in Sources */,
 				3D185D902D03025B009A4935 /* UserProfileView.swift in Sources */,
 				3D185DF92D033364009A4935 /* SignOutUseCase.swift in Sources */,
-				3D185DE32D033144009A4935 /* UserProfileRepository.swift in Sources */,
+				3D185DE32D033144009A4935 /* UserRepository.swift in Sources */,
 				3D185DF32D033313009A4935 /* BaseAuthViewModel.swift in Sources */,
 				3D6515692D135E0B00621998 /* PickerSectionView.swift in Sources */,
 				3D185DE12D0330EC009A4935 /* UserMapper.swift in Sources */,
@@ -948,7 +948,7 @@
 				3D7EF5EE2D037B910021E04E /* AccountCreatedView.swift in Sources */,
 				3D7EF6032D037E2E0021E04E /* ExplanationText.swift in Sources */,
 				3D185E012D0333FC009A4935 /* GetSuggestionsUseCase.swift in Sources */,
-				3D185DE82D033198009A4935 /* UserProfileRepositoryImpl.swift in Sources */,
+				3D185DE82D033198009A4935 /* UserRepositoryImpl.swift in Sources */,
 				3D7B657B2D046BCA0002364F /* NumericInputModifier.swift in Sources */,
 				3D7EF5E82D037B530021E04E /* EnterNameView.swift in Sources */,
 				3D185DBF2D0329E9009A4935 /* Container.swift in Sources */,

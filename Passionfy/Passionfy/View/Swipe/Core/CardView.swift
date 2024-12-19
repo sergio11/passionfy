@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CardView: View {
     
@@ -20,9 +21,9 @@ struct CardView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             ZStack(alignment: .top) {
-                Image(user.profileImageUrls[currentImageIndex])
+                KFImage(URL(string:user.profileImageUrls[currentImageIndex]))
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
                     .frame(width: SizeConstants.cardWidth, height: SizeConstants.cardHeight)
                     .overlay {
                         ImageScrollingOverlay(currentImageIndex: $currentImageIndex, imageCount: imageCount)
@@ -87,7 +88,7 @@ private extension CardView {
     
     func onReceiveSwipeAction(_ action: SwipeAction?) {
         guard let action else { return }
-        let topCard = viewModel.cardModels.last
+        let topCard = viewModel.suggestions.last
         if topCard == model {
             switch action {
             case .reject:

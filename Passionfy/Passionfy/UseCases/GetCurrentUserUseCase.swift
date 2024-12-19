@@ -15,7 +15,7 @@ enum GetCurrentUserError: Error {
 struct GetCurrentUserUseCase {
     
     let authRepository: AuthenticationRepository
-    let userRepository: UserProfileRepository
+    let userRepository: UserRepository
     
     /// Executes the process of retrieving the information of the current user asynchronously.
         /// - Returns: The information of the current user.

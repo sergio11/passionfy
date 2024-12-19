@@ -7,8 +7,29 @@
 
 import Foundation
 
+/// Errors that can occur in the UserRepository operations.
+enum UserRepositoryError: Error {
+    // General errors
+    case userNotFound        // The requested user does not exist in the data source.
+    case invalidData         // The provided data is invalid or corrupted.
+
+    // Update user errors
+    case profileUpdateFailed // The profile update operation failed.
+    case imageUploadFailed   // Failed to upload the user's profile image.
+    
+    // Create user errors
+    case userCreationFailed  // The user creation operation failed.
+    
+    // Username availability errors
+    case usernameUnavailable // The requested username is not available.
+    case usernameCheckFailed // Failed to check the username's availability.
+    
+    // Suggestions errors
+    case suggestionFetchFailed // Failed to fetch user suggestions.
+}
+
 /// A repository for user profile-related operations.
-protocol UserProfileRepository {
+protocol UserRepository {
     /// Updates the user's profile information asynchronously.
     /// - Parameters:
     ///   - userId: The ID of the user whose profile is being updated.
@@ -22,6 +43,16 @@ protocol UserProfileRepository {
     /// - Throws: An error if the profile update fails.
     func updateUser(userId: String, fullname: String, username: String?, location: String?, bio: String?, birthdate: String?, selectedImage: Data?) async throws -> User
 
+    // Creates a new user asynchronously.
+        ///
+        /// This method handles the creation of a new user profile, including the upload of multiple profile images.
+        /// The uploaded image URLs are saved in the user's profile.
+        ///
+        /// - Parameters:
+        ///   - data: An instance of `CreateUser` containing the user's details, including their profile images, username,
+        ///           birthdate, phone number, occupation, gender, preference, and interest.
+        /// - Returns: The newly created `User` object.
+        /// - Throws: An error if the operation fails, such as issues with uploading images or creating the user in the data source.
     func createUser(data: CreateUser) async throws -> User
 
     /// Retrieves user information asynchronously.

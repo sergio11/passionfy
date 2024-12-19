@@ -23,7 +23,7 @@ struct SignUpParams {
 /// An entity responsible for signing up a new user.
 struct SignUpUseCase {
     let authRepository: AuthenticationRepository
-    let userRepository: UserProfileRepository
+    let userRepository: UserRepository
     
     /// Executes the process of signing up a new user asynchronously.
         /// - Parameter params: Parameters required for signing up, including name, birthdate, phone number, verification code, and OTP text.

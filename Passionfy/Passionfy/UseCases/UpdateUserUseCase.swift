@@ -22,7 +22,7 @@ struct UpdateUserParams {
 
 /// An entity responsible for updating user information.
 struct UpdateUserUseCase {
-    let userRepository: UserProfileRepository
+    let userRepository: UserRepository
     let authRepository: AuthenticationRepository
     
     /// Executes the user information update asynchronously.

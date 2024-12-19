@@ -15,7 +15,7 @@ struct SignInParams {
 /// An entity responsible for handling user sign-in operations.
 struct SignInUseCase {
     let authRepository: AuthenticationRepository
-    let userProfileRepository: UserProfileRepository
+    let userProfileRepository: UserRepository
     
     /// Executes the sign-in operation asynchronously.
         /// - Parameter params: An instance of `SignInParams` containing verification and OTP code.

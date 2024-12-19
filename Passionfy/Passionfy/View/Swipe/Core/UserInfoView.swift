@@ -17,13 +17,13 @@ struct UserInfoView: View {
         VStack(alignment: .leading) {
             HStack {
                 Text(user.username)
-                    .font(.title)
-                    .fontWeight(.heavy)
+                    .customFont(.medium, 18)
                 
-                Text("\(user.birthdate)")
-                    .font(.title)
-                    .fontWeight(.semibold)
-                
+                if let birthdate = user.birthdate.toDate() {
+                    Text("\(birthdate.age) years old")
+                        .customFont(.regular, 16)
+                }
+
                 Spacer()
                 
                 Button {
@@ -35,9 +35,9 @@ struct UserInfoView: View {
                 }
             }
             
-            Text("Some test bio for now..")
-                .font(.subheadline)
-                .lineLimit(2)
+            Text(user.bio.isEmpty ? "They preferred to keep it a secret for now..." : user.bio)
+                    .customFont(.regular, 14)
+                    .lineLimit(2)
         }
         .foregroundStyle(.white)
         .padding()

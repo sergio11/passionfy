@@ -13,7 +13,7 @@ struct VerifyUsernameParams {
 
 /// An entity responsible for verifying the availability of a username.
 struct VerifyUsernameAvailabilityUseCase {
-    let userProfileRepository: UserProfileRepository
+    let userProfileRepository: UserRepository
     
     /// Executes the process of verifying the availability of a username asynchronously.
         /// - Parameters:

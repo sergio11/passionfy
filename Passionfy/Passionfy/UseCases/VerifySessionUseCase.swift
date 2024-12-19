@@ -14,7 +14,7 @@ enum VerifySessionError: Error {
 /// An entity responsible for verifying the current user session.
 struct VerifySessionUseCase {
     let authRepository: AuthenticationRepository
-    let userProfileRepository: UserProfileRepository
+    let userProfileRepository: UserRepository
     
     /// Executes the session verification asynchronously.
         /// - Returns: A boolean indicating whether the session is valid.
