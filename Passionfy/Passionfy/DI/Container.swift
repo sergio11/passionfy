@@ -11,6 +11,13 @@ import Factory
 
 extension Container {
     
+    var locationService: Factory<LocationService> {
+        self { LocationService() }.singleton
+    }
+}
+
+extension Container {
+    
     var userMapper: Factory<UserMapper> {
         self { UserMapper() }.singleton
     }
