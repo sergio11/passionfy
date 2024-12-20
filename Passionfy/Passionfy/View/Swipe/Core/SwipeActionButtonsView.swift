@@ -48,6 +48,6 @@ struct SwipeActionButtonsView: View {
 
 struct SwipeActionButtonsView_Previews: PreviewProvider {
     static var previews: some View {
-        SwipeActionButtonsView(viewModel: SwipeViewModel())
+        SwipeActionButtonsView()
     }
 }
