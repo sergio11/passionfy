@@ -36,12 +36,12 @@ struct CardView: View {
         
             UserInfoView(showProfileModel: $showProfileModal, user: user)
         }
+        .onReceive(viewModel.$swipeAction, perform: { action in
+            onReceiveSwipeAction(action)
+        })
         .fullScreenCover(isPresented: $showProfileModal) {
             UserProfileView(user: user)
         }
-        .onReceive(viewModel.$buttonSwipeAction, perform: { action in
-            onReceiveSwipeAction(action)
-        })
         .frame(width: SizeConstants.cardWidth, height: SizeConstants.cardHeight)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .offset(x: xOffset)
@@ -49,7 +49,8 @@ struct CardView: View {
         .animation(.spring(), value: xOffset)
         .gesture(
             DragGesture()
-                .onChanged(onDragChanged).onEnded(onDragEnded)
+                .onChanged(onDragChanged)
+                .onEnded(onDragEnded)
         )
     }
 }
@@ -68,26 +69,36 @@ private extension CardView {
 private extension CardView {
     
     func returnToCenter() {
-        xOffset = 0
-        degrees = 0
+        withAnimation(.spring()) {
+            xOffset = 0
+            degrees = 0
+        }
     }
     
     func swipeRight() {
-        xOffset = 500
-        degrees = 12
-        viewModel.removeCard(model)
-        viewModel.checkForMatch(withUser: user)
+        withAnimation(.spring()) {
+            xOffset = 500
+            degrees = 12
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            viewModel.removeCard(model)
+            viewModel.checkForMatch(withUser: user)
+        }
     }
     
     func swipeLeft() {
-        xOffset = -500
-        degrees = -12
-        
-        viewModel.removeCard(model)
+        withAnimation(.spring()) {
+            xOffset = -500
+            degrees = -12
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            viewModel.removeCard(model)
+        }
     }
     
     func onReceiveSwipeAction(_ action: SwipeAction?) {
         guard let action else { return }
+        viewModel.onClearSwipeAction()
         let topCard = viewModel.suggestions.last
         if topCard == model {
             switch action {
