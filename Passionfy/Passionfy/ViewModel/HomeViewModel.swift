@@ -9,7 +9,7 @@ import SwiftUI
 import Factory
 import Combine
 
-class HomeViewModel: BaseViewModel {
+class HomeViewModel: BaseUserViewModel {
     
     @Injected(\.eventBus) internal var appEventBus: EventBus<AppEvent>
     
