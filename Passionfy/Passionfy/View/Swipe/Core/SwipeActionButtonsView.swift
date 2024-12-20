@@ -9,12 +9,12 @@ import SwiftUI
 
 struct SwipeActionButtonsView: View {
     
-    @ObservedObject var viewModel: SwipeViewModel
+    var onSwipeAction: ((SwipeAction) -> Void)? = nil
     
     var body: some View {
         HStack(spacing: 32) {
             Button {
-                viewModel.buttonSwipeAction = .reject
+                onSwipeAction?(.reject)
             } label: {
                 Image(systemName: "xmark")
                     .fontWeight(.heavy)
@@ -29,7 +29,7 @@ struct SwipeActionButtonsView: View {
             .frame(width: 48, height: 48)
             
             Button {
-                viewModel.buttonSwipeAction = .like
+                onSwipeAction?(.like)
             } label: {
                 Image(systemName: "heart.fill")
                     .fontWeight(.heavy)

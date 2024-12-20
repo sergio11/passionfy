@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NoNewMatchesView: View {
     
+    var onRetryCalled: (() -> Void)? = nil
+    
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
@@ -36,7 +38,7 @@ struct NoNewMatchesView: View {
                 title: "Wait for new matches",
                 mode: .filled
             ) {
-        
+                onRetryCalled?()
             }
             
             Spacer()

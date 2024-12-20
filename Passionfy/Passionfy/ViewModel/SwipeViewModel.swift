@@ -14,12 +14,11 @@ class SwipeViewModel: BaseUserViewModel {
     @Injected(\.eventBus) private var appEventBus: EventBus<AppEvent>
     
     @Published var suggestions = [CardModel]()
-    @Published var buttonSwipeAction: SwipeAction?
+    @Published var swipeAction: SwipeAction?
     @Published var isSwipeLoading: Bool = true
     @Published var matchedUser: User?
     @Published var showMatchView = false
 
-    
     func fetchSuggestions() {
         self.isSwipeLoading = true
         executeAsyncTask {
@@ -29,13 +28,20 @@ class SwipeViewModel: BaseUserViewModel {
             if case .success(let users) = result {
                 self.onGetSuggestionsCompleted(suggestions: users)
             }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.isSwipeLoading = false
+            }
         }
     }
     
-    private func onGetSuggestionsCompleted(suggestions: [User]) {
-        self.suggestions = suggestions.map { CardModel(user: $0) }
+    func onSwipeAction(_ action: SwipeAction) {
+        self.swipeAction = action
     }
     
+    func onClearSwipeAction() {
+        self.swipeAction = nil
+    }
+
     func removeCard(_ card: CardModel) {
         guard let index = suggestions.firstIndex(where: { $0.id == card.id }) else { return }
         suggestions.remove(at: index)
@@ -46,5 +52,9 @@ class SwipeViewModel: BaseUserViewModel {
         if didMatch {
             appEventBus.publish(event: .matchOccurred(user))
         }
+    }
+    
+    private func onGetSuggestionsCompleted(suggestions: [User]) {
+        self.suggestions = suggestions.map { CardModel(user: $0) }
     }
 }

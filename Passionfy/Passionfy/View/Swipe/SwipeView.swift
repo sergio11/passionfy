@@ -16,7 +16,9 @@ struct SwipeView: View {
                 if viewModel.isSwipeLoading {
                     LoadingMatchesView(userPhoto: viewModel.user?.profileImageUrls[0])
                 } else if viewModel.suggestions.isEmpty {
-                    NoNewMatchesView()
+                    NoNewMatchesView {
+                        viewModel.fetchSuggestions()
+                    }
                 } else {
                     VStack(spacing: 16) {
                         ZStack {
@@ -25,7 +27,9 @@ struct SwipeView: View {
                             }
                         }
                         if !viewModel.suggestions.isEmpty {
-                            SwipeActionButtonsView(viewModel: viewModel)
+                            SwipeActionButtonsView { action in
+                                viewModel.onSwipeAction(action)
+                            }
                         }
                     }
                 }
@@ -37,9 +41,6 @@ struct SwipeView: View {
             .onAppear {
                 viewModel.loadCurrentUser()
                 viewModel.fetchSuggestions()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    viewModel.isSwipeLoading = false
-                }
             }
         }
     }
