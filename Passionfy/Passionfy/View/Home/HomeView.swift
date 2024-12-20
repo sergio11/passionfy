@@ -34,14 +34,17 @@ struct HomeView: View {
             .tint(.primary)
             .blur(radius: viewModel.showMatchView ? 20 : 0)
             
-            if viewModel.showMatchView, let matchedUser = viewModel.matchedUser{
+            if viewModel.showMatchView, let matchedUser = viewModel.matchedUser, let currentUser = viewModel.user {
                 UserMatchView(
                     show: $viewModel.showMatchView,
+                    currentUser: currentUser,
                     matchedUser: matchedUser
                 )
             }
         }
-        
+        .onAppear {
+            viewModel.loadCurrentUser()
+        }
     }
 }
 

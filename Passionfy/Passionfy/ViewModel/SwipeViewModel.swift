@@ -21,6 +21,7 @@ class SwipeViewModel: BaseUserViewModel {
 
     
     func fetchSuggestions() {
+        self.isSwipeLoading = true
         executeAsyncTask {
             return try await self.getSuggestionsUseCase.execute()
         } completion: { [weak self] result in
@@ -31,14 +32,13 @@ class SwipeViewModel: BaseUserViewModel {
         }
     }
     
-    
     private func onGetSuggestionsCompleted(suggestions: [User]) {
         self.suggestions = suggestions.map { CardModel(user: $0) }
     }
     
     func removeCard(_ card: CardModel) {
-        //guard let index = cardModels.firstIndex(where: { $0.id == card.id }) else { return }
-        //cardModels.remove(at: index)
+        guard let index = suggestions.firstIndex(where: { $0.id == card.id }) else { return }
+        suggestions.remove(at: index)
     }
     
     func checkForMatch(withUser user: User) {
