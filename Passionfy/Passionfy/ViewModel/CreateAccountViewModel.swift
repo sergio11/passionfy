@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Factory
+import Combine
+import CoreLocation
 
 class CreateAccountViewModel: BaseAuthViewModel {
     
@@ -17,6 +19,9 @@ class CreateAccountViewModel: BaseAuthViewModel {
     @Published var selectedPreference: Preference? = nil
     @Published var selectedInterest: Interest? = nil
     @Published var profileImages: [UIImage] = []
+    @Published var userCoordinates: (latitude: Double, longitude: Double)?
+    @Published var userCity: String = ""
+    @Published var userCountry: String = ""
     @Published var accountFlowStep: AccountFlowStepEnum = .welcome
     
     @Published var showImagePicker = false
@@ -27,7 +32,13 @@ class CreateAccountViewModel: BaseAuthViewModel {
     @Injected(\.verifyUsernameAvailabilityUseCase) private var verifyUsernameAvailabilityUseCase: VerifyUsernameAvailabilityUseCase
     @Injected(\.sendOtpUseCase) private var sendOtpUseCase: SendOtpUseCase
     @Injected(\.signUpUseCase) private var signUpUseCase: SignUpUseCase
-
+    @Injected(\.locationService) private var locationService: LocationService
+    
+    override init() {
+        super.init()
+        locationService.delegate = self
+    }
+    
     func verifyUsernameAvailability() {
         executeAsyncTask {
             return try await self.verifyUsernameAvailabilityUseCase.execute(params: VerifyUsernameParams(username: self.username))
@@ -114,6 +125,8 @@ class CreateAccountViewModel: BaseAuthViewModel {
         case .preference:
             accountFlowStep = .occupation
         case .occupation:
+            accountFlowStep = .requestLocation
+        case .requestLocation:
             accountFlowStep = .pictures
         case .pictures:
             accountFlowStep = .phoneNumber
@@ -142,8 +155,10 @@ class CreateAccountViewModel: BaseAuthViewModel {
             accountFlowStep = .interest
         case .occupation:
             accountFlowStep = .preference
-        case .pictures:
+        case .requestLocation:
             accountFlowStep = .occupation
+        case .pictures:
+            accountFlowStep = .requestLocation
         case .phoneNumber:
             accountFlowStep = .pictures
         case .otp:
@@ -151,6 +166,31 @@ class CreateAccountViewModel: BaseAuthViewModel {
         case .completed:
             accountFlowStep = .otp
         }
+    }
+    
+    func requestLocationPermission() {
+        locationService.requestPermission()
+        locationService.startUpdatingLocation()
+    }
+}
+
+extension CreateAccountViewModel: LocationServiceDelegate {
+    func didUpdateLocation(_ location: CLLocation, city: String, country: String) {
+        print("[CreateAccountViewModel] Received updated location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+        print("[CreateAccountViewModel] City: \(city), Country: \(country)")
+        
+        // Update ViewModel properties
+        userCoordinates = (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        userCity = city
+        userCountry = country
+    }
+    
+    func didChangeAuthorizationStatus(_ status: CLAuthorizationStatus) {
+        print("[CreateAccountViewModel] Authorization status changed: \(status.rawValue)")
+    }
+    
+    func didFailWithError(_ error: Error) {
+        print("[CreateAccountViewModel] Location service error: \(error.localizedDescription)")
     }
 }
 
@@ -162,6 +202,7 @@ enum AccountFlowStepEnum {
     case preference
     case interest
     case occupation
+    case requestLocation
     case pictures
     case phoneNumber
     case otp

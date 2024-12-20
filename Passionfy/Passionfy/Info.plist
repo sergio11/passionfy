@@ -34,5 +34,9 @@
 			</array>
 		</dict>
 	</array>
+        <key>NSLocationWhenInUseUsageDescription</key>
+        <string>We use your location to show nearby matches.</string>
+        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+        <string>We use your location to provide continuous updates on nearby matches.</string>
 </dict>
 </plist>
