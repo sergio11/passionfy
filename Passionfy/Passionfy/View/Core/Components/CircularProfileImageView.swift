@@ -34,6 +34,7 @@ enum ProfileImageSize {
 struct CircularProfileImageView: View {
     var profileImageUrl: String?
     let size: ProfileImageSize
+    var allowShadow: Bool = true
 
     var body: some View {
         if let imageUrl = profileImageUrl, !imageUrl.isEmpty {
@@ -46,7 +47,7 @@ struct CircularProfileImageView: View {
                     Circle()
                         .fill(Color(.systemGray6))
                         .frame(width: size.dimension, height: size.dimension)
-                        .shadow(radius: 10)
+                        .shadow(radius: allowShadow ? 10: 0)
                 }
         } else {
             Image(systemName: "person.circle.fill")

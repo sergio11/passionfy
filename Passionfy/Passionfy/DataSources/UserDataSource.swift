@@ -15,6 +15,8 @@ enum UserDataSourceError: Error {
     case userNotFound
     /// Error indicating that the provided user ID is invalid.
     case invalidUserId(message: String)
+    /// Error indicating that the search operation failed.
+    case searchFailed(message: String)
 }
 
 /// Protocol defining operations for managing user data.
@@ -58,4 +60,11 @@ protocol UserDataSource {
     /// - Returns: A Boolean value indicating whether the username is available.
     /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func checkUsernameAvailability(username: String) async throws -> Bool
+    
+    /// Searches for users based on a provided search term asynchronously.
+    ///
+    /// - Parameter searchTerm: A string representing the term to search for (e.g., username).
+    /// - Returns: An array of `UserDTO` objects that match the search criteria.
+    /// - Throws: An error if the search operation fails, including errors specified in `UserDataSourceError`.
+    func searchUsers(searchTerm: String) async throws -> [UserDTO]
 }
