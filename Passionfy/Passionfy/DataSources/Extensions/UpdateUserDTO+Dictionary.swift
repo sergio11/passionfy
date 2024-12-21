@@ -7,26 +7,37 @@
 
 import Foundation
 
+
 internal extension UpdateUserDTO {
     func asDictionary() -> [String: Any] {
         var dictionary: [String: Any] = [
-            "userId": userId,
-            "fullname": fullname
+            "userId": userId
         ]
 
         if let username = username {
             dictionary["username"] = username
         }
-        if let location = location {
-            dictionary["location"] = location
+        if let birthdate = birthdate {
+            dictionary["birthdate"] = birthdate
+        }
+        if let occupation = occupation {
+            dictionary["occupation"] = occupation
+        }
+        if let gender = gender {
+            dictionary["gender"] = gender
+        }
+        if let preference = preference {
+            dictionary["preference"] = preference
+        }
+        if let interest = interest {
+            dictionary["interest"] = interest
         }
         if let bio = bio {
             dictionary["bio"] = bio
         }
-        if let birthdate = birthdate {
-            dictionary["birthdate"] = birthdate
+        if let profileImageUrls = profileImageUrls {
+            dictionary["profileImageUrls"] = profileImageUrls
         }
-
         return dictionary
     }
 }

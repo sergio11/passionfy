@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct LoadingAndErrorOverlayModifier: ViewModifier {
+struct LoadingAndMessageOverlayModifier: ViewModifier {
     @Binding var isLoading: Bool
-    @Binding var errorMessage: String?
-    
+    @Binding var message: String?
+    var messageType: SnackbarType = .error
     var duration: Double = 3.0 // Duration before hiding the snackbar
     
     func body(content: Content) -> some View {
@@ -20,8 +20,13 @@ struct LoadingAndErrorOverlayModifier: ViewModifier {
                     LoadingView()
                         .opacity(isLoading ? 1 : 0)
                     
-                    SnackbarView(message: $errorMessage, duration: duration)
+                    SnackbarView(
+                        message: $message,
+                        type: messageType,
+                        duration: duration
+                    )
                 }
             }
     }
 }
+

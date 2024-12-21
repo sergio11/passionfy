@@ -15,4 +15,10 @@ extension Date {
         let ageComponents = calendar.dateComponents([.year], from: self, to: now)
         return ageComponents.year ?? 0
     }
+    
+    func formatString(format: String = "dd/MM/yyyy") -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
 }

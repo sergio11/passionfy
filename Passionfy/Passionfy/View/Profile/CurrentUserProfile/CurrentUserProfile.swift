@@ -86,7 +86,12 @@ struct CurrentUserProfile: View {
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
             .listStyle(.insetGrouped)
-            .fullScreenCover(isPresented: $viewModel.showEditProfile) {
+            .fullScreenCover(
+                isPresented: $viewModel.showEditProfile,
+                onDismiss: {
+                    viewModel.loadCurrentUser()
+                }
+            ) {
                 EditProfileView()
             }
             .onAppear {

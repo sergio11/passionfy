@@ -12,12 +12,14 @@ enum UpdateUserError: Error {
 }
 
 struct UpdateUserParams {
-    let fullname: String
     let username: String?
-    let location: String?
-    let bio: String?
     let birthdate: String?
-    let selectedImage: Data?
+    let occupation: String?
+    let bio: String?
+    let gender: Gender?
+    let preference: Preference?
+    let interest: Interest?
+    let profileImages: [Data]?
 }
 
 /// An entity responsible for updating user information.
@@ -32,7 +34,17 @@ struct UpdateUserUseCase {
         /// - Throws: An error if the update fails or if the current user session is invalid.
     func execute(params: UpdateUserParams) async throws -> User {
         if let userId = try await authRepository.getCurrentUserId() {
-            return try await userRepository.updateUser(userId: userId, fullname: params.fullname, username: params.username, location: params.location, bio: params.bio, birthdate: params.birthdate, selectedImage: params.selectedImage)
+            return try await userRepository.updateUser(data: UpdateUser(
+                id: userId,
+                username: params.username,
+                birthdate: params.birthdate,
+                occupation: params.occupation,
+                bio: params.bio,
+                gender: params.gender,
+                preference: params.preference,
+                interest: params.interest,
+                profileImages: params.profileImages
+            ))
         } else {
             throw UpdateUserError.updateFailed
         }

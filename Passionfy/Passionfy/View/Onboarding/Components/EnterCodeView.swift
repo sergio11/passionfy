@@ -67,7 +67,10 @@ struct EnterCodeView: View {
             }
         }
         .background(AnimatedRadialGradientView())
-        .modifier(LoadingAndErrorOverlayModifier(isLoading: $isLoading, errorMessage: $errorMessage))
+        .modifier(LoadingAndMessageOverlayModifier(
+            isLoading: $isLoading,
+            message: $errorMessage
+        ))
     }
 }
 

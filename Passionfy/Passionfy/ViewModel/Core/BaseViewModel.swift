@@ -6,12 +6,37 @@
 //
 
 import Foundation
+import SwiftUI
 
 class BaseViewModel: ObservableObject {
     
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
     @Published var showAlert = false
+    @Published var successMessage: String? = nil
+    
+    // Computed property to get the correct message Binding
+    var message: Binding<String?> {
+        Binding<String?>(
+            get: { self.successMessage ?? self.errorMessage },
+            set: { message in
+                if self.messageType == .success {
+                    self.successMessage = message
+                } else {
+                    self.errorMessage = message
+                }
+            }
+        )
+    }
+        
+    // Computed property for message type
+    var messageType: SnackbarType {
+        if successMessage != nil {
+            return .success
+        } else {
+            return .error
+        }
+    }
     
     internal func onLoading() {
         updateUI { vm in

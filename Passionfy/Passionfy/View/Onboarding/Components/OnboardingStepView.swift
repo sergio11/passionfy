@@ -86,7 +86,10 @@ struct OnboardingStepView<Content: View>: View {
             .padding()
         }
         .background(AnimatedRadialGradientView())
-        .modifier(LoadingAndErrorOverlayModifier(isLoading: $isLoading, errorMessage: $errorMessage))
+        .modifier(LoadingAndMessageOverlayModifier(
+            isLoading: $isLoading,
+            message: $errorMessage
+        ))
     }
 }
 

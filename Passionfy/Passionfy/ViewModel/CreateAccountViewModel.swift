@@ -18,16 +18,11 @@ class CreateAccountViewModel: BaseAuthViewModel {
     @Published var gender: Gender? = nil
     @Published var selectedPreference: Preference? = nil
     @Published var selectedInterest: Interest? = nil
-    @Published var profileImages: [UIImage] = []
+    @Published var profileImages: [UnifiedImage] = []
     @Published var userCoordinates: (latitude: Double, longitude: Double)?
     @Published var userCity: String = ""
     @Published var userCountry: String = ""
     @Published var accountFlowStep: AccountFlowStepEnum = .welcome
-    
-    @Published var showImagePicker = false
-    @Published var selectedIndex: Int?
-    
-    let maxImages = 6
     
     @Injected(\.verifyUsernameAvailabilityUseCase) private var verifyUsernameAvailabilityUseCase: VerifyUsernameAvailabilityUseCase
     @Injected(\.sendOtpUseCase) private var sendOtpUseCase: SendOtpUseCase
@@ -69,7 +64,10 @@ class CreateAccountViewModel: BaseAuthViewModel {
     
     func signUp() {
         let imageDatas: [Data] = self.profileImages.compactMap ({ image in
-            image.jpegData(compressionQuality: 0.5)
+            if case .local(let uIImage) = image {
+                return uIImage.jpegData(compressionQuality: 0.5)
+            }
+            return nil
         })
         guard
             let gender = self.gender,
@@ -97,16 +95,6 @@ class CreateAccountViewModel: BaseAuthViewModel {
         } completion: { [weak self] result in
             guard let self = self, case .success = result else { return }
             self.nextFlowStep()
-        }
-    }
-    
-    func onNewProfileImageSelected(image: UIImage) {
-        if let index = selectedIndex {
-            if index < profileImages.count {
-                profileImages[index] = image
-            } else if profileImages.count < maxImages {
-                profileImages.append(image)
-            }
         }
     }
     
