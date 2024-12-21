@@ -9,10 +9,12 @@ import Foundation
 
 internal struct UpdateUserDTO: Decodable {
     var userId: String
-    var fullname: String
     var username: String?
-    var location: String?
-    var bio: String?
     var birthdate: String?
-    var profileImageUrls: [String]
+    var occupation: String?
+    var gender: String?
+    let preference: String?
+    let interest: String?
+    var profileImageUrls: [String]?
+    var bio: String?
 }

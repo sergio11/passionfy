@@ -25,47 +25,28 @@ internal class UserRepositoryImpl: UserRepository {
         self.userMapper = userMapper
     }
     
-    /// Updates a user's profile with new data.
-    /// - Parameters:
-    ///   - userId: The ID of the user to update.
-    ///   - fullname: The user's updated full name.
-    ///   - username: The user's updated username (optional).
-    ///   - location: The user's updated location (optional).
-    ///   - bio: The user's updated bio (optional).
-    ///   - birthdate: The user's updated birthdate (optional).
-    ///   - selectedImage: The new profile image data (optional).
-    /// - Returns: An updated `User` object.
-    /// - Throws: An error if the update fails, including image upload or data persistence issues.
-    func updateUser(userId: String, fullname: String, username: String?, location: String?, bio: String?, birthdate: String?, selectedImage: Data?) async throws -> User {
+    
+    func updateUser(data: UpdateUser) async throws -> User {
         do {
-            var profileImageUrl: String? = nil
-            
-            // Upload the profile image if provided
-            if let selectedImage = selectedImage {
-                do {
-                    profileImageUrl = try await storageFilesDataSource.uploadImage(imageData: selectedImage)
-                } catch {
-                    throw UserRepositoryError.imageUploadFailed
-                }
-            }
-            
-            // Update the user data in the data source
-            do {
-                let userData = try await userDataSource.updateUser(
-                    data: UpdateUserDTO(
-                        userId: userId,
-                        fullname: fullname,
-                        username: username,
-                        location: location,
-                        bio: bio,
-                        birthdate: birthdate,
-                        profileImageUrls: profileImageUrl != nil ? [profileImageUrl!] : []
-                    )
-                )
-                return userMapper.map(userData)
-            } catch {
-                throw UserRepositoryError.profileUpdateFailed
-            }
+            // Upload profile images if provided
+            let profileImageUrls = try await uploadProfileImages(data.profileImages)
+
+            // Create the DTO with provided information
+            let updateUserDTO = UpdateUserDTO(
+                userId: data.id,
+                username: data.username,
+                birthdate: data.birthdate,
+                occupation: data.occupation,
+                gender: data.gender?.rawValue,
+                preference: data.preference?.rawValue,
+                interest: data.interest?.rawValue,
+                profileImageUrls: profileImageUrls.isEmpty ? nil : profileImageUrls,
+                bio: data.bio
+            )
+
+            // Update user data in the data source
+            let updatedUserData = try await userDataSource.updateUser(data: updateUserDTO)
+            return userMapper.map(updatedUserData)
         } catch {
             print("Error updating user profile: \(error.localizedDescription)")
             throw error
@@ -78,36 +59,25 @@ internal class UserRepositoryImpl: UserRepository {
     /// - Throws: An error if image upload or user creation fails.
     func createUser(data: CreateUser) async throws -> User {
         do {
-            let profileImageUrls: [String]
-            
-            // Upload all profile images provided
-            do {
-                profileImageUrls = try await data.profileImages.asyncMap {
-                    try await storageFilesDataSource.uploadImage(imageData: $0)
-                }
-            } catch {
-                throw UserRepositoryError.imageUploadFailed
-            }
-            
-            // Create the user in the data source
-            do {
-                let userData = try await userDataSource.createUser(
-                    data: CreateUserDTO(
-                        userId: data.id,
-                        username: data.username,
-                        birthdate: data.birthdate,
-                        phoneNumber: data.phoneNumber,
-                        occupation: data.occupation,
-                        gender: data.gender.rawValue,
-                        preference: data.preference.rawValue,
-                        interest: data.interest.rawValue,
-                        profileImageUrls: profileImageUrls
-                    )
-                )
-                return userMapper.map(userData)
-            } catch {
-                throw UserRepositoryError.userCreationFailed
-            }
+            // Upload profile images if provided
+            let profileImageUrls = try await uploadProfileImages(data.profileImages)
+
+            // Create the DTO with provided information
+            let createUserDTO = CreateUserDTO(
+                userId: data.id,
+                username: data.username,
+                birthdate: data.birthdate,
+                phoneNumber: data.phoneNumber,
+                occupation: data.occupation,
+                gender: data.gender.rawValue,
+                preference: data.preference.rawValue,
+                interest: data.interest.rawValue,
+                profileImageUrls: profileImageUrls
+            )
+
+            // Create user data in the data source
+            let createdUserData = try await userDataSource.createUser(data: createUserDTO)
+            return userMapper.map(createdUserData)
         } catch {
             print("Error creating user: \(error.localizedDescription)")
             throw error
@@ -213,6 +183,18 @@ internal class UserRepositoryImpl: UserRepository {
                 return Interest.women.rawValue
             case .nonBinary, .genderqueer, .agender, .twoSpirit, .bigender, .other, .custom:
                 return Interest.everyone.rawValue // Non-binary or fluid genders might be interested in all options
+        }
+    }
+    
+    private func uploadProfileImages(_ images: [Data]?) async throws -> [String] {
+        // If no images are provided, return an empty array
+        guard let images = images else { return [] }
+        do {
+            // Upload each image and return their URLs
+            return try await images.asyncMap { try await storageFilesDataSource.uploadImage(imageData: $0) }
+        } catch {
+            // Throw a specific error if image upload fails
+            throw UserRepositoryError.imageUploadFailed
         }
     }
 }

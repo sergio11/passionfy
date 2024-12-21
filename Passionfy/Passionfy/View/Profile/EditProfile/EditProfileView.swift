@@ -15,20 +15,91 @@ struct EditProfileView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                if let user = viewModel.user {
-                    ProfileImageGridView(user: user)
-                        .padding()
-                }
+                
+                // Picture Selection Section
+                PictureSelectionGridView(images: $viewModel.profileImages)
+                    .padding()
                 
                 VStack(spacing: 24) {
+                    // USERNAME Section
+                    ProfileSectionView(
+                        title: "USERNAME",
+                        icon: "person.fill",
+                        content: AnyView(
+                            TextField("Enter your username", text: $viewModel.username)
+                                .customFont(.medium, 16)
+                                .padding()
+                                .frame(alignment: .top)
+                                .lineLimit(1)
+                                .background(Color(.secondarySystemBackground))
+                        )
+                    )
+                    
+                    // BIRTHDATE Section
+                    ProfileSectionView(
+                        title: "BIRTHDATE",
+                        icon: "calendar",
+                        content: AnyView(
+                            HStack {
+                                Text(viewModel.birthdate.formatString())
+                                    .customFont(.medium, 16)
+                                    .padding()
+                                                    
+                                Spacer()
+                                                    
+                                Button(action: {
+                                    viewModel.showDatePicker.toggle()
+                                }) {
+                                    Image(systemName: "calendar")
+                                        .font(.title)
+                                        .foregroundColor(.pink)
+                                        .padding()
+                                    }
+                                }
+                                .background(Color(.secondarySystemBackground))
+                                .cornerRadius(8)
+                                    
+                                .popover(isPresented: $viewModel.showDatePicker) {
+                                    VStack(spacing: 16) {
+                                        HStack {
+                                            Image(systemName: "calendar.badge.clock")
+                                                .font(.title2)
+                                                .foregroundColor(.pink)
+                                            
+                                            Text("Select Your Birthdate")
+                                                .customFont(.semiBold, 20)
+                                        }
+                                        .padding(.top, 16)
+
+                                        DatePicker(
+                                            "Enter your birthdate",
+                                            selection: $viewModel.birthdate,
+                                            displayedComponents: .date
+                                        )
+                                        .datePickerStyle(GraphicalDatePickerStyle())
+                                        .padding()
+                                        .background(Color(.secondarySystemBackground))
+                                        .cornerRadius(8)
+                                        
+                                    
+                                        ActionButtonView(title: "Done", mode: .filled) {
+                                            viewModel.showDatePicker.toggle()
+                                        }
+                                        .padding(.bottom, 16)
+                                    }
+                                }
+                            )
+                    )
+                    
                     // ABOUT ME Section
                     ProfileSectionView(
                         title: "ABOUT ME",
+                        icon: "person.crop.circle",
                         content: AnyView(
                             TextField("Add your bio", text: $viewModel.bio, axis: .vertical)
                                 .customFont(.medium, 16)
                                 .padding()
-                                .frame(height: 64, alignment: .top)
+                                .frame(alignment: .top)
                                 .background(Color(.secondarySystemBackground))
                         )
                     )
@@ -36,23 +107,21 @@ struct EditProfileView: View {
                     // OCCUPATION Section
                     ProfileSectionView(
                         title: "OCCUPATION",
+                        icon: "briefcase",
                         content: AnyView(
-                            HStack {
-                                Image(systemName: "book")
-                                Text("Occupation")
-                                Spacer()
-                                Text(viewModel.occupation)
-                                    .customFont(.medium, 16)
-                            }
-                            .padding()
-                            .background(Color(.secondarySystemBackground))
-                            .font(.subheadline)
+                            TextField("Add your occupation", text: $viewModel.occupation)
+                                .customFont(.medium, 16)
+                                .padding()
+                                .frame(alignment: .top)
+                                .lineLimit(1)
+                                .background(Color(.secondarySystemBackground))
                         )
                     )
                     
                     // GENDER Section
                     PickerSectionView(
                         title: "GENDER",
+                        icon: "person.fill",
                         selection: $viewModel.selectedGender,
                         options: Gender.allCases.map { $0.rawValue }
                     )
@@ -60,6 +129,7 @@ struct EditProfileView: View {
                     // SEXUAL ORIENTATION Section
                     PickerSectionView(
                         title: "SEXUAL ORIENTATION",
+                        icon: "heart.fill",
                         selection: $viewModel.selectedPreference,
                         options: Preference.allCases.map { $0.rawValue }
                     )
@@ -67,6 +137,7 @@ struct EditProfileView: View {
                     // INTEREST Section
                     PickerSectionView(
                         title: "INTEREST",
+                        icon: "sparkle",
                         selection: $viewModel.selectedInterest,
                         options: Interest.allCases.map { $0.rawValue }
                     )
@@ -84,11 +155,25 @@ struct EditProfileView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
-                        dismiss()
+                        viewModel.updateUser()
                     }
+                    .foregroundColor(Color.pink)
                     .fontWeight(.semibold)
                 }
             }
+            .onReceive(viewModel.$profileUpdated) { isUpdated in
+                if isUpdated {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        dismiss()
+                    }
+                }
+            }
+            .modifier(LoadingAndMessageOverlayModifier(
+                isLoading: $viewModel.isLoading,
+                message: viewModel.message,
+                messageType: viewModel.messageType,
+                duration: 3.0
+            ))
             .onAppear {
                 viewModel.loadCurrentUser()
             }

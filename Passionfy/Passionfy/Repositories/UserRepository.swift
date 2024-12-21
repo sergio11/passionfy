@@ -30,18 +30,8 @@ enum UserRepositoryError: Error {
 
 /// A repository for user profile-related operations.
 protocol UserRepository {
-    /// Updates the user's profile information asynchronously.
-    /// - Parameters:
-    ///   - userId: The ID of the user whose profile is being updated.
-    ///   - fullname: The full name of the user.
-    ///   - username: The username of the user, if provided.
-    ///   - location: The location of the user, if provided.
-    ///   - bio: The bio of the user, if provided.
-    ///   - birthdate: The birthdate of the user, if provided.
-    ///   - selectedImage: The selected profile image data, if provided.
-    /// - Returns: A `User` object representing the updated user profile.
-    /// - Throws: An error if the profile update fails.
-    func updateUser(userId: String, fullname: String, username: String?, location: String?, bio: String?, birthdate: String?, selectedImage: Data?) async throws -> User
+   
+    func updateUser(data: UpdateUser) async throws -> User
 
     // Creates a new user asynchronously.
         ///

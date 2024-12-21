@@ -120,10 +120,6 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             .document(authUserId)
             .getDocument()
         
-        guard let authUserData = try? documentSnapshot.data(as: UserDTO.self) else {
-            throw UserDataSourceError.userNotFound
-        }
-        
         // Combine ignoredUserIds with the authenticated user's ID to exclude them all
         var allIgnoredIds = ignoredUserIds
         allIgnoredIds.insert(authUserId)
