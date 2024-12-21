@@ -16,5 +16,8 @@ internal struct CreateUserDTO: Decodable {
     var gender: String
     let preference: String
     let interest: String
+    let coords: UserCoordinatesDTO
+    let city: String
+    let country: String
     var profileImageUrls: [String]
 }

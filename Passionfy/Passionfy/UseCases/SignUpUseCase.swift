@@ -18,6 +18,9 @@ struct SignUpParams {
     let phoneNumber: String
     let verificationCode: String
     let otpText: String
+    let userCoordinates: (latitude: Double, longitude: Double)
+    let userCity: String
+    let userCountry: String
 }
 
 /// An entity responsible for signing up a new user.
@@ -32,7 +35,21 @@ struct SignUpUseCase {
     func execute(params: SignUpParams) async throws -> User {
         let userId = try await authRepository.verifyOTP(verificationCode: params.verificationCode, otpCode: params.otpText)
         return try await userRepository.createUser(data: CreateUser(
-            id: userId, username: params.name, birthdate: params.birthdate, occupation: params.occupation, gender: params.gender, phoneNumber: params.phoneNumber, preference: params.selectedPreference, interest: params.selectedInterest, profileImages: params.profileImages
+            id: userId,
+            username: params.name,
+            birthdate: params.birthdate,
+            occupation: params.occupation,
+            gender: params.gender,
+            phoneNumber: params.phoneNumber,
+            preference: params.selectedPreference,
+            interest: params.selectedInterest,
+            coords: UserCoordinates(
+                latitude: params.userCoordinates.latitude,
+                longitude: params.userCoordinates.longitude
+            ),
+            city: params.userCity,
+            country: params.userCountry,
+            profileImages: params.profileImages
         ))
     }
 }

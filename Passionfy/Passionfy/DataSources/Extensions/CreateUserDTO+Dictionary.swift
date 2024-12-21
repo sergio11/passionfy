@@ -18,7 +18,12 @@ internal extension CreateUserDTO {
             "gender": gender,
             "preference": preference,
             "interest": interest,
-            "location": "",
+            "city": city,
+            "country": country,
+            "coords": [
+                "latitude": coords.latitude,
+                "longitude": coords.longitude,
+            ],
             "bio": "",
             "profileImageUrls": profileImageUrls
         ]

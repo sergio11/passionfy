@@ -48,10 +48,7 @@ class SwipeViewModel: BaseUserViewModel {
     }
     
     func checkForMatch(withUser user: User) {
-        let didMatch = Bool.random()
-        if didMatch {
-            appEventBus.publish(event: .matchOccurred(user))
-        }
+        appEventBus.publish(event: .matchOccurred(user))
     }
     
     private func onGetSuggestionsCompleted(suggestions: [User]) {
