@@ -47,4 +47,9 @@ extension TextField {
     }
 }
 
+extension TextEditor {
+    func customFont(_ fontWeight: FontWeight = .regular, _ size: CGFloat = 16) -> some View {
+        return self.font(.customFont(fontWeight, size))
+    }
+}
 

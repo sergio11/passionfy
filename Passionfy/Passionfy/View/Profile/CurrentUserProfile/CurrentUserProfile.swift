@@ -44,6 +44,30 @@ struct CurrentUserProfile: View {
                         }
                     }
                     
+                    // Contact
+                    Section(header: Text("Contact")) {
+                        NavigationLink(destination: ContactUsView()) {
+                            Text("Contact Us")
+                                .customFont(.medium, 16)
+                        }
+                        NavigationLink(destination: FeedbackView()) {
+                            Text("Provide Feedback")
+                                .customFont(.medium, 16)
+                        }
+                    }
+                                        
+                    // Privacy
+                    Section(header: Text("Privacy")) {
+                        NavigationLink(destination: PrivacyPolicyView()) {
+                            Text("Privacy Policy")
+                                .customFont(.medium, 16)
+                        }
+                        NavigationLink(destination: DataSecurityView()) {
+                            Text("Data Security")
+                                .customFont(.medium, 16)
+                        }
+                    }
+                    
                     // Logout and delete account
                     Section {
                         VStack(spacing: 16) {
