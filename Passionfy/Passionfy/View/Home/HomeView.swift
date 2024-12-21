@@ -18,7 +18,7 @@ struct HomeView: View {
                     .tabItem { Image(systemName: "flame") }
                     .tag(0)
                 
-                SearchView()
+                ExploreView()
                     .tabItem { Image(systemName: "magnifyingglass") }
                     .tag(1)
                 

@@ -159,6 +159,21 @@ internal class UserRepositoryImpl: UserRepository {
             throw error
         }
     }
+    
+    /// Searches for users based on a provided search term asynchronously.
+    ///
+    /// - Parameter searchTerm: A string representing the term to search for (e.g., username).
+    /// - Returns: An array of `User` objects that match the search criteria.
+    /// - Throws: An error if the search operation fails.
+    func searchUsers(searchTerm: String) async throws -> [User] {
+        do {
+            let result = try await userDataSource.searchUsers(searchTerm: searchTerm)
+            let users = result.map { userMapper.map($0) }
+            return users
+        } catch {
+            throw UserRepositoryError.searchUsersFailed(message: error.localizedDescription)
+        }
+    }
 
     /// Determines the target gender based on the user's interest.
     /// - Parameter interest: The user's interest.

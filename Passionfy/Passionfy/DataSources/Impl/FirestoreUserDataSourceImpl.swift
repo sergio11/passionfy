@@ -148,4 +148,25 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
         
         return suggestedUsers
     }
+    
+    /// Searches for users based on a provided search term in their username or fullname asynchronously.
+    /// - Parameter searchTerm: A string representing the term to search for (e.g., username, fullname).
+    /// - Returns: An array of `UserDTO` objects that match the search criteria.
+    /// - Throws: An error if the search operation fails, including errors specified in `UserDataSourceError`.
+    func searchUsers(searchTerm: String) async throws -> [UserDTO] {
+        let firestore = Firestore.firestore()
+            
+        do {
+            async let usernameSnapshot = firestore
+                .collection(usersCollection)
+                .whereField("username", isGreaterThanOrEqualTo: searchTerm)
+                .whereField("username", isLessThanOrEqualTo: searchTerm + "\u{f8ff}")
+                .getDocuments()
+            
+            return try await usernameSnapshot.documents.compactMap { try? $0.data(as: UserDTO.self) }
+        } catch {
+            print("Error searching for users: \(error.localizedDescription)")
+            throw UserDataSourceError.searchFailed(message: "Failed to search for users")
+        }
+    }
 }

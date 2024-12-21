@@ -59,6 +59,10 @@ extension Container {
     var signUpUseCase: Factory<SignUpUseCase> {
         self { SignUpUseCase(authRepository: self.authenticationRepository(), userRepository: self.userProfileRepository()) }
     }
+    
+    var searchUsersUseCase: Factory<SearchUsersUseCase> {
+        self { SearchUsersUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
 }
 
 extension Container {

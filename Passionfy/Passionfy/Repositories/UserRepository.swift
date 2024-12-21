@@ -26,6 +26,9 @@ enum UserRepositoryError: Error {
     
     // Suggestions errors
     case suggestionFetchFailed // Failed to fetch user suggestions.
+    
+    /// Error when searching for users fails.
+    case searchUsersFailed(message: String)
 }
 
 /// A repository for user profile-related operations.
@@ -62,4 +65,11 @@ protocol UserRepository {
     /// - Returns: An array of `User` objects representing user suggestions.
     /// - Throws: An error if suggestion retrieval fails.
     func getSuggestions(authUserId: String) async throws -> [User]
+    
+    /// Searches for users based on a provided search term asynchronously.
+    ///
+    /// - Parameter searchTerm: A string representing the term to search for (e.g., username, fullname).
+    /// - Returns: An array of `UserBO` objects that match the search criteria.
+    /// - Throws: An error if the search operation fails.
+    func searchUsers(searchTerm: String) async throws -> [User]
 }
