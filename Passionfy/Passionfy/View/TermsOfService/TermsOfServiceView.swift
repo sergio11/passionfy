@@ -82,25 +82,6 @@ struct TermsOfServiceView: View {
     }
 }
 
-private struct SectionView: View {
-    let title: String
-    let content: String
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.headline)
-                .foregroundColor(.pink)
-            
-            Text(content)
-                .font(.body)
-                .foregroundColor(.black)
-                .lineSpacing(4)
-        }
-        .padding(.vertical, 8)
-    }
-}
-
 struct TermsOfServiceView_Previews: PreviewProvider {
     static var previews: some View {
         TermsOfServiceView()
