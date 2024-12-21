@@ -21,6 +21,14 @@ extension Container {
     var userMapper: Factory<UserMapper> {
         self { UserMapper() }.singleton
     }
+    
+    var createUserMapper: Factory<CreateUserMapper> {
+        self { CreateUserMapper() }.singleton
+    }
+    
+    var updateUserMapper: Factory<UpdateUserMapper> {
+        self { UpdateUserMapper() }.singleton
+    }
 }
 
 extension Container {
@@ -72,7 +80,7 @@ extension Container {
     }
         
     var userProfileRepository: Factory<UserRepository> {
-        self { UserRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), userMapper: self.userMapper()) }.singleton
+        self { UserRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), userMapper: self.userMapper(), createUserMapper: self.createUserMapper(), updateUserMapper: self.updateUserMapper()) }.singleton
     }
         
     var updateUserUseCase: Factory<UpdateUserUseCase> {

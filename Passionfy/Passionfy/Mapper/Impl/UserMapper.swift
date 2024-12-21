@@ -22,7 +22,8 @@ class UserMapper: Mapper {
             preference: Preference(rawValue: input.preference) ?? .exploringOptions,
             interest: Interest(rawValue: input.interest) ?? .everyone,
             profileImageUrls: input.profileImageUrls,
-            location: input.location,
+            city: input.city,
+            country: input.country,
             bio: input.bio
         )
     }

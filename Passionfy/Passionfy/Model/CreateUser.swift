@@ -16,5 +16,8 @@ struct CreateUser: Identifiable, Hashable {
     var phoneNumber: String
     let preference: Preference
     let interest: Interest
+    let coords: UserCoordinates
+    let city: String
+    let country: String
     let profileImages: [Data]
 }

@@ -17,6 +17,7 @@ internal struct UserDTO: Decodable {
     let preference: String
     let interest: String
     var profileImageUrls: [String]
-    var location: String
+    let city: String
+    let country: String
     var bio: String
 }

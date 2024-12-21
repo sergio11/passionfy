@@ -73,6 +73,7 @@ class CreateAccountViewModel: BaseAuthViewModel {
             let gender = self.gender,
             let preference = self.selectedPreference,
             let interest = self.selectedInterest,
+            let userCoords = self.userCoordinates,
             !self.username.isEmpty,
             !self.phoneNumber.isEmpty,
             !self.otpText.isEmpty
@@ -90,7 +91,10 @@ class CreateAccountViewModel: BaseAuthViewModel {
                 profileImages: imageDatas,
                 phoneNumber: self.phoneNumber,
                 verificationCode: self.verificationCode,
-                otpText: self.otpText
+                otpText: self.otpText,
+                userCoordinates: userCoords,
+                userCity: self.userCity,
+                userCountry: self.userCountry
             ))
         } completion: { [weak self] result in
             guard let self = self, case .success = result else { return }

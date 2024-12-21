@@ -34,7 +34,7 @@ struct UserProfileView: View {
                         ProfileInfoRow(icon: "person", title: user.gender.rawValue)
                         ProfileInfoRow(icon: "arrow.down.forward.and.arrow.up.backward.circle", title: user.preference.rawValue)
                         ProfileInfoRow(icon: "book", title: user.occupation)
-                        ProfileInfoRow(icon: "mappin.and.ellipse", title: user.location)
+                        ProfileInfoRow(icon: "mappin.and.ellipse", title: "\(user.city), \(user.country)")
                     }
                     
                     InfoSection(title: "Interests") {

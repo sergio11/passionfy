@@ -113,13 +113,7 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
     /// - Returns: An array of `UserDTO` objects representing user suggestions.
     /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func getSuggestions(authUserId: String, targetGender: String?, targetInterest: String?, ignoredUserIds: Set<String>) async throws -> [UserDTO] {
-       
-        let documentSnapshot = try await Firestore
-            .firestore()
-            .collection(usersCollection)
-            .document(authUserId)
-            .getDocument()
-        
+    
         // Combine ignoredUserIds with the authenticated user's ID to exclude them all
         var allIgnoredIds = ignoredUserIds
         allIgnoredIds.insert(authUserId)

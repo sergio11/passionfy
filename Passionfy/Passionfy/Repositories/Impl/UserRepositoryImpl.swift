@@ -10,42 +10,42 @@ import Foundation
 /// Class responsible for managing user profile-related operations.
 internal class UserRepositoryImpl: UserRepository {
     
+    // Data sources for interacting with user and file data
     private let userDataSource: UserDataSource
     private let storageFilesDataSource: StorageFilesDataSource
+        
+    // Mappers for transforming user data between domain and data models
     private let userMapper: UserMapper
-    
-    /// Initializes the `UserRepositoryImpl` with the required data sources and mapper.
+    private let createUserMapper: CreateUserMapper
+    private let updateUserMapper: UpdateUserMapper
+        
+    /// Initializes the UserRepositoryImpl with the necessary data sources and mappers.
+    ///
     /// - Parameters:
-    ///   - userDataSource: Data source for user-related operations.
-    ///   - storageFilesDataSource: Data source for handling file storage operations.
-    ///   - userMapper: Mapper to convert data source models to domain models.
-    init(userDataSource: UserDataSource, storageFilesDataSource: StorageFilesDataSource, userMapper: UserMapper) {
+    ///   - userDataSource: A data source responsible for handling user-related operations (e.g., fetching, updating, deleting users).
+    ///   - storageFilesDataSource: A data source responsible for handling storage-related file operations (e.g., uploading profile pictures).
+    ///   - userMapper: A mapper used to transform user data from data models to domain models.
+    ///   - createUserMapper: A mapper used to transform user creation data from the data model to domain model.
+    ///   - updateUserMapper: A mapper used to transform updated user data from the data model to domain model.
+    init(
+        userDataSource: UserDataSource,
+        storageFilesDataSource: StorageFilesDataSource,
+        userMapper: UserMapper,
+        createUserMapper: CreateUserMapper,
+        updateUserMapper: UpdateUserMapper
+    ) {
         self.userDataSource = userDataSource
         self.storageFilesDataSource = storageFilesDataSource
         self.userMapper = userMapper
+        self.createUserMapper = createUserMapper
+        self.updateUserMapper = updateUserMapper
     }
     
     
     func updateUser(data: UpdateUser) async throws -> User {
         do {
-            // Upload profile images if provided
             let profileImageUrls = try await uploadProfileImages(data.profileImages)
-
-            // Create the DTO with provided information
-            let updateUserDTO = UpdateUserDTO(
-                userId: data.id,
-                username: data.username,
-                birthdate: data.birthdate,
-                occupation: data.occupation,
-                gender: data.gender?.rawValue,
-                preference: data.preference?.rawValue,
-                interest: data.interest?.rawValue,
-                profileImageUrls: profileImageUrls.isEmpty ? nil : profileImageUrls,
-                bio: data.bio
-            )
-
-            // Update user data in the data source
-            let updatedUserData = try await userDataSource.updateUser(data: updateUserDTO)
+            let updatedUserData = try await userDataSource.updateUser(data: updateUserMapper.map(UpdateUserDataMapper(profileImageUrls: profileImageUrls, data: data)))
             return userMapper.map(updatedUserData)
         } catch {
             print("Error updating user profile: \(error.localizedDescription)")
@@ -59,24 +59,8 @@ internal class UserRepositoryImpl: UserRepository {
     /// - Throws: An error if image upload or user creation fails.
     func createUser(data: CreateUser) async throws -> User {
         do {
-            // Upload profile images if provided
             let profileImageUrls = try await uploadProfileImages(data.profileImages)
-
-            // Create the DTO with provided information
-            let createUserDTO = CreateUserDTO(
-                userId: data.id,
-                username: data.username,
-                birthdate: data.birthdate,
-                phoneNumber: data.phoneNumber,
-                occupation: data.occupation,
-                gender: data.gender.rawValue,
-                preference: data.preference.rawValue,
-                interest: data.interest.rawValue,
-                profileImageUrls: profileImageUrls
-            )
-
-            // Create user data in the data source
-            let createdUserData = try await userDataSource.createUser(data: createUserDTO)
+            let createdUserData = try await userDataSource.createUser(data: createUserMapper.map(CreateUserDataMapper(profileImageUrls: profileImageUrls, data: data)))
             return userMapper.map(createdUserData)
         } catch {
             print("Error creating user: \(error.localizedDescription)")

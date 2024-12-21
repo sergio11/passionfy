@@ -17,6 +17,7 @@ struct User: Decodable, Identifiable, Hashable {
     let preference: Preference
     let interest: Interest
     var profileImageUrls: [String]
-    var location: String
+    let city: String
+    let country: String
     var bio: String
 }

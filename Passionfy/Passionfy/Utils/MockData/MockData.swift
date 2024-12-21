@@ -22,7 +22,8 @@ struct MockData {
                 "example",
                 "example"
             ],
-            location: "Los Angeles, CA",
+            city: "Los Angeles",
+            country: "USA",
             bio: "Lover of cinema and fine art. 🌟"
         ),
         .init(
@@ -38,7 +39,8 @@ struct MockData {
                 "example",
                 "example"
             ],
-            location: "London, UK",
+            city: "London",
+            country: "UK",
             bio: "Football is life. 🏆"
         ),
         .init(
@@ -54,7 +56,8 @@ struct MockData {
                 "example",
                 "example"
             ],
-            location: "Dublin, Ireland",
+            city: "Dublin",
+            country: "Ireland",
             bio: "Knockout artist and whiskey enthusiast. 🥃"
         ),
         .init(
@@ -70,7 +73,8 @@ struct MockData {
                 "example",
                 "example"
             ],
-            location: "Nashville, TN",
+            city: "Nashville",
+            country: "USA",
             bio: "Writing songs about life and love. 🎶"
         )
     ]
