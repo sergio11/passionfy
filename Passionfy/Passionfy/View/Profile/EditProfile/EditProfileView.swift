@@ -141,6 +141,36 @@ struct EditProfileView: View {
                         selection: $viewModel.selectedInterest,
                         options: Interest.allCases.map { $0.rawValue }
                     )
+                    
+                    // LOCATION Section
+                    ProfileSectionView(
+                        title: "LOCATION",
+                        icon: "location.fill",
+                        content: AnyView(
+                            HStack {
+                                if viewModel.isLoadingLocation {
+                                    ProgressView()
+                                        .progressViewStyle(CircularProgressViewStyle(tint: .pink))
+                                        .padding()
+                                }
+
+                                Text(
+                                    viewModel.userCity.isEmpty
+                                    ? "Tap to update your location"
+                                    : viewModel.userCity + (viewModel.userCountry.isEmpty ? "" : ", \(viewModel.userCountry)")
+                                )
+                                .customFont(.medium, 16)
+                                .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(Color(.secondarySystemBackground))
+                                .multilineTextAlignment(.leading)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .onTapGesture {
+                                viewModel.updateLocation()
+                            }
+                        )
+                    )
                 }
             }
             .scrollIndicators(.hidden)

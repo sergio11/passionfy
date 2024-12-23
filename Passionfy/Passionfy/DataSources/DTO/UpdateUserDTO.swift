@@ -15,6 +15,9 @@ internal struct UpdateUserDTO: Decodable {
     var gender: String?
     let preference: String?
     let interest: String?
+    let coords: UserCoordinatesDTO?
+    let city: String?
+    let country: String?
     var profileImageUrls: [String]?
     var bio: String?
 }

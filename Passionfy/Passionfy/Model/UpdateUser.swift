@@ -16,5 +16,8 @@ struct UpdateUser: Identifiable, Hashable {
     let gender: Gender?
     let preference: Preference?
     let interest: Interest?
+    let coords: UserCoordinates?
+    let city: String?
+    let country: String?
     let profileImages: [Data]?
 }
