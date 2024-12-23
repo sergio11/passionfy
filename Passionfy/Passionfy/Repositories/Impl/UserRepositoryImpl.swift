@@ -10,8 +10,8 @@ import Foundation
 /// Class responsible for managing user profile-related operations.
 internal class UserRepositoryImpl: UserRepository {
     
-    // Data sources for interacting with user and file data
     private let userDataSource: UserDataSource
+    private let userMatchDataSource: UserMatchDataSource
     private let storageFilesDataSource: StorageFilesDataSource
         
     // Mappers for transforming user data between domain and data models
@@ -19,23 +19,31 @@ internal class UserRepositoryImpl: UserRepository {
     private let createUserMapper: CreateUserMapper
     private let updateUserMapper: UpdateUserMapper
         
-    /// Initializes the UserRepositoryImpl with the necessary data sources and mappers.
+    /// Initializes the `UserRepositoryImpl` class with the necessary dependencies.
+    ///
+    /// This constructor is used to inject all the required data sources and mappers that the `UserRepositoryImpl` class needs
+    /// to perform its operations. These dependencies allow the class to handle user profile updates, user creation, file uploads,
+    /// user match interactions, and transformation of data between domain models and data models.
     ///
     /// - Parameters:
-    ///   - userDataSource: A data source responsible for handling user-related operations (e.g., fetching, updating, deleting users).
-    ///   - storageFilesDataSource: A data source responsible for handling storage-related file operations (e.g., uploading profile pictures).
-    ///   - userMapper: A mapper used to transform user data from data models to domain models.
-    ///   - createUserMapper: A mapper used to transform user creation data from the data model to domain model.
-    ///   - updateUserMapper: A mapper used to transform updated user data from the data model to domain model.
+    ///   - userDataSource: The data source responsible for handling user-related operations, such as fetching and updating user data.
+    ///   - storageFilesDataSource: The data source for managing file storage, typically for handling image uploads.
+    ///   - userMatchDataSource: The data source responsible for managing user interactions like "likes" and "dislikes", and determining matches.
+    ///   - userMapper: A mapper used to transform raw user data into domain objects (e.g., User objects).
+    ///   - createUserMapper: A mapper used to transform data from the domain layer to the data layer when creating a new user.
+    ///   - updateUserMapper: A mapper used to transform data from the domain layer to the data layer when updating an existing user's profile.
+
     init(
         userDataSource: UserDataSource,
         storageFilesDataSource: StorageFilesDataSource,
+        userMatchDataSource: UserMatchDataSource,
         userMapper: UserMapper,
         createUserMapper: CreateUserMapper,
         updateUserMapper: UpdateUserMapper
     ) {
         self.userDataSource = userDataSource
         self.storageFilesDataSource = storageFilesDataSource
+        self.userMatchDataSource = userMatchDataSource
         self.userMapper = userMapper
         self.createUserMapper = createUserMapper
         self.updateUserMapper = updateUserMapper
@@ -156,6 +164,47 @@ internal class UserRepositoryImpl: UserRepository {
             return users
         } catch {
             throw UserRepositoryError.searchUsersFailed(message: error.localizedDescription)
+        }
+    }
+    
+    // Like a user and check if a match happens.
+    /// - Parameters:
+    ///   - userId: The ID of the user who is liking.
+    ///   - targetUserId: The ID of the user being liked.
+    /// - Returns: A boolean indicating whether both users have liked each other (match).
+    /// - Throws: An error if the operation fails.
+    func likeUser(userId: String, targetUserId: String) async throws -> Bool {
+        do {
+            return try await userMatchDataSource.likeUser(userId: userId, targetUserId: targetUserId)
+        } catch {
+            throw UserRepositoryError.likeDislikeFailed(message: "Failed to process like operation.")
+        }
+    }
+        
+    // Dislike a user.
+    /// - Parameters:
+    ///   - userId: The ID of the user who is disliking.
+    ///   - targetUserId: The ID of the user being disliked.
+    /// - Throws: An error if the operation fails.
+    func dislikeUser(userId: String, targetUserId: String) async throws {
+        do {
+            return try await userMatchDataSource.dislikeUser(userId: userId, targetUserId: targetUserId)
+        } catch {
+            throw UserRepositoryError.likeDislikeFailed(message: "Failed to process dislike operation.")
+        }
+    }
+      
+    // Get the list of matches for a user.
+    /// - Parameter userId: The ID of the user whose matches are to be fetched.
+    /// - Returns: An array of user  that the user has matched with.
+    /// - Throws: An error if the operation fails.
+    func getUserMatches(userId: String) async throws -> [User] {
+        do {
+            let userIds = try await userMatchDataSource.getUserMatches(userId: userId)
+            let userDataList = try await userDataSource.getUserByIdList(userIds: userIds)
+            return userDataList.map { userMapper.map($0) }
+        } catch {
+            throw UserRepositoryError.fetchMatchesFailed(message: "Failed to fetch user matches.")
         }
     }
 
