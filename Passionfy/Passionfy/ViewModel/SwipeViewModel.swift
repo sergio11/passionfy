@@ -11,6 +11,8 @@ import Factory
 class SwipeViewModel: BaseUserViewModel {
     
     @Injected(\.getSuggestionsUseCase) private var getSuggestionsUseCase: GetSuggestionsUseCase
+    @Injected(\.likeUserUseCase) private var likeUserUseCase: LikeUserUseCase
+    @Injected(\.dislikeUserUseCase) private var dislikeUserUseCase: DislikeUserUseCase
     @Injected(\.eventBus) private var appEventBus: EventBus<AppEvent>
     
     @Published var suggestions = [CardModel]()
@@ -41,14 +43,31 @@ class SwipeViewModel: BaseUserViewModel {
     func onClearSwipeAction() {
         self.swipeAction = nil
     }
-
-    func removeCard(_ card: CardModel) {
-        guard let index = suggestions.firstIndex(where: { $0.id == card.id }) else { return }
-        suggestions.remove(at: index)
+    
+    func onLiked(withCard card: CardModel) {
+        executeAsyncTask {
+            return try await self.likeUserUseCase.execute(params: LikeUserParams(targetUserId: card.user.id))
+        } completion: { [weak self] result in
+            guard let self = self else { return }
+            if case .success(let matchOccurred) = result {
+                if matchOccurred {
+                    appEventBus.publish(event: .matchOccurred(card.user))
+                }
+            }
+        }
+        removeCard(card)
     }
     
-    func checkForMatch(withUser user: User) {
-        appEventBus.publish(event: .matchOccurred(user))
+    func onDisliked(withCard card: CardModel) {
+        executeAsyncTask {
+            return try await self.dislikeUserUseCase.execute(params: DislikeUserParams(targetUserId: card.user.id))
+        }
+        removeCard(card)
+    }
+
+    private func removeCard(_ card: CardModel) {
+        guard let index = suggestions.firstIndex(where: { $0.id == card.id }) else { return }
+        suggestions.remove(at: index)
     }
     
     private func onGetSuggestionsCompleted(suggestions: [User]) {

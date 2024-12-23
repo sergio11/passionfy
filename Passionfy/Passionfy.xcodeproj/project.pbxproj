@@ -155,6 +155,9 @@
 		3DC9D0AC2D033A2F00F41DED /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3DC9D0AB2D033A2F00F41DED /* Kingfisher */; };
 		3DE486662D19D024005689BA /* UserMatchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE486652D19D024005689BA /* UserMatchDataSource.swift */; };
 		3DE486682D19D080005689BA /* FirestoreUserMatchDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE486672D19D080005689BA /* FirestoreUserMatchDataSourceImpl.swift */; };
+		3DE4866A2D19D8F9005689BA /* LikeUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE486692D19D8F9005689BA /* LikeUserUseCase.swift */; };
+		3DE4866C2D19D907005689BA /* DislikeUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4866B2D19D907005689BA /* DislikeUserUseCase.swift */; };
+		3DE4866E2D19D914005689BA /* GetUserMatchesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4866D2D19D914005689BA /* GetUserMatchesUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -302,6 +305,9 @@
 		3DC37E532CF7B7B900E7FB1B /* SwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAction.swift; sourceTree = "<group>"; };
 		3DE486652D19D024005689BA /* UserMatchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMatchDataSource.swift; sourceTree = "<group>"; };
 		3DE486672D19D080005689BA /* FirestoreUserMatchDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserMatchDataSourceImpl.swift; sourceTree = "<group>"; };
+		3DE486692D19D8F9005689BA /* LikeUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeUserUseCase.swift; sourceTree = "<group>"; };
+		3DE4866B2D19D907005689BA /* DislikeUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DislikeUserUseCase.swift; sourceTree = "<group>"; };
+		3DE4866D2D19D914005689BA /* GetUserMatchesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserMatchesUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +423,9 @@
 				3D185E022D03341D009A4935 /* SignUpUseCase.swift */,
 				3D185E042D033443009A4935 /* UpdateUserUseCase.swift */,
 				3D7BA8E62D16EB8D0025CAF1 /* SearchUsersUseCase.swift */,
+				3DE486692D19D8F9005689BA /* LikeUserUseCase.swift */,
+				3DE4866B2D19D907005689BA /* DislikeUserUseCase.swift */,
+				3DE4866D2D19D914005689BA /* GetUserMatchesUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1043,8 +1052,10 @@
 				3DC37E542CF7B7B900E7FB1B /* SwipeAction.swift in Sources */,
 				3D65154B2D133C3F00621998 /* EditProfileViewModel.swift in Sources */,
 				3DC37E3E2CF7A2F300E7FB1B /* CardImageIndicatorView.swift in Sources */,
+				3DE4866A2D19D8F9005689BA /* LikeUserUseCase.swift in Sources */,
 				3D6515492D133ACF00621998 /* CurrentUserProfileViewModel.swift in Sources */,
 				3D65F6D72D1612D6007205A6 /* LocationService.swift in Sources */,
+				3DE4866C2D19D907005689BA /* DislikeUserUseCase.swift in Sources */,
 				3D7EF5FC2D037D2B0021E04E /* EnterCodeView.swift in Sources */,
 				3D7BA8DD2D16E5CF0025CAF1 /* SectionView.swift in Sources */,
 				3D65156D2D135E5D00621998 /* ProfileSectionView.swift in Sources */,
@@ -1052,6 +1063,7 @@
 				3DC37E472CF7A90C00E7FB1B /* CardModel.swift in Sources */,
 				3D7BA8D82D16E55F0025CAF1 /* PrivacyPolicyView.swift in Sources */,
 				3D7EF6082D037F5D0021E04E /* MainView.swift in Sources */,
+				3DE4866E2D19D914005689BA /* GetUserMatchesUseCase.swift in Sources */,
 				3D185DDE2D0330CE009A4935 /* Mapper.swift in Sources */,
 				3D7B65792D045C120002364F /* AnimatedRadialGradientView.swift in Sources */,
 				3D65155A2D134D6800621998 /* SwipeViewModel.swift in Sources */,

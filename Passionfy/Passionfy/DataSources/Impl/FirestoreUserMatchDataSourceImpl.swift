@@ -76,7 +76,7 @@ internal class FirestoreUserMatchDataSourceImpl: UserMatchDataSource {
         
         let documentSnapshot = try await userMatchRef.getDocument()
         guard let userMatchData = documentSnapshot.data() else {
-            throw NSError(domain: "FirestoreError", code: 404, userInfo: [NSLocalizedDescriptionKey: "User match data not found"])
+            return false
         }
         
         // Check if the targetUserId exists in the likedUsers field
@@ -84,7 +84,7 @@ internal class FirestoreUserMatchDataSourceImpl: UserMatchDataSource {
             let targetUserMatchRef = Firestore.firestore().collection(matchesCollection).document(targetUserId)
             let targetDocumentSnapshot = try await targetUserMatchRef.getDocument()
             guard let targetUserMatchData = targetDocumentSnapshot.data() else {
-                throw NSError(domain: "FirestoreError", code: 404, userInfo: [NSLocalizedDescriptionKey: "Target user match data not found"])
+                return false
             }
             
             // Check if userId exists in the target's likedUsers field
@@ -106,7 +106,7 @@ internal class FirestoreUserMatchDataSourceImpl: UserMatchDataSource {
         
         let documentSnapshot = try await userMatchRef.getDocument()
         guard let userMatchData = documentSnapshot.data() else {
-            throw NSError(domain: "FirestoreError", code: 404, userInfo: [NSLocalizedDescriptionKey: "User match data not found"])
+            return []
         }
         
         // Return the likedUsers array from the document
@@ -126,7 +126,7 @@ internal class FirestoreUserMatchDataSourceImpl: UserMatchDataSource {
         
         let documentSnapshot = try await userMatchRef.getDocument()
         guard let userMatchData = documentSnapshot.data() else {
-            throw NSError(domain: "FirestoreError", code: 404, userInfo: [NSLocalizedDescriptionKey: "User match data not found"])
+            return []
         }
         
         // Return the dislikedUsers array from the document
@@ -146,7 +146,7 @@ internal class FirestoreUserMatchDataSourceImpl: UserMatchDataSource {
         
         let documentSnapshot = try await userMatchRef.getDocument()
         guard let userMatchData = documentSnapshot.data() else {
-            throw NSError(domain: "FirestoreError", code: 404, userInfo: [NSLocalizedDescriptionKey: "User match data not found"])
+            return []
         }
         
         // Check for mutual likes (matches) in the likedUsers field

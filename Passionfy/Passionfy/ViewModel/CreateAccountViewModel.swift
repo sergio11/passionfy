@@ -164,6 +164,10 @@ class CreateAccountViewModel: BaseAuthViewModel {
         locationService.requestPermission()
         locationService.startUpdatingLocation()
     }
+    
+    func stopUpdatingLocation() {
+        locationService.stopUpdatingLocation()
+    }
 }
 
 extension CreateAccountViewModel: LocationServiceDelegate {
