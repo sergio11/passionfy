@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UpdateUser: Identifiable, Hashable {
+struct UpdateUser: Identifiable {
     let id: String
     let username: String?
     let birthdate: String?
@@ -19,5 +19,5 @@ struct UpdateUser: Identifiable, Hashable {
     let coords: UserCoordinates?
     let city: String?
     let country: String?
-    let profileImages: [Data]?
+    let profileImages: [(index: Int, data: Data)]?
 }

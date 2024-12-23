@@ -35,12 +35,12 @@ class EditProfileViewModel: BaseUserViewModel {
     }
     
     func updateUser() {
-        let imageDatas: [Data] = self.profileImages.compactMap ({ image in
-            if case .local(let uIImage) = image {
-                return uIImage.jpegData(compressionQuality: 0.5)
+        let imageDatasWithIndices: [(index: Int, data: Data)] = self.profileImages.enumerated().compactMap { (index, image) in
+            if case .local(let uIImage) = image, let imageData = uIImage.jpegData(compressionQuality: 0.5) {
+                return (index, imageData)
             }
             return nil
-        })
+        }
         executeAsyncTask {
             return try await self.updateUserUseCase.execute(params: UpdateUserParams(
                 username: self.username,
@@ -50,7 +50,7 @@ class EditProfileViewModel: BaseUserViewModel {
                 gender: Gender(rawValue: self.selectedGender),
                 preference: Preference(rawValue: self.selectedPreference),
                 interest: Interest(rawValue: self.selectedInterest),
-                profileImages: imageDatas,
+                profileImages: imageDatasWithIndices,
                 userCoordinates: self.userCoordinates,
                 userCity: self.userCity,
                 userCountry: self.userCountry

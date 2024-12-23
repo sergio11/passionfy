@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct UpdateUserDTO: Decodable {
+internal struct UpdateUserDTO {
     var userId: String
     var username: String?
     var birthdate: String?
@@ -18,6 +18,6 @@ internal struct UpdateUserDTO: Decodable {
     let coords: UserCoordinatesDTO?
     let city: String?
     let country: String?
-    var profileImageUrls: [String]?
+    var profileImageUrls: [(Int, String)]?
     var bio: String?
 }

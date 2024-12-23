@@ -50,16 +50,41 @@ internal class UserRepositoryImpl: UserRepository {
     }
     
     
+    /// Updates the user's profile with new data, including uploading profile images and obtaining their corresponding URLs.
+    /// The method processes an array of profile image data along with their index, uploads the images, and associates the URLs with the respective indices.
+    /// It then updates the user's profile with the new information, including the URLs of the uploaded images.
+    ///
+    /// - Parameter data: The `UpdateUser` object containing the new user data to be updated, including profile image data and other user details.
+    /// - Returns: A `User` object representing the updated user profile with the uploaded profile image URLs.
+    /// - Throws: An error if either the image upload or the user update process fails. The error will contain information about the failure, such as network issues or invalid data.
     func updateUser(data: UpdateUser) async throws -> User {
         do {
-            let profileImageUrls = try await uploadProfileImages(data.profileImages)
-            let updatedUserData = try await userDataSource.updateUser(data: updateUserMapper.map(UpdateUserDataMapper(profileImageUrls: profileImageUrls, data: data)))
+            let userData = try await userDataSource.getUserById(userId: data.id)
+            let currentProfileImageUrls = userData.profileImageUrls.enumerated().map { (index, image) in
+                (index, image)
+            }
+            var newProfileImageUrls: [(Int, String)]? = nil
+            if let profileImages = data.profileImages {
+                newProfileImageUrls = try await uploadProfileImagesWithIndices(profileImages)
+            }
+            
+            let updateUserDataMapper = UpdateUserDataMapper(
+                currentProfileImageUrls: currentProfileImageUrls,
+                newProfileImageUrls: newProfileImageUrls,
+                data: data
+            )
+            
+            let updatedUserDTO = updateUserMapper.map(updateUserDataMapper)
+            let updatedUserData = try await userDataSource.updateUser(data: updatedUserDTO)
+            
             return userMapper.map(updatedUserData)
+            
         } catch {
             print("Error updating user profile: \(error.localizedDescription)")
             throw error
         }
     }
+
     
     /// Creates a new user profile.
     /// - Parameter data: An instance of `CreateUser` containing user details.
@@ -241,7 +266,23 @@ internal class UserRepositoryImpl: UserRepository {
             // Upload each image and return their URLs
             return try await images.asyncMap { try await storageFilesDataSource.uploadImage(imageData: $0) }
         } catch {
-            // Throw a specific error if image upload fails
+            throw UserRepositoryError.imageUploadFailed
+        }
+    }
+    
+    private func uploadProfileImagesWithIndices(_ images: [(Int, Data)]) async throws -> [(Int, String)] {
+        // If no images are provided, return an empty array
+        guard !images.isEmpty else { return [] }
+        
+        do {
+            // Upload each image and return their URLs along with the original indices
+            let uploadedImageUrls = try await images.asyncMap { (index, imageData) in
+                let imageUrl = try await storageFilesDataSource.uploadImage(imageData: imageData)
+                return (index, imageUrl)
+            }
+            
+            return uploadedImageUrls
+        } catch {
             throw UserRepositoryError.imageUploadFailed
         }
     }

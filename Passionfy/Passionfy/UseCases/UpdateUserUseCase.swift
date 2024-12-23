@@ -19,7 +19,7 @@ struct UpdateUserParams {
     let gender: Gender?
     let preference: Preference?
     let interest: Interest?
-    let profileImages: [Data]?
+    let profileImages: [(index: Int, data: Data)]?
     let userCoordinates: UserCoordinates?
     let userCity: String?
     let userCountry: String?

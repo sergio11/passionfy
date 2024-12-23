@@ -20,6 +20,24 @@ class UpdateUserMapper: Mapper {
             )
         }
         
+        var mergedProfileImageUrls: [(Int, String)] = []
+
+        var imageDictionary: [Int: String] = [:]
+
+        if let currentUrls = input.currentProfileImageUrls {
+            for (index, url) in currentUrls {
+                imageDictionary[index] = url
+            }
+        }
+
+        if let newUrls = input.newProfileImageUrls {
+            for (index, url) in newUrls {
+                imageDictionary[index] = url
+            }
+        }
+
+        mergedProfileImageUrls = imageDictionary.sorted { $0.key < $1.key }
+        
         return UpdateUserDTO(
             userId: input.data.id,
             username: input.data.username,
@@ -31,13 +49,14 @@ class UpdateUserMapper: Mapper {
             coords: userCoords,
             city: input.data.city,
             country: input.data.country,
-            profileImageUrls: input.profileImageUrls.isEmpty ? nil : input.profileImageUrls,
+            profileImageUrls: mergedProfileImageUrls,
             bio: input.data.bio
         )
     }
 }
 
 struct UpdateUserDataMapper {
-    let profileImageUrls: [String]
+    let currentProfileImageUrls: [(Int, String)]?
+    let newProfileImageUrls: [(Int, String)]?
     let data: UpdateUser
 }
