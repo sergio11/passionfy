@@ -80,7 +80,7 @@ extension Container {
     }
         
     var userProfileRepository: Factory<UserRepository> {
-        self { UserRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), userMapper: self.userMapper(), createUserMapper: self.createUserMapper(), updateUserMapper: self.updateUserMapper()) }.singleton
+        self { UserRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), userMatchDataSource: self.userMatchDataSource(), userMapper: self.userMapper(), createUserMapper: self.createUserMapper(), updateUserMapper: self.updateUserMapper()) }.singleton
     }
         
     var updateUserUseCase: Factory<UpdateUserUseCase> {
@@ -97,6 +97,13 @@ extension Container {
         
     var getSuggestionsUseCase: Factory<GetSuggestionsUseCase> {
         self { GetSuggestionsUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
+}
+
+extension Container {
+    
+    var userMatchDataSource: Factory<UserMatchDataSource> {
+        self { FirestoreUserMatchDataSourceImpl() }.singleton
     }
 }
 

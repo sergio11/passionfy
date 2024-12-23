@@ -29,6 +29,12 @@ enum UserRepositoryError: Error {
     
     /// Error when searching for users fails.
     case searchUsersFailed(message: String)
+    
+    /// Error when a "like" or "dislike" operation fails
+    case likeDislikeFailed(message: String)
+    
+    /// Error when fetching matches fails.
+    case fetchMatchesFailed(message: String)
 }
 
 /// A repository for user profile-related operations.
@@ -37,15 +43,6 @@ protocol UserRepository {
     func updateUser(data: UpdateUser) async throws -> User
 
     // Creates a new user asynchronously.
-        ///
-        /// This method handles the creation of a new user profile, including the upload of multiple profile images.
-        /// The uploaded image URLs are saved in the user's profile.
-        ///
-        /// - Parameters:
-        ///   - data: An instance of `CreateUser` containing the user's details, including their profile images, username,
-        ///           birthdate, phone number, occupation, gender, preference, and interest.
-        /// - Returns: The newly created `User` object.
-        /// - Throws: An error if the operation fails, such as issues with uploading images or creating the user in the data source.
     func createUser(data: CreateUser) async throws -> User
 
     /// Retrieves user information asynchronously.
@@ -67,9 +64,29 @@ protocol UserRepository {
     func getSuggestions(authUserId: String) async throws -> [User]
     
     /// Searches for users based on a provided search term asynchronously.
-    ///
     /// - Parameter searchTerm: A string representing the term to search for (e.g., username, fullname).
     /// - Returns: An array of `UserBO` objects that match the search criteria.
     /// - Throws: An error if the search operation fails.
     func searchUsers(searchTerm: String) async throws -> [User]
+
+    // Like a user and check if a match happens.
+    /// - Parameters:
+    ///   - userId: The ID of the user who is liking.
+    ///   - targetUserId: The ID of the user being liked.
+    /// - Returns: A boolean indicating whether both users have liked each other (match).
+    /// - Throws: An error if the operation fails.
+    func likeUser(userId: String, targetUserId: String) async throws -> Bool
+
+    // Dislike a user.
+    /// - Parameters:
+    ///   - userId: The ID of the user who is disliking.
+    ///   - targetUserId: The ID of the user being disliked.
+    /// - Throws: An error if the operation fails.
+    func dislikeUser(userId: String, targetUserId: String) async throws
+    
+    // Get the list of matches for a user.
+    /// - Parameter userId: The ID of the user whose matches are to be fetched.
+    /// - Returns: An array of user  that the user has matched with.
+    /// - Throws: An error if the operation fails.
+    func getUserMatches(userId: String) async throws -> [User]
 }
