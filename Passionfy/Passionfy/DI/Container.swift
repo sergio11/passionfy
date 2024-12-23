@@ -105,6 +105,18 @@ extension Container {
     var userMatchDataSource: Factory<UserMatchDataSource> {
         self { FirestoreUserMatchDataSourceImpl() }.singleton
     }
+    
+    var getUserMatchesUseCase: Factory<GetUserMatchesUseCase> {
+        self { GetUserMatchesUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
+    
+    var likeUserUseCase: Factory<LikeUserUseCase> {
+        self { LikeUserUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
+    
+    var dislikeUserUseCase: Factory<DislikeUserUseCase> {
+        self { DislikeUserUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
 }
 
 extension Container {

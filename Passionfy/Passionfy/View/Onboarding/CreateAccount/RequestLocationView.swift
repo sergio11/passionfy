@@ -73,6 +73,7 @@ struct RequestLocationView: View {
                             .customFont(.bold, 20)
                             .foregroundColor(.pink)
                             .multilineTextAlignment(.center)
+                            .lineLimit(2)
                             .padding(.top, 8)
                     }
                     .padding()
@@ -82,6 +83,8 @@ struct RequestLocationView: View {
         }
         .onAppear {
             viewModel.requestLocationPermission()
+        }.onDisappear {
+            viewModel.stopUpdatingLocation()
         }
     }
 }

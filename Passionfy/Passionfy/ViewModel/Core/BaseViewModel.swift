@@ -69,18 +69,18 @@ class BaseViewModel: ObservableObject {
         }
     }
     
-    internal func executeAsyncTask<T>(_ task: @escaping () async throws -> T, completion: @escaping (Result<T, Error>) -> Void) {
+    internal func executeAsyncTask<T>(_ task: @escaping () async throws -> T, completion: ((Result<T, Error>) -> Void)? = nil) {
         Task {
             onLoading()
             do {
                 let result = try await task()
                 DispatchQueue.main.async {
-                    completion(.success(result))
+                    completion?(.success(result))
                 }
             } catch {
                 handleError(error: error)
                 DispatchQueue.main.async {
-                    completion(.failure(error))
+                    completion?(.failure(error))
                 }
             }
             onIddle()

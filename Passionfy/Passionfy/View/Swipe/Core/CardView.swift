@@ -81,8 +81,7 @@ private extension CardView {
             degrees = 12
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            viewModel.removeCard(model)
-            viewModel.checkForMatch(withUser: user)
+            viewModel.onLiked(withCard: model)
         }
     }
     
@@ -92,7 +91,7 @@ private extension CardView {
             degrees = -12
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            viewModel.removeCard(model)
+            viewModel.onDisliked(withCard: model)
         }
     }
     
