@@ -38,6 +38,15 @@ struct CurrentUserProfileHeaderView: View {
                 Text("\(user.username) - \(user.birthdate)")
                     .customFont(.semiBold, 20)
             }
+     
+            Text(
+                (user.city.isEmpty ? "" : user.city) +
+                (user.city.isEmpty || user.country.isEmpty ? "" : ", ") +
+                user.country
+            )
+            .customFont(.regular, 16)
+            .foregroundColor(.gray)
+            .padding(.top, 4)
             
         }
         .frame(maxWidth: .infinity)
