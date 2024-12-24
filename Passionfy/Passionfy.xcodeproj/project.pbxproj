@@ -150,6 +150,16 @@
 		3DBFE2EC2D1ABCEA004D92D8 /* CreateChatDTO+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2EB2D1ABCEA004D92D8 /* CreateChatDTO+Dictionary.swift */; };
 		3DBFE2EE2D1ABD21004D92D8 /* UpdateChatLastMessageDTO+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2ED2D1ABD21004D92D8 /* UpdateChatLastMessageDTO+Dictionary.swift */; };
 		3DBFE2F22D1ABE64004D92D8 /* CreateChatMessageDTO+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2F12D1ABE64004D92D8 /* CreateChatMessageDTO+Dictionary.swift */; };
+		3DBFE2F42D1AC751004D92D8 /* MessagingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2F32D1AC751004D92D8 /* MessagingRepository.swift */; };
+		3DBFE2F62D1AC77A004D92D8 /* CreateChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2F52D1AC77A004D92D8 /* CreateChat.swift */; };
+		3DBFE2FA2D1AC7D2004D92D8 /* CreateChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2F92D1AC7D2004D92D8 /* CreateChatMessage.swift */; };
+		3DBFE2FC2D1AC858004D92D8 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2FB2D1AC858004D92D8 /* Chat.swift */; };
+		3DBFE2FE2D1AC885004D92D8 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2FD2D1AC885004D92D8 /* ChatMessage.swift */; };
+		3DBFE3002D1AC923004D92D8 /* MessagingRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2FF2D1AC923004D92D8 /* MessagingRepositoryImpl.swift */; };
+		3DBFE3022D1AE411004D92D8 /* CreateChatMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3012D1AE411004D92D8 /* CreateChatMapper.swift */; };
+		3DBFE3042D1AE497004D92D8 /* CreateChatMessageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3032D1AE497004D92D8 /* CreateChatMessageMapper.swift */; };
+		3DBFE3062D1AE67F004D92D8 /* ChatMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3052D1AE67F004D92D8 /* ChatMapper.swift */; };
+		3DBFE3082D1AE689004D92D8 /* ChatMessageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3072D1AE689004D92D8 /* ChatMessageMapper.swift */; };
 		3DC37E182CF78F6200E7FB1B /* PassionfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E172CF78F6200E7FB1B /* PassionfyApp.swift */; };
 		3DC37E1C2CF78F6500E7FB1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DC37E1B2CF78F6500E7FB1B /* Assets.xcassets */; };
 		3DC37E1F2CF78F6500E7FB1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DC37E1E2CF78F6500E7FB1B /* Preview Assets.xcassets */; };
@@ -312,6 +322,16 @@
 		3DBFE2EB2D1ABCEA004D92D8 /* CreateChatDTO+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateChatDTO+Dictionary.swift"; sourceTree = "<group>"; };
 		3DBFE2ED2D1ABD21004D92D8 /* UpdateChatLastMessageDTO+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateChatLastMessageDTO+Dictionary.swift"; sourceTree = "<group>"; };
 		3DBFE2F12D1ABE64004D92D8 /* CreateChatMessageDTO+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateChatMessageDTO+Dictionary.swift"; sourceTree = "<group>"; };
+		3DBFE2F32D1AC751004D92D8 /* MessagingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingRepository.swift; sourceTree = "<group>"; };
+		3DBFE2F52D1AC77A004D92D8 /* CreateChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChat.swift; sourceTree = "<group>"; };
+		3DBFE2F92D1AC7D2004D92D8 /* CreateChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatMessage.swift; sourceTree = "<group>"; };
+		3DBFE2FB2D1AC858004D92D8 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		3DBFE2FD2D1AC885004D92D8 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		3DBFE2FF2D1AC923004D92D8 /* MessagingRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingRepositoryImpl.swift; sourceTree = "<group>"; };
+		3DBFE3012D1AE411004D92D8 /* CreateChatMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatMapper.swift; sourceTree = "<group>"; };
+		3DBFE3032D1AE497004D92D8 /* CreateChatMessageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatMessageMapper.swift; sourceTree = "<group>"; };
+		3DBFE3052D1AE67F004D92D8 /* ChatMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMapper.swift; sourceTree = "<group>"; };
+		3DBFE3072D1AE689004D92D8 /* ChatMessageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageMapper.swift; sourceTree = "<group>"; };
 		3DC37E142CF78F6200E7FB1B /* Passionfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Passionfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DC37E172CF78F6200E7FB1B /* PassionfyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassionfyApp.swift; sourceTree = "<group>"; };
 		3DC37E1B2CF78F6500E7FB1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -421,6 +441,10 @@
 				3D7A20062D0DA182000BCF54 /* CreateUser.swift */,
 				3D7BA8CC2D16C8B90025CAF1 /* UpdateUser.swift */,
 				3D7BA8E82D16F6E50025CAF1 /* UserCoordinates.swift */,
+				3DBFE2F52D1AC77A004D92D8 /* CreateChat.swift */,
+				3DBFE2F92D1AC7D2004D92D8 /* CreateChatMessage.swift */,
+				3DBFE2FB2D1AC858004D92D8 /* Chat.swift */,
+				3DBFE2FD2D1AC885004D92D8 /* ChatMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -431,6 +455,7 @@
 				3D185DE62D03318F009A4935 /* Impl */,
 				3D185DE22D033144009A4935 /* UserRepository.swift */,
 				3D185DE42D033170009A4935 /* AuthenticationRepository.swift */,
+				3DBFE2F32D1AC751004D92D8 /* MessagingRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -540,6 +565,10 @@
 				3D185DE02D0330EC009A4935 /* UserMapper.swift */,
 				3D7BA8EC2D16F9280025CAF1 /* UpdateUserMapper.swift */,
 				3D7BA8EE2D16F9330025CAF1 /* CreateUserMapper.swift */,
+				3DBFE3012D1AE411004D92D8 /* CreateChatMapper.swift */,
+				3DBFE3032D1AE497004D92D8 /* CreateChatMessageMapper.swift */,
+				3DBFE3052D1AE67F004D92D8 /* ChatMapper.swift */,
+				3DBFE3072D1AE689004D92D8 /* ChatMessageMapper.swift */,
 			);
 			path = Impl;
 			sourceTree = "<group>";
@@ -549,6 +578,7 @@
 			children = (
 				3D185DE72D033198009A4935 /* UserRepositoryImpl.swift */,
 				3D185DE92D0331FC009A4935 /* AuthenticationRepositoryImpl.swift */,
+				3DBFE2FF2D1AC923004D92D8 /* MessagingRepositoryImpl.swift */,
 			);
 			path = Impl;
 			sourceTree = "<group>";
@@ -1043,6 +1073,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DBFE3002D1AC923004D92D8 /* MessagingRepositoryImpl.swift in Sources */,
 				3DBFE2EA2D1ABC8B004D92D8 /* MarkMessageAsReadDTO.swift in Sources */,
 				3D7ABE892D0D969100D42CE3 /* TransitioningView.swift in Sources */,
 				3D7BA8D52D16E5470025CAF1 /* FeedbackView.swift in Sources */,
@@ -1058,6 +1089,7 @@
 				3D65154E2D133E3500621998 /* TermsOfServiceView.swift in Sources */,
 				3D7EF60D2D037FA20021E04E /* MainViewModel.swift in Sources */,
 				3D28708B2D0CAD7A0044998C /* Gender.swift in Sources */,
+				3DBFE3082D1AE689004D92D8 /* ChatMessageMapper.swift in Sources */,
 				3D7EF6132D0386D50021E04E /* AnimatedGradientView.swift in Sources */,
 				3DC37E3C2CF79E5D00E7FB1B /* ImageScrollingOverlay.swift in Sources */,
 				3D2870952D0CB4160044998C /* OnboardingStepView.swift in Sources */,
@@ -1090,10 +1122,12 @@
 				3D7BA8EF2D16F9330025CAF1 /* CreateUserMapper.swift in Sources */,
 				3DC37E542CF7B7B900E7FB1B /* SwipeAction.swift in Sources */,
 				3D65154B2D133C3F00621998 /* EditProfileViewModel.swift in Sources */,
+				3DBFE3062D1AE67F004D92D8 /* ChatMapper.swift in Sources */,
 				3DC37E3E2CF7A2F300E7FB1B /* CardImageIndicatorView.swift in Sources */,
 				3DE4866A2D19D8F9005689BA /* LikeUserUseCase.swift in Sources */,
 				3D6515492D133ACF00621998 /* CurrentUserProfileViewModel.swift in Sources */,
 				3DBFE2EE2D1ABD21004D92D8 /* UpdateChatLastMessageDTO+Dictionary.swift in Sources */,
+				3DBFE2FA2D1AC7D2004D92D8 /* CreateChatMessage.swift in Sources */,
 				3D65F6D72D1612D6007205A6 /* LocationService.swift in Sources */,
 				3DE4866C2D19D907005689BA /* DislikeUserUseCase.swift in Sources */,
 				3D7EF5FC2D037D2B0021E04E /* EnterCodeView.swift in Sources */,
@@ -1115,6 +1149,7 @@
 				3D7EF5E62D037B360021E04E /* EnterAgeView.swift in Sources */,
 				3D2870912D0CB35F0044998C /* Interest.swift in Sources */,
 				3D7EF5DB2D037A540021E04E /* OnboardingView.swift in Sources */,
+				3DBFE2FE2D1AC885004D92D8 /* ChatMessage.swift in Sources */,
 				3D7A20022D0D9D8C000BCF54 /* ImagePicker.swift in Sources */,
 				3D7BA8E02D16E9870025CAF1 /* ExploreView.swift in Sources */,
 				3D185DFF2D0333C0009A4935 /* GetCurrentUserUseCase.swift in Sources */,
@@ -1123,6 +1158,7 @@
 				3D185DF52D033335009A4935 /* VerifyUsernameAvailabilityUseCase.swift in Sources */,
 				3D7EF5EE2D037B910021E04E /* AccountCreatedView.swift in Sources */,
 				3D7EF6032D037E2E0021E04E /* ExplanationText.swift in Sources */,
+				3DBFE3042D1AE497004D92D8 /* CreateChatMessageMapper.swift in Sources */,
 				3DBFE2EC2D1ABCEA004D92D8 /* CreateChatDTO+Dictionary.swift in Sources */,
 				3D185E012D0333FC009A4935 /* GetSuggestionsUseCase.swift in Sources */,
 				3D185DE82D033198009A4935 /* UserRepositoryImpl.swift in Sources */,
@@ -1141,6 +1177,7 @@
 				3DBFE2DA2D1AB610004D92D8 /* MessagingViewModel.swift in Sources */,
 				3D28708D2D0CB18D0044998C /* SelectPreferencesView.swift in Sources */,
 				3D7BA8E72D16EB8D0025CAF1 /* SearchUsersUseCase.swift in Sources */,
+				3DBFE2F42D1AC751004D92D8 /* MessagingRepository.swift in Sources */,
 				3DC37E332CF792C600E7FB1B /* CardView.swift in Sources */,
 				3DC37E3A2CF79D2400E7FB1B /* SizeConstants.swift in Sources */,
 				3DBFE2E22D1AB996004D92D8 /* FirestoreMessagingDataSourceImpl.swift in Sources */,
@@ -1158,9 +1195,11 @@
 				3D7EF5EA2D037B670021E04E /* EnterPhoneNumberView.swift in Sources */,
 				3DBFE2F22D1ABE64004D92D8 /* CreateChatMessageDTO+Dictionary.swift in Sources */,
 				3D7BA8E52D16EB070025CAF1 /* ExploreViewModel.swift in Sources */,
+				3DBFE2F62D1AC77A004D92D8 /* CreateChat.swift in Sources */,
 				3D7A20072D0DA182000BCF54 /* CreateUser.swift in Sources */,
 				3D7BA8CB2D16C2BE0025CAF1 /* UnifiedImage.swift in Sources */,
 				3D7EF6152D0388400021E04E /* SnackbarView.swift in Sources */,
+				3DBFE2FC2D1AC858004D92D8 /* Chat.swift in Sources */,
 				3D185E032D03341D009A4935 /* SignUpUseCase.swift in Sources */,
 				3DBFE2E82D1ABC44004D92D8 /* CreateChatMessageDTO.swift in Sources */,
 				3D185DFD2D0333A3009A4935 /* SendOtpUseCase.swift in Sources */,
@@ -1181,6 +1220,7 @@
 				3D185DD02D032D9B009A4935 /* AuthenticationDataSource.swift in Sources */,
 				3D185DEF2D0332E1009A4935 /* BaseViewModel.swift in Sources */,
 				3D185DD42D032DF3009A4935 /* FirestoreUserDataSourceImpl.swift in Sources */,
+				3DBFE3022D1AE411004D92D8 /* CreateChatMapper.swift in Sources */,
 				3D7EF5E42D037B1B0021E04E /* CreateAccountView.swift in Sources */,
 				3DE486662D19D024005689BA /* UserMatchDataSource.swift in Sources */,
 				3DE486682D19D080005689BA /* FirestoreUserMatchDataSourceImpl.swift in Sources */,
