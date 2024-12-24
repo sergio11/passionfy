@@ -10,9 +10,10 @@ import Kingfisher
 
 struct UserMatchView: View {
     
-    @Binding var show: Bool
     let currentUser: User
     let matchedUser: User
+    var onKeepExploring: (() -> Void)? = nil
+    var onSendMessage: (() -> Void)? = nil
     
     @State private var currentImageOffset: CGFloat = -UIScreen.main.bounds.width
     @State private var matchedImageOffset: CGFloat = UIScreen.main.bounds.width
@@ -32,7 +33,10 @@ struct UserMatchView: View {
                 
                 Spacer(minLength: 20)
                 
-                Actions(show: $show)
+                Actions(
+                    onKeepExploring: onKeepExploring,
+                    onSendMessage: onSendMessage
+                )
             }
             .padding()
         }
@@ -114,16 +118,17 @@ private struct UserImageView: View {
 
 private struct Actions: View {
     
-    @Binding var show: Bool
+    var onKeepExploring: (() -> Void)? = nil
+    var onSendMessage: (() -> Void)? = nil
     
     var body: some View {
         VStack(spacing: 16) {
             ActionButtonView(title: "Send a Message", mode: .filled) {
-                // Add your action here
+                onSendMessage?()
             }
             
             ActionButtonView(title: "Keep Exploring", mode: .outlined) {
-                show.toggle()
+                onKeepExploring?()
             }
         }
         .padding(.top, 24)
@@ -133,7 +138,6 @@ private struct Actions: View {
 struct UserMatchView_Previews: PreviewProvider {
     static var previews: some View {
         UserMatchView(
-            show: .constant(true),
             currentUser: MockData.users[0],
             matchedUser: MockData.users[0]
         )

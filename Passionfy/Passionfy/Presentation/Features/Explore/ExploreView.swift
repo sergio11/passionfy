@@ -31,7 +31,6 @@ struct ExploreView: View {
             message: viewModel.message,
             messageType: viewModel.messageType
         ))
-        // Usamos fullScreenCover para presentar la vista de perfil en pantalla completa
         .fullScreenCover(item: $viewModel.selectedUser) { user in
             UserProfileView(user: user)
         }

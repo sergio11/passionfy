@@ -17,12 +17,12 @@ class SwipeViewModel: BaseUserViewModel {
     
     @Published var suggestions = [CardModel]()
     @Published var swipeAction: SwipeAction?
-    @Published var isSwipeLoading: Bool = true
-    @Published var matchedUser: User?
-    @Published var showMatchView = false
+    @Published var isSwipeLoading: Bool = false
 
     func fetchSuggestions() {
-        self.isSwipeLoading = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.isSwipeLoading = true
+        }
         executeAsyncTask {
             return try await self.getSuggestionsUseCase.execute()
         } completion: { [weak self] result in
