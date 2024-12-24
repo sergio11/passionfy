@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Chat : Identifiable, Codable {
+struct Chat : Identifiable, Decodable {
     let id: String
-    let firstUserId: String
-    let secondUserId: String
+    let firstUser: User
+    let secondUser: User
     let createdAt: String
     let updatedAt: String
     let lastMessage: String?

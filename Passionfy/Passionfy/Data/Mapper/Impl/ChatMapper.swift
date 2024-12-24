@@ -8,18 +8,30 @@
 import Foundation
 
 class ChatMapper: Mapper {
-    typealias Input = ChatDTO
+    typealias Input = ChatDataMapper
     typealias Output = Chat
     
-    func map(_ input: ChatDTO) -> Chat {
+    let userMapper: UserMapper
+    
+    init(userMapper: UserMapper) {
+        self.userMapper = userMapper
+    }
+    
+    func map(_ input: ChatDataMapper) -> Chat {
         return Chat(
-            id: input.id,
-            firstUserId: input.firstUserId,
-            secondUserId: input.secondUserId,
-            createdAt: input.createdAt,
-            updatedAt: input.updatedAt,
-            lastMessage: input.lastMessage,
-            lastMessageUserId: input.lastMessageUserId
+            id: input.chatDTO.id,
+            firstUser: userMapper.map(input.firstUserDTO),
+            secondUser: userMapper.map(input.secondUserDTO),
+            createdAt: input.chatDTO.createdAt,
+            updatedAt: input.chatDTO.updatedAt,
+            lastMessage: input.chatDTO.lastMessage,
+            lastMessageUserId: input.chatDTO.lastMessageUserId
         )
     }
+}
+
+struct ChatDataMapper {
+    let chatDTO: ChatDTO
+    let firstUserDTO: UserDTO
+    let secondUserDTO: UserDTO
 }

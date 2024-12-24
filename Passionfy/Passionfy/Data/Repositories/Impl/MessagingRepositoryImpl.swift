@@ -17,6 +17,9 @@ internal class MessagingRepositoryImpl: MessagingRepository {
     /// The data source for performing messaging-related operations.
     private let messagingDataSource: MessagingDataSource
     
+    /// The data source for performing users-related operations.
+    private let userDataSource: UserDataSource
+    
     /// Mapper for transforming `CreateChat` domain models to the data model used by the data source.
     private let createChatMapper: CreateChatMapper
     
@@ -33,18 +36,21 @@ internal class MessagingRepositoryImpl: MessagingRepository {
     ///
     /// - Parameters:
     ///   - messagingDataSource: The data source that interacts with the messaging service.
+    ///   - userDataSource: The data source that interacts with the users service.
     ///   - createChatMapper: The mapper that converts `CreateChat` domain models to data models.
     ///   - createChatMessageMapper: The mapper that converts `CreateChatMessage` domain models to data models.
     ///   - chatMapper: The mapper that converts `Chat` data models to domain models.
     ///   - chatMessageMapper: The mapper that converts `ChatMessage` data models to domain models.
     init(
         messagingDataSource: MessagingDataSource,
+        userDataSource: UserDataSource,
         createChatMapper: CreateChatMapper,
         createChatMessageMapper: CreateChatMessageMapper,
         chatMapper: ChatMapper,
         chatMessageMapper: ChatMessageMapper
     ) {
         self.messagingDataSource = messagingDataSource
+        self.userDataSource = userDataSource
         self.createChatMapper = createChatMapper
         self.createChatMessageMapper = createChatMessageMapper
         self.chatMapper = chatMapper
@@ -74,7 +80,7 @@ internal class MessagingRepositoryImpl: MessagingRepository {
     func getChats(forUserId userId: String) async throws -> [Chat] {
         do {
             let chats = try await messagingDataSource.getChats(forUserId: userId)
-            return chats.map({ chatMapper.map($0) })
+            return try await mapUserChats(for: chats)
         } catch {
             throw MessagingException.getChatsFailed(message: "An error ocurred when trying to get chats", cause: error)
         }
@@ -147,6 +153,49 @@ internal class MessagingRepositoryImpl: MessagingRepository {
         } catch {
             throw MessagingException.deleteAllMessagesFailed(message: "An error ocurred when trying to delete all messages", cause: error)
         }
+    }
+    
+    private func mapUserChats(for chats: [ChatDTO]) async throws -> [Chat] {
+        // Cache to track user profiles during this operation
+        var userCache: [String: UserDTO] = [:]
+        var userChats = [Chat]()
+
+        // Helper function to fetch user profile by ID and cache it
+        func getUserProfile(userId: String) async throws -> UserDTO? {
+            if let cachedUser = userCache[userId] {
+                return cachedUser
+            }
+            do {
+                let userDTO = try await userDataSource.getUserById(userId: userId)
+                userCache[userId] = userDTO
+                return userDTO
+            } catch {
+                print("Failed to fetch user profile for userId: \(userId), error: \(error.localizedDescription)")
+                return nil
+            }
+        }
+
+        // Loop through each chat and map it
+        for chatDTO in chats {
+            // Fetch both users' profiles (first and second users in the chat)
+            guard let firstUserDTO = try await getUserProfile(userId: chatDTO.firstUserId),
+                  let secondUserDTO = try await getUserProfile(userId: chatDTO.secondUserId) else {
+                // If either user profile couldn't be fetched, skip this chat
+                continue
+            }
+
+            // Create a data mapper with both user profiles and chat DTO
+            let chatDataMapper = ChatDataMapper(
+                chatDTO: chatDTO,
+                firstUserDTO: firstUserDTO,
+                secondUserDTO: secondUserDTO
+            )
+            
+            let chat = chatMapper.map(chatDataMapper)
+            userChats.append(chat)
+        }
+
+        return userChats
     }
 }
 

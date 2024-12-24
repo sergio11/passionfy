@@ -15,12 +15,22 @@ class HomeViewModel: BaseUserViewModel {
     
     @Published var matchedUser: User?
     @Published var showMatchView = false
+    @Published var selectedTab: Int = 0
     
     private var cancellables = Set<AnyCancellable>()
     
     override init() {
         super.init()
         setupSubscriptions()
+    }
+    
+    func onKeepExploring() {
+        self.showMatchView = false
+    }
+    
+    func onSendMessage() {
+        self.showMatchView = false
+        self.selectedTab = 2
     }
     
     private func setupSubscriptions() {

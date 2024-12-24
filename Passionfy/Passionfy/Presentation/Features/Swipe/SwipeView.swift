@@ -34,9 +34,6 @@ struct SwipeView: View {
                     }
                 }
             }
-            .onReceive(viewModel.$matchedUser) { user in
-                viewModel.showMatchView = user != nil
-            }
             .addPassionfyToolbar()
             .onAppear {
                 viewModel.loadCurrentUser()

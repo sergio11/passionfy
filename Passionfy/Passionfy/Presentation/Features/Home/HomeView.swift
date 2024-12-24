@@ -13,7 +13,7 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            TabView {
+            TabView(selection: $viewModel.selectedTab) {
                 SwipeView()
                     .tabItem { Image(systemName: "flame") }
                     .tag(0)
@@ -24,7 +24,8 @@ struct HomeView: View {
                 
                 MessagingView()
                     .tabItem {
-                        Image(systemName: "message") }
+                        Image(systemName: "message")
+                    }
                     .tag(2)
                 
                 CurrentUserProfile()
@@ -36,9 +37,14 @@ struct HomeView: View {
             
             if viewModel.showMatchView, let matchedUser = viewModel.matchedUser, let currentUser = viewModel.user {
                 UserMatchView(
-                    show: $viewModel.showMatchView,
                     currentUser: currentUser,
-                    matchedUser: matchedUser
+                    matchedUser: matchedUser,
+                    onKeepExploring: {
+                        viewModel.onKeepExploring()
+                    },
+                    onSendMessage: {
+                        viewModel.onSendMessage()
+                    }
                 )
             }
         }
