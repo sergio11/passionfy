@@ -160,6 +160,15 @@
 		3DBFE3042D1AE497004D92D8 /* CreateChatMessageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3032D1AE497004D92D8 /* CreateChatMessageMapper.swift */; };
 		3DBFE3062D1AE67F004D92D8 /* ChatMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3052D1AE67F004D92D8 /* ChatMapper.swift */; };
 		3DBFE3082D1AE689004D92D8 /* ChatMessageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3072D1AE689004D92D8 /* ChatMessageMapper.swift */; };
+		3DBFE30A2D1AEB70004D92D8 /* CreateChatUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3092D1AEB70004D92D8 /* CreateChatUseCase.swift */; };
+		3DBFE3122D1AF0DB004D92D8 /* UserException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3112D1AF0DB004D92D8 /* UserException.swift */; };
+		3DBFE3142D1AF103004D92D8 /* AuthenticationException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3132D1AF103004D92D8 /* AuthenticationException.swift */; };
+		3DBFE3162D1AF146004D92D8 /* MessagingException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3152D1AF146004D92D8 /* MessagingException.swift */; };
+		3DBFE3192D1AF42C004D92D8 /* UserDataSourceException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3182D1AF42C004D92D8 /* UserDataSourceException.swift */; };
+		3DBFE31B2D1AF450004D92D8 /* AuthenticationDataSourceException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE31A2D1AF450004D92D8 /* AuthenticationDataSourceException.swift */; };
+		3DBFE31D2D1AF478004D92D8 /* StorageFilesException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE31C2D1AF478004D92D8 /* StorageFilesException.swift */; };
+		3DBFE31F2D1AF493004D92D8 /* UserMatchDataSourceException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE31E2D1AF493004D92D8 /* UserMatchDataSourceException.swift */; };
+		3DBFE3212D1AF4AD004D92D8 /* MessagingDataSourceException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE3202D1AF4AD004D92D8 /* MessagingDataSourceException.swift */; };
 		3DC37E182CF78F6200E7FB1B /* PassionfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC37E172CF78F6200E7FB1B /* PassionfyApp.swift */; };
 		3DC37E1C2CF78F6500E7FB1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DC37E1B2CF78F6500E7FB1B /* Assets.xcassets */; };
 		3DC37E1F2CF78F6500E7FB1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DC37E1E2CF78F6500E7FB1B /* Preview Assets.xcassets */; };
@@ -332,6 +341,15 @@
 		3DBFE3032D1AE497004D92D8 /* CreateChatMessageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatMessageMapper.swift; sourceTree = "<group>"; };
 		3DBFE3052D1AE67F004D92D8 /* ChatMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMapper.swift; sourceTree = "<group>"; };
 		3DBFE3072D1AE689004D92D8 /* ChatMessageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageMapper.swift; sourceTree = "<group>"; };
+		3DBFE3092D1AEB70004D92D8 /* CreateChatUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatUseCase.swift; sourceTree = "<group>"; };
+		3DBFE3112D1AF0DB004D92D8 /* UserException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserException.swift; sourceTree = "<group>"; };
+		3DBFE3132D1AF103004D92D8 /* AuthenticationException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationException.swift; sourceTree = "<group>"; };
+		3DBFE3152D1AF146004D92D8 /* MessagingException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingException.swift; sourceTree = "<group>"; };
+		3DBFE3182D1AF42C004D92D8 /* UserDataSourceException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSourceException.swift; sourceTree = "<group>"; };
+		3DBFE31A2D1AF450004D92D8 /* AuthenticationDataSourceException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationDataSourceException.swift; sourceTree = "<group>"; };
+		3DBFE31C2D1AF478004D92D8 /* StorageFilesException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageFilesException.swift; sourceTree = "<group>"; };
+		3DBFE31E2D1AF493004D92D8 /* UserMatchDataSourceException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMatchDataSourceException.swift; sourceTree = "<group>"; };
+		3DBFE3202D1AF4AD004D92D8 /* MessagingDataSourceException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingDataSourceException.swift; sourceTree = "<group>"; };
 		3DC37E142CF78F6200E7FB1B /* Passionfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Passionfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DC37E172CF78F6200E7FB1B /* PassionfyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassionfyApp.swift; sourceTree = "<group>"; };
 		3DC37E1B2CF78F6500E7FB1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -408,6 +426,7 @@
 		3D185DA82D03266B009A4935 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				3DBFE3172D1AF421004D92D8 /* Exceptions */,
 				3D185DC12D032A12009A4935 /* Extensions */,
 				3D185DC02D032A0E009A4935 /* DTO */,
 				3D185DC22D032A29009A4935 /* Impl */,
@@ -453,9 +472,6 @@
 			isa = PBXGroup;
 			children = (
 				3D185DE62D03318F009A4935 /* Impl */,
-				3D185DE22D033144009A4935 /* UserRepository.swift */,
-				3D185DE42D033170009A4935 /* AuthenticationRepository.swift */,
-				3DBFE2F32D1AC751004D92D8 /* MessagingRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -476,6 +492,7 @@
 				3DE486692D19D8F9005689BA /* LikeUserUseCase.swift */,
 				3DE4866B2D19D907005689BA /* DislikeUserUseCase.swift */,
 				3DE4866D2D19D914005689BA /* GetUserMatchesUseCase.swift */,
+				3DBFE3092D1AEB70004D92D8 /* CreateChatUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -856,6 +873,76 @@
 			path = Outfit;
 			sourceTree = "<group>";
 		};
+		3DBFE30B2D1AEFCE004D92D8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3D185DAB2D032690009A4935 /* Repositories */,
+				3D185DA92D03267D009A4935 /* Mapper */,
+				3D185DA82D03266B009A4935 /* DataSources */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		3DBFE30C2D1AEFD4004D92D8 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				3DBFE3102D1AF0C3004D92D8 /* Exceptions */,
+				3D185DAC2D03269A009A4935 /* UseCases */,
+				3D185DAA2D032687009A4935 /* Model */,
+				3DBFE30E2D1AEFFC004D92D8 /* Repositories */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		3DBFE30D2D1AEFDA004D92D8 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				3D185DAE2D0326B1009A4935 /* ViewModel */,
+				3D185DAD2D0326A9009A4935 /* View */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3DBFE30E2D1AEFFC004D92D8 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				3D185DE22D033144009A4935 /* UserRepository.swift */,
+				3D185DE42D033170009A4935 /* AuthenticationRepository.swift */,
+				3DBFE2F32D1AC751004D92D8 /* MessagingRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		3DBFE30F2D1AF032004D92D8 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				3D65F6D52D1612C9007205A6 /* Service */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
+		3DBFE3102D1AF0C3004D92D8 /* Exceptions */ = {
+			isa = PBXGroup;
+			children = (
+				3DBFE3112D1AF0DB004D92D8 /* UserException.swift */,
+				3DBFE3132D1AF103004D92D8 /* AuthenticationException.swift */,
+				3DBFE3152D1AF146004D92D8 /* MessagingException.swift */,
+			);
+			path = Exceptions;
+			sourceTree = "<group>";
+		};
+		3DBFE3172D1AF421004D92D8 /* Exceptions */ = {
+			isa = PBXGroup;
+			children = (
+				3DBFE3182D1AF42C004D92D8 /* UserDataSourceException.swift */,
+				3DBFE31A2D1AF450004D92D8 /* AuthenticationDataSourceException.swift */,
+				3DBFE31C2D1AF478004D92D8 /* StorageFilesException.swift */,
+				3DBFE31E2D1AF493004D92D8 /* UserMatchDataSourceException.swift */,
+				3DBFE3202D1AF4AD004D92D8 /* MessagingDataSourceException.swift */,
+			);
+			path = Exceptions;
+			sourceTree = "<group>";
+		};
 		3DC37E0B2CF78F6200E7FB1B = {
 			isa = PBXGroup;
 			children = (
@@ -875,22 +962,17 @@
 		3DC37E162CF78F6200E7FB1B /* Passionfy */ = {
 			isa = PBXGroup;
 			children = (
+				3D185DA72D03265E009A4935 /* DI */,
+				3DC37E292CF78FBB00E7FB1B /* Utils */,
+				3DBFE30F2D1AF032004D92D8 /* Framework */,
+				3DBFE30D2D1AEFDA004D92D8 /* Presentation */,
+				3DBFE30B2D1AEFCE004D92D8 /* Data */,
+				3DBFE30C2D1AEFD4004D92D8 /* Domain */,
+				3DC37E252CF78F9900E7FB1B /* App */,
 				3D7EF6322D0391650021E04E /* Info.plist */,
 				3D7EF61A2D038FD70021E04E /* Fonts */,
 				3D7EF6182D038E730021E04E /* countries.json */,
 				3D7EF6102D0381F70021E04E /* GoogleService-Info.plist */,
-				3D185DA72D03265E009A4935 /* DI */,
-				3D185DA82D03266B009A4935 /* DataSources */,
-				3D185DA92D03267D009A4935 /* Mapper */,
-				3DC37E272CF78FAA00E7FB1B /* Extensions */,
-				3D185DAB2D032690009A4935 /* Repositories */,
-				3D65F6D52D1612C9007205A6 /* Service */,
-				3D185DAA2D032687009A4935 /* Model */,
-				3D185DAC2D03269A009A4935 /* UseCases */,
-				3D185DAD2D0326A9009A4935 /* View */,
-				3D185DAE2D0326B1009A4935 /* ViewModel */,
-				3DC37E292CF78FBB00E7FB1B /* Utils */,
-				3DC37E252CF78F9900E7FB1B /* App */,
 				3DC37E1B2CF78F6500E7FB1B /* Assets.xcassets */,
 				3DC37E1D2CF78F6500E7FB1B /* Preview Content */,
 				3D7B65812D048B5E0002364F /* Launch Screen.storyboard */,
@@ -929,6 +1011,7 @@
 		3DC37E292CF78FBB00E7FB1B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3DC37E272CF78FAA00E7FB1B /* Extensions */,
 				3DC37E4E2CF7AA6F00E7FB1B /* MockData */,
 				3DC37E382CF79D1000E7FB1B /* Constants */,
 			);
@@ -1081,6 +1164,7 @@
 				3D185DED2D0332C9009A4935 /* EventBus.swift in Sources */,
 				3D6515582D134D0E00621998 /* SwipeView.swift in Sources */,
 				3D6515622D13535F00621998 /* LoadingMatchesView.swift in Sources */,
+				3DBFE3192D1AF42C004D92D8 /* UserDataSourceException.swift in Sources */,
 				3D185DDC2D033084009A4935 /* Country.swift in Sources */,
 				3D185DD62D032E51009A4935 /* FirebaseAuthenticationDataSourceImpl.swift in Sources */,
 				3D7BA8E32D16EA090025CAF1 /* UserCell.swift in Sources */,
@@ -1106,6 +1190,7 @@
 				3D7EF5E12D037AD90021E04E /* AuthenticationView.swift in Sources */,
 				3DBFE2E62D1ABBFE004D92D8 /* UpdateChatLastMessageDTO.swift in Sources */,
 				3D7EF60B2D037F7E0021E04E /* HomeView.swift in Sources */,
+				3DBFE31B2D1AF450004D92D8 /* AuthenticationDataSourceException.swift in Sources */,
 				3D185D962D030740009A4935 /* CurrentUserProfileHeaderView.swift in Sources */,
 				3DC37E372CF79A8E00E7FB1B /* SwipeActionIndicatorView.swift in Sources */,
 				3D7EF5F82D037CE70021E04E /* SelectCountryView.swift in Sources */,
@@ -1115,6 +1200,7 @@
 				3D7A20052D0D9DEC000BCF54 /* ArrayExtensions.swift in Sources */,
 				3D7EF5D82D037A1B0021E04E /* LoadingView.swift in Sources */,
 				3DC37E502CF7AA7E00E7FB1B /* MockData.swift in Sources */,
+				3DBFE3212D1AF4AD004D92D8 /* MessagingDataSourceException.swift in Sources */,
 				3D185DEA2D0331FC009A4935 /* AuthenticationRepositoryImpl.swift in Sources */,
 				3D65F6D42D16118B007205A6 /* RequestLocationView.swift in Sources */,
 				3D185DD22D032DBB009A4935 /* StorageFilesDataSource.swift in Sources */,
@@ -1137,6 +1223,7 @@
 				3DC37E472CF7A90C00E7FB1B /* CardModel.swift in Sources */,
 				3D7BA8D82D16E55F0025CAF1 /* PrivacyPolicyView.swift in Sources */,
 				3D7EF6082D037F5D0021E04E /* MainView.swift in Sources */,
+				3DBFE3142D1AF103004D92D8 /* AuthenticationException.swift in Sources */,
 				3DE4866E2D19D914005689BA /* GetUserMatchesUseCase.swift in Sources */,
 				3D185DDE2D0330CE009A4935 /* Mapper.swift in Sources */,
 				3D7B65792D045C120002364F /* AnimatedRadialGradientView.swift in Sources */,
@@ -1150,6 +1237,7 @@
 				3D2870912D0CB35F0044998C /* Interest.swift in Sources */,
 				3D7EF5DB2D037A540021E04E /* OnboardingView.swift in Sources */,
 				3DBFE2FE2D1AC885004D92D8 /* ChatMessage.swift in Sources */,
+				3DBFE31F2D1AF493004D92D8 /* UserMatchDataSourceException.swift in Sources */,
 				3D7A20022D0D9D8C000BCF54 /* ImagePicker.swift in Sources */,
 				3D7BA8E02D16E9870025CAF1 /* ExploreView.swift in Sources */,
 				3D185DFF2D0333C0009A4935 /* GetCurrentUserUseCase.swift in Sources */,
@@ -1176,8 +1264,10 @@
 				3D7EF5FE2D037D440021E04E /* PhoneNumberInputView.swift in Sources */,
 				3DBFE2DA2D1AB610004D92D8 /* MessagingViewModel.swift in Sources */,
 				3D28708D2D0CB18D0044998C /* SelectPreferencesView.swift in Sources */,
+				3DBFE3162D1AF146004D92D8 /* MessagingException.swift in Sources */,
 				3D7BA8E72D16EB8D0025CAF1 /* SearchUsersUseCase.swift in Sources */,
 				3DBFE2F42D1AC751004D92D8 /* MessagingRepository.swift in Sources */,
+				3DBFE30A2D1AEB70004D92D8 /* CreateChatUseCase.swift in Sources */,
 				3DC37E332CF792C600E7FB1B /* CardView.swift in Sources */,
 				3DC37E3A2CF79D2400E7FB1B /* SizeConstants.swift in Sources */,
 				3DBFE2E22D1AB996004D92D8 /* FirestoreMessagingDataSourceImpl.swift in Sources */,
@@ -1199,6 +1289,8 @@
 				3D7A20072D0DA182000BCF54 /* CreateUser.swift in Sources */,
 				3D7BA8CB2D16C2BE0025CAF1 /* UnifiedImage.swift in Sources */,
 				3D7EF6152D0388400021E04E /* SnackbarView.swift in Sources */,
+				3DBFE3122D1AF0DB004D92D8 /* UserException.swift in Sources */,
+				3DBFE31D2D1AF478004D92D8 /* StorageFilesException.swift in Sources */,
 				3DBFE2FC2D1AC858004D92D8 /* Chat.swift in Sources */,
 				3D185E032D03341D009A4935 /* SignUpUseCase.swift in Sources */,
 				3DBFE2E82D1ABC44004D92D8 /* CreateChatMessageDTO.swift in Sources */,

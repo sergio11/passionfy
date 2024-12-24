@@ -8,6 +8,7 @@
 import Foundation
 import Factory
 
+// MARK: Framework Services
 
 extension Container {
     
@@ -16,20 +17,7 @@ extension Container {
     }
 }
 
-extension Container {
-    
-    var userMapper: Factory<UserMapper> {
-        self { UserMapper() }.singleton
-    }
-    
-    var createUserMapper: Factory<CreateUserMapper> {
-        self { CreateUserMapper() }.singleton
-    }
-    
-    var updateUserMapper: Factory<UpdateUserMapper> {
-        self { UpdateUserMapper() }.singleton
-    }
-}
+// MARK: Storage Files
 
 extension Container {
     
@@ -37,6 +25,8 @@ extension Container {
         self { FirestoreStorageFilesDataSourceImpl() }.singleton
     }
 }
+
+// MARK: Authentication
 
 extension Container {
     
@@ -67,13 +57,23 @@ extension Container {
     var signUpUseCase: Factory<SignUpUseCase> {
         self { SignUpUseCase(authRepository: self.authenticationRepository(), userRepository: self.userProfileRepository()) }
     }
-    
-    var searchUsersUseCase: Factory<SearchUsersUseCase> {
-        self { SearchUsersUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
-    }
 }
 
+// MARK: Users
+
 extension Container {
+    
+    var userMapper: Factory<UserMapper> {
+        self { UserMapper() }.singleton
+    }
+    
+    var createUserMapper: Factory<CreateUserMapper> {
+        self { CreateUserMapper() }.singleton
+    }
+    
+    var updateUserMapper: Factory<UpdateUserMapper> {
+        self { UpdateUserMapper() }.singleton
+    }
     
     var userDataSource: Factory<UserDataSource> {
         self { FirestoreUserDataSourceImpl() }.singleton
@@ -98,7 +98,13 @@ extension Container {
     var getSuggestionsUseCase: Factory<GetSuggestionsUseCase> {
         self { GetSuggestionsUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
     }
+    
+    var searchUsersUseCase: Factory<SearchUsersUseCase> {
+        self { SearchUsersUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
 }
+
+// MARK: User Matches
 
 extension Container {
     
@@ -118,6 +124,8 @@ extension Container {
         self { DislikeUserUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
     }
 }
+
+// MARK: Messaging
 
 extension Container {
     
@@ -144,7 +152,13 @@ extension Container {
     var messagingRepository: Factory<MessagingRepository> {
         self { MessagingRepositoryImpl(messagingDataSource: self.messagingDataSource(), createChatMapper: self.createChatMapper(), createChatMessageMapper: self.createChatMessageMapper(), chatMapper: self.chatMapper(), chatMessageMapper: self.chatMessageMapper()) }.singleton
     }
+    
+    var createChatUseCase: Factory<CreateChatUseCase> {
+        self { CreateChatUseCase(messagingRepository: self.messagingRepository(), authRepository: self.authenticationRepository()) }
+    }
 }
+
+// MARK: Utils
 
 extension Container {
     
