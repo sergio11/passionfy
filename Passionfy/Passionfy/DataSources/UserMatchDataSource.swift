@@ -7,6 +7,16 @@
 
 import Foundation
 
+/// Enum representing errors that can occur in the `UserMatchDataSource`.
+enum UserMatchDataSourceError: Error {
+    
+    /// Error indicating that the like operation failed.
+    case likeUserFailed(message: String)
+    
+    /// Error indicating that the dislike operation failed.
+    case dislikeUserFailed(message: String)
+}
+
 /// Protocol defining the data source for managing user match interactions.
 protocol UserMatchDataSource {
     
