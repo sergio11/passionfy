@@ -156,6 +156,26 @@ extension Container {
     var createChatUseCase: Factory<CreateChatUseCase> {
         self { CreateChatUseCase(messagingRepository: self.messagingRepository(), authRepository: self.authenticationRepository()) }
     }
+    
+    var getUserChatsUseCase: Factory<GetUserChatsUseCase> {
+        self { GetUserChatsUseCase(messagingRepository: self.messagingRepository(), authRepository: self.authenticationRepository()) }
+    }
+    
+    var getChatMessagesUseCase: Factory<GetChatMessagesUseCase> {
+        self { GetChatMessagesUseCase(messagingRepository: self.messagingRepository()) }
+    }
+    
+    var deleteChatUseCase: Factory<DeleteChatUseCase> {
+        self { DeleteChatUseCase(messagingRepository: self.messagingRepository()) }
+    }
+    
+    var deleteMessageUseCase: Factory<DeleteMessageUseCase> {
+        self { DeleteMessageUseCase(messagingRepository: self.messagingRepository()) }
+    }
+    
+    var deleteAllMessageUseCase: Factory<DeleteAllMessageUseCase> {
+        self { DeleteAllMessageUseCase(messagingRepository: self.messagingRepository()) }
+    }
 }
 
 // MARK: Utils
