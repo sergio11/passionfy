@@ -17,12 +17,28 @@ class MessagingViewModel: BaseViewModel {
     @Injected(\.createChatUseCase) private var createChatUseCase: CreateChatUseCase
     
     @Published var selectedUser: User? = nil
+    @Published var chatOpened: Chat? = nil
     @Published var userChats: [Chat] = []
     @Published var userMatches: [User] = []
     
     func loadData() {
         loadUserMatches()
         loadUserChats()
+    }
+    
+    func onUserMatchSelected(user: User) {
+        if let userChat = userChats.first(where: { $0.firstUser.id == user.id || $0.secondUser.id == user.id }) {
+            self.chatOpened =  userChat
+        } else {
+            executeAsyncTask {
+                return try await self.createChatUseCase.execute(params: CreateChatParams(targetUserId: user.id))
+            } completion: { [weak self] result in
+                guard let self = self else { return }
+                if case .success(let chatCreated) = result {
+                    self.chatOpened =  chatCreated
+                }
+            }
+        }
     }
     
     private func loadUserMatches() {

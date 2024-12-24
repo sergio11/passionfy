@@ -16,18 +16,27 @@ internal class FirestoreMessagingDataSourceImpl: MessagingDataSource {
     private let messagesCollectionSub = "messages"
 
     /// Creates a new chat with the given data.
-        /// - Parameter data: The data required to create a new chat, encapsulated in a `CreateChatDTO`.
-        /// - Returns: The unique identifier of the created chat as a `String`.
-        /// - Throws: An error if the operation fails.
-    func createChat(data: CreateChatDTO) async throws -> String {
+    /// - Parameter data: The data required to create a new chat, encapsulated in a `CreateChatDTO`.
+    /// - Returns: The created `ChatDTO` object.
+    /// - Throws: An error if the operation fails.
+    func createChat(data: CreateChatDTO) async throws -> ChatDTO {
         do {
-            try await Firestore.firestore()
+            let collection = Firestore.firestore()
                 .collection(chatsCollection)
+            try await collection
                 .document(data.chatId)
                 .setData(data.asDictionary())
-            return data.chatId
+            
+            let chatDocumentSnapshot = try await collection
+                .document(data.chatId)
+                .getDocument()
+            
+            if let chatDTO = try? chatDocumentSnapshot.data(as: ChatDTO.self) {
+                return chatDTO
+            } else {
+                throw MessagingDataSourceException.chatNotFound(message: "Chat creation failed, no data found for chatId: \(data.chatId)", cause: nil)
+            }
         } catch {
-            print("Error creating chat: \(error.localizedDescription)")
             throw MessagingDataSourceException.chatCreationFailed(message: "Error creating chat: \(error.localizedDescription)", cause: error)
         }
     }

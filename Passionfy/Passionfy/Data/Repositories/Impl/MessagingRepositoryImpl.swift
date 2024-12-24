@@ -61,11 +61,15 @@ internal class MessagingRepositoryImpl: MessagingRepository {
     ///
     /// - Parameters:
     ///   - data: The `CreateChat` domain model containing the chat data.
-    /// - Returns: The ID of the created chat.
+    /// - Returns: The created chat.
     /// - Throws: `MessagingRepositoryError.createChatFailed` if the operation fails.
-    func createChat(data: CreateChat) async throws -> String {
+    func createChat(data: CreateChat) async throws -> Chat {
         do {
-            return try await messagingDataSource.createChat(data: createChatMapper.map(data))
+            let chatDTO = try await messagingDataSource.createChat(data: createChatMapper.map(data))
+            guard let chat = try await mapSingleChat(for: chatDTO) else {
+                throw MessagingException.createChatFailed(message: "An error ocurred when creating the chat", cause: nil)
+            }
+            return chat
         } catch {
             throw MessagingException.createChatFailed(message: "An error ocurred when creating the chat", cause: error)
         }
@@ -155,10 +159,9 @@ internal class MessagingRepositoryImpl: MessagingRepository {
         }
     }
     
-    private func mapUserChats(for chats: [ChatDTO]) async throws -> [Chat] {
+    private func mapSingleChat(for chatDTO: ChatDTO) async throws -> Chat? {
         // Cache to track user profiles during this operation
         var userCache: [String: UserDTO] = [:]
-        var userChats = [Chat]()
 
         // Helper function to fetch user profile by ID and cache it
         func getUserProfile(userId: String) async throws -> UserDTO? {
@@ -175,24 +178,29 @@ internal class MessagingRepositoryImpl: MessagingRepository {
             }
         }
 
-        // Loop through each chat and map it
-        for chatDTO in chats {
-            // Fetch both users' profiles (first and second users in the chat)
-            guard let firstUserDTO = try await getUserProfile(userId: chatDTO.firstUserId),
-                  let secondUserDTO = try await getUserProfile(userId: chatDTO.secondUserId) else {
-                // If either user profile couldn't be fetched, skip this chat
-                continue
-            }
+        // Fetch both users' profiles (first and second users in the chat)
+        guard let firstUserDTO = try await getUserProfile(userId: chatDTO.firstUserId),
+              let secondUserDTO = try await getUserProfile(userId: chatDTO.secondUserId) else {
+            // If either user profile couldn't be fetched, return nil
+            return nil
+        }
 
-            // Create a data mapper with both user profiles and chat DTO
-            let chatDataMapper = ChatDataMapper(
-                chatDTO: chatDTO,
-                firstUserDTO: firstUserDTO,
-                secondUserDTO: secondUserDTO
-            )
-            
-            let chat = chatMapper.map(chatDataMapper)
-            userChats.append(chat)
+        let chatDataMapper = ChatDataMapper(
+            chatDTO: chatDTO,
+            firstUserDTO: firstUserDTO,
+            secondUserDTO: secondUserDTO
+        )
+
+        return chatMapper.map(chatDataMapper)
+    }
+
+    private func mapUserChats(for chats: [ChatDTO]) async throws -> [Chat] {
+        var userChats = [Chat]()
+
+        for chatDTO in chats {
+            if let chat = try await mapSingleChat(for: chatDTO) {
+                userChats.append(chat)
+            }
         }
 
         return userChats

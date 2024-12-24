@@ -17,7 +17,9 @@ internal extension CreateChatDTO {
             "secondUserId": secondUserId,
             "participantIds": [firstUserId, secondUserId],
             "createdAt": now,
-            "updatedAt": now
+            "updatedAt": now,
+            "lastMessage": "",
+            "lastMessageUserId": ""
         ]
     }
 }

@@ -14,8 +14,10 @@ struct MessagingView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                NewMatchesView(newMatches: viewModel.userMatches)
-                    .padding(.top, 16)
+                UserMatchesView(matches: viewModel.userMatches) { userMatch in
+                    viewModel.onUserMatchSelected(user: userMatch)
+                }
+                .padding(.top, 8)
 
                 Divider().padding(.vertical, 8)
                 
@@ -41,26 +43,30 @@ struct MessagingView: View {
             message: viewModel.message,
             messageType: viewModel.messageType
         ))
+        .fullScreenCover(item: $viewModel.chatOpened) { chat in
+            ChatDetailView(chat: chat)
+        }
         .fullScreenCover(item: $viewModel.selectedUser) { user in
             UserProfileView(user: user)
         }
     }
 }
 
-private struct NewMatchesView: View {
+private struct UserMatchesView: View {
     
-    var newMatches: [User]
+    var matches: [User]
+    var onMatchClicked: ((User) -> Void)? = nil
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("New Matches")
+            Text("Your Matches")
                 .customFont(.bold, 18)
                 .foregroundColor(.black)
                 .padding(.bottom, 8)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
-                    ForEach(newMatches) { match in
+                    ForEach(matches) { match in
                         VStack {
                             Spacer()
                             
@@ -83,8 +89,11 @@ private struct NewMatchesView: View {
                             
                             Spacer()
                         }
-                        .padding(.leading, match.id == newMatches.first?.id ? 16 : 0)
+                        .padding(.leading, match.id == matches.first?.id ? 16 : 0)
                         .padding(.bottom, 4)
+                        .onTapGesture {
+                            onMatchClicked?(match)
+                        }
                     }
                 }
             }
@@ -138,11 +147,9 @@ private struct ChatRowView: View {
             }
             Spacer()
             
-            if let timeAgo = chat.updatedAt.toDate()?.timeAgo() {
-                Text(chat.updatedAt)
-                    .customFont(.regular, 12)
-                    .foregroundColor(.gray)
-            }
+            Text(chat.updatedAt.timeAgo())
+                .customFont(.regular, 12)
+                .foregroundColor(.gray)
         }
         .padding()
         .background(

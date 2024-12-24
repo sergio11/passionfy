@@ -15,7 +15,7 @@ class ChatMessageMapper: Mapper {
         return ChatMessage(
             id: input.id,
             senderId: input.senderId,
-            createdAt: input.createdAt,
+            createdAt: input.createdAt.dateValue(),
             text: input.text,
             isRead: input.isRead
         )

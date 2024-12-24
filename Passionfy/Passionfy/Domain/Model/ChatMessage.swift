@@ -10,7 +10,7 @@ import Foundation
 struct ChatMessage: Identifiable, Codable {
     let id: String
     let senderId: String
-    let createdAt: String
+    let createdAt: Date
     let text: String
     let isRead: Bool
 }

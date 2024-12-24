@@ -24,7 +24,7 @@ struct CreateChatUseCase {
     
     /// Executes the use case to create a new chat.
     /// - Parameter params: An instance of `CreateChatParams` containing the target user's ID.
-    /// - Returns: A `String` representing the ID of the newly created chat.
+    /// - Returns: A `Chat` representing the newly created chat.
     /// - Throws: An error if the operation fails, including:
     ///   - `AuthenticationException.invalidSession`: If the current user session is invalid.
     ///   - Other errors from the `MessagingRepository` or `AuthenticationRepository`.
@@ -32,7 +32,7 @@ struct CreateChatUseCase {
     /// This method first retrieves the current user's ID from the authentication repository.
     /// If the user ID is successfully retrieved, it proceeds to create a new chat by
     /// invoking the messaging repository with the necessary details.
-    func execute(params: CreateChatParams) async throws -> String {
+    func execute(params: CreateChatParams) async throws -> Chat {
         guard let userId = try await authRepository.getCurrentUserId() else {
             throw AuthenticationException.invalidSession(message: "Invalid user session", cause: nil)
         }

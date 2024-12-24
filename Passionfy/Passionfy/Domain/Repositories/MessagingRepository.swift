@@ -13,9 +13,9 @@ protocol MessagingRepository {
     /// Creates a new chat.
     ///
     /// - Parameter data: The data used to create the chat (e.g., participants and chat details).
-    /// - Returns: A `String` representing the chat ID of the created chat.
+    /// - Returns: A `Chat` representing the chat model
     /// - Throws: A `MessagingRepositoryError` if the chat creation fails.
-    func createChat(data: CreateChat) async throws -> String
+    func createChat(data: CreateChat) async throws -> Chat
 
     /// Retrieves all chats for a specific user.
     ///
