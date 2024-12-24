@@ -22,8 +22,8 @@ class ChatMapper: Mapper {
             id: input.chatDTO.id,
             firstUser: userMapper.map(input.firstUserDTO),
             secondUser: userMapper.map(input.secondUserDTO),
-            createdAt: input.chatDTO.createdAt,
-            updatedAt: input.chatDTO.updatedAt,
+            createdAt: input.chatDTO.createdAt.dateValue(),
+            updatedAt: input.chatDTO.updatedAt.dateValue(),
             lastMessage: input.chatDTO.lastMessage,
             lastMessageUserId: input.chatDTO.lastMessageUserId
         )

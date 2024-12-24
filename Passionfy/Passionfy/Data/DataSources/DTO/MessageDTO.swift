@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 internal struct MessageDTO: Identifiable, Codable {
     let id: String
     let senderId: String
-    let createdAt: String
+    let createdAt: Timestamp
     let text: String
     let isRead: Bool
 }

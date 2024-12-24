@@ -12,9 +12,9 @@ protocol MessagingDataSource {
 
     /// Creates a new chat with the given data.
         /// - Parameter data: The data required to create a new chat, encapsulated in a `CreateChatDTO`.
-        /// - Returns: The unique identifier of the created chat as a `String`.
+        /// - Returns: The created chat.
         /// - Throws: An error if the operation fails.
-    func createChat(data: CreateChatDTO) async throws -> String
+    func createChat(data: CreateChatDTO) async throws -> ChatDTO
 
     /// Retrieves the list of chats associated with a specific user.
         /// - Parameter userId: The unique identifier of the user.

@@ -11,8 +11,8 @@ struct Chat : Identifiable, Decodable {
     let id: String
     let firstUser: User
     let secondUser: User
-    let createdAt: String
-    let updatedAt: String
+    let createdAt: Date
+    let updatedAt: Date
     let lastMessage: String?
     let lastMessageUserId: String?
 }

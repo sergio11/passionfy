@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
-internal struct ChatDTO : Identifiable, Codable {
+internal struct ChatDTO: Identifiable, Codable {
     let id: String
     let firstUserId: String
     let secondUserId: String
-    let createdAt: String
-    let updatedAt: String
+    let createdAt: Timestamp
+    let updatedAt: Timestamp
     let lastMessage: String?
     let lastMessageUserId: String?
 }
