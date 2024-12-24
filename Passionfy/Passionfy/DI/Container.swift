@@ -121,6 +121,13 @@ extension Container {
 
 extension Container {
     
+    var messagingDataSource: Factory<MessagingDataSource> {
+        self { FirestoreMessagingDataSourceImpl() }.singleton
+    }
+}
+
+extension Container {
+    
     var eventBus: Factory<EventBus<AppEvent>> {
         self { EventBus<AppEvent>() }.singleton
     }
