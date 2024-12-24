@@ -121,8 +121,28 @@ extension Container {
 
 extension Container {
     
+    var createChatMapper: Factory<CreateChatMapper> {
+        self { CreateChatMapper() }.singleton
+    }
+    
+    var createChatMessageMapper: Factory<CreateChatMessageMapper> {
+        self { CreateChatMessageMapper() }.singleton
+    }
+    
+    var chatMapper: Factory<ChatMapper> {
+        self { ChatMapper() }.singleton
+    }
+    
+    var chatMessageMapper: Factory<ChatMessageMapper> {
+        self { ChatMessageMapper() }.singleton
+    }
+    
     var messagingDataSource: Factory<MessagingDataSource> {
         self { FirestoreMessagingDataSourceImpl() }.singleton
+    }
+    
+    var messagingRepository: Factory<MessagingRepository> {
+        self { MessagingRepositoryImpl(messagingDataSource: self.messagingDataSource(), createChatMapper: self.createChatMapper(), createChatMessageMapper: self.createChatMessageMapper(), chatMapper: self.chatMapper(), chatMessageMapper: self.chatMessageMapper()) }.singleton
     }
 }
 
