@@ -150,7 +150,7 @@ extension Container {
     }
     
     var messagingRepository: Factory<MessagingRepository> {
-        self { MessagingRepositoryImpl(messagingDataSource: self.messagingDataSource(), userDataSource: self.userDataSource(), createChatMapper: self.createChatMapper(), createChatMessageMapper: self.createChatMessageMapper(), chatMapper: self.chatMapper(), chatMessageMapper: self.chatMessageMapper()) }.singleton
+        self { MessagingRepositoryImpl(messagingDataSource: self.messagingDataSource(), userDataSource: self.userDataSource(), authDataSource: self.authenticationDataSource(), createChatMapper: self.createChatMapper(), createChatMessageMapper: self.createChatMessageMapper(), chatMapper: self.chatMapper(), chatMessageMapper: self.chatMessageMapper()) }.singleton
     }
     
     var createChatUseCase: Factory<CreateChatUseCase> {

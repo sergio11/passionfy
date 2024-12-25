@@ -45,9 +45,6 @@ struct MessagingView: View {
         .fullScreenCover(item: $viewModel.chatOpened) { chat in
             ChatDetailView(chat: chat)
         }
-        .fullScreenCover(item: $viewModel.selectedUser) { user in
-            UserProfileView(user: user)
-        }
         .onAppear {
             viewModel.loadData()
         }
@@ -100,7 +97,6 @@ private struct UserMatchesView: View {
                 }
             }
             .frame(height: 140)
-
         }
     }
 }
