@@ -50,7 +50,8 @@ class UpdateUserMapper: Mapper {
             city: input.data.city,
             country: input.data.country,
             profileImageUrls: mergedProfileImageUrls,
-            bio: input.data.bio
+            bio: input.data.bio,
+            hobbies: input.data.hobbies
         )
     }
 }

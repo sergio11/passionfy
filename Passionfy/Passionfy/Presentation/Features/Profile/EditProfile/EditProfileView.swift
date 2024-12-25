@@ -142,6 +142,47 @@ struct EditProfileView: View {
                         options: Interest.allCases.map { $0.rawValue }
                     )
                     
+                    // Hobbies Section
+                    ProfileSectionView(
+                        title: "HOBBIES",
+                        icon: "star.fill",
+                        content: AnyView(
+                            VStack(spacing: 12) {
+                                // Selected Hobbies
+                                HStack {
+                                    ForEach(viewModel.selectedHobbies, id: \.self) { hobby in
+                                        Text(hobby)
+                                            .customFont(.regular, 16)
+                                            .padding(8)
+                                            .background(Color.pink.opacity(0.2))
+                                            .cornerRadius(12)
+                                            .foregroundColor(.pink)
+                                    }
+                                }
+                                                   
+                                // Hobby Picker (can choose up to 5)
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(spacing: 10) {
+                                        ForEach(viewModel.allHobbies, id: \.self) { hobby in
+                                            Button(action: {
+                                                viewModel.toggleHobbySelection(hobby)
+                                            }) {
+                                                Text(hobby)
+                                                    .customFont(.regular, 14)
+                                                    .padding(8)
+                                                    .background(viewModel.selectedHobbies.contains(hobby) ? Color.pink : Color.gray.opacity(0.2))
+                                                    .foregroundColor(viewModel.selectedHobbies.contains(hobby) ? .white : .pink)
+                                                    .cornerRadius(12)
+                                            }
+                                            .disabled(viewModel.selectedHobbies.count >= 5 && !viewModel.selectedHobbies.contains(hobby))
+                                        }
+                                    }
+                                }
+                                .frame(height: 40)
+                            }
+                        )
+                    )
+                    
                     // LOCATION Section
                     ProfileSectionView(
                         title: "LOCATION",

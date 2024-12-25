@@ -19,6 +19,7 @@ struct UpdateUserParams {
     let userCoordinates: UserCoordinates?
     let userCity: String?
     let userCountry: String?
+    let hobbies: [String]?
 }
 
 /// An entity responsible for updating user information.
@@ -45,7 +46,8 @@ struct UpdateUserUseCase {
             coords: params.userCoordinates,
             city: params.userCity,
             country: params.userCountry,
-            profileImages: params.profileImages
+            profileImages: params.profileImages,
+            hobbies: params.hobbies
         ))
     }
 }

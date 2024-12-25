@@ -61,6 +61,10 @@ internal extension UpdateUserDTO {
             dictionary["profileImageUrls"] = profileImageUrls.map { $0.1 }
         }
         
+        if let hobbies = hobbies {
+            dictionary["hobbies"] = hobbies
+        }
+        
         return dictionary
     }
 }

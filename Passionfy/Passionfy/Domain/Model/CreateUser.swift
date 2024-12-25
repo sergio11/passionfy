@@ -8,12 +8,12 @@
 import Foundation
 
 struct CreateUser: Identifiable, Hashable {
-    var id: String
-    var username: String
-    var birthdate: String
-    var occupation: String
-    var gender: Gender
-    var phoneNumber: String
+    let id: String
+    let username: String
+    let birthdate: String
+    let occupation: String
+    let gender: Gender
+    let phoneNumber: String
     let preference: Preference
     let interest: Interest
     let coords: UserCoordinates

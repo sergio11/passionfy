@@ -40,6 +40,10 @@ struct UserProfileView: View {
                     InfoSection(title: "Interests") {
                         ProfileInfoRow(icon: "star", title: user.interest.rawValue)
                     }
+                    
+                    InfoSection(title: "Hobbies") {
+                        HobbiesRow(hobbies: user.hobbies)
+                    }
                 }
                 .padding(.horizontal)
             }
@@ -136,6 +140,26 @@ private struct ProfileInfoRow: View {
             
             Spacer()
         }
+    }
+}
+
+private struct HobbiesRow: View {
+    let hobbies: [String]
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(hobbies, id: \.self) { hobby in
+                    Text(hobby)
+                        .customFont(.medium, 14)
+                        .padding(10)
+                        .background(Color.pink.opacity(0.2))
+                        .foregroundColor(.pink)
+                        .cornerRadius(20)
+                }
+            }
+        }
+        .frame(height: 40)
     }
 }
 
