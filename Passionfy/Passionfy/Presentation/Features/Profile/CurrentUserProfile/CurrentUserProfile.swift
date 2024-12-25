@@ -57,7 +57,10 @@ struct CurrentUserProfile: View {
                     }
                                         
                     // Privacy
-                    Section(header: Text("Privacy")) {
+                    Section(
+                        header: Text("Privacy"),
+                        footer: ProfileActions(showSignOutAlert: $viewModel.showSignOutAlert)
+                    ) {
                         NavigationLink(destination: PrivacyPolicyView()) {
                             Text("Privacy Policy")
                                 .customFont(.medium, 16)
@@ -66,32 +69,6 @@ struct CurrentUserProfile: View {
                             Text("Data Security")
                                 .customFont(.medium, 16)
                         }
-                    }
-                    
-                    // Logout and delete account
-                    Section {
-                        VStack(spacing: 16) {
-                            ActionButtonView(
-                                title: "Logout",
-                                mode: .filled,
-                                width: 300
-                            ) {
-                                viewModel.showSignOutAlert.toggle()
-                            }
-                            
-                            Divider()
-                                .background(Color.gray.opacity(0.5))
-                                .padding(.horizontal)
-                            
-                            ActionButtonView(
-                                title: "Delete Account",
-                                mode: .outlined,
-                                width: 300
-                            ) {
-                                print("DEBUG: Delete account")
-                            }
-                        }
-                        .padding()
                     }
                     
                 } else {
@@ -151,6 +128,44 @@ private struct ProfileRow: View {
                 .foregroundColor(.secondary)
         }
         .padding(.vertical, 4)
+    }
+}
+
+private struct ProfileActions: View {
+    
+    @Binding var showSignOutAlert: Bool
+    
+    var body: some View {
+        VStack {
+            
+            Text("Managing your account settings is simple. You can log out or delete your account below.")
+                .customFont(.regular, 14)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+            
+            ActionButtonView(
+                title: "Logout",
+                mode: .filled,
+                width: 300
+            ) {
+                showSignOutAlert.toggle()
+            }
+            ActionButtonView(
+                title: "Delete Account",
+                mode: .outlined,
+                width: 300
+            ) {
+                print("DEBUG: Delete account")
+            }
+            
+            Text("Built with passion by DreamSoftware. Sergio Sánchez Sánchez © 2024")
+                .customFont(.regular, 12)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+        }
+        .padding()
     }
 }
 
