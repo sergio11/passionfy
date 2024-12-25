@@ -17,7 +17,7 @@ struct MessagingView: View {
                 UserMatchesView(matches: viewModel.userMatches) { userMatch in
                     viewModel.onUserMatchSelected(user: userMatch)
                 }
-                .padding(.top, 8)
+                .padding(.top)
 
                 Divider().padding(.vertical, 8)
                 
