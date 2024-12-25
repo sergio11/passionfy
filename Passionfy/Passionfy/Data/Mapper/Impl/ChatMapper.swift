@@ -31,6 +31,7 @@ class ChatMapper: Mapper {
             otherUser: otherUser,
             createdAt: input.chatDTO.createdAt.dateValue(),
             updatedAt: input.chatDTO.updatedAt.dateValue(),
+            unreadMessagesCount: input.unreadMessageCount,
             lastMessage: input.chatDTO.lastMessage,
             lastMessageUserId: input.chatDTO.lastMessageUserId
         )
@@ -42,4 +43,5 @@ struct ChatDataMapper {
     let firstUserDTO: UserDTO
     let secondUserDTO: UserDTO
     let authUserId: String
+    let unreadMessageCount: Int
 }

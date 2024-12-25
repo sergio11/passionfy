@@ -135,6 +135,10 @@ internal class MessagingRepositoryImpl: MessagingRepository {
         do {
             let authUserId = try await authDataSource.getCurrentUserId()
             let messagesData = try await messagingDataSource.getMessages(forChatId: chatId)
+            let unReadMessages = messagesData.filter({ !$0.isRead && $0.senderId != authUserId })
+            for unReadMessage in unReadMessages {
+                try await messagingDataSource.markMessageAsRead(data: MarkMessageAsReadDTO(chatId: chatId, messageId: unReadMessage.id))
+            }
             return messagesData.map({ chatMessageMapper.map(ChatMessageDataMapper(messageDTO: $0, authUserId: authUserId)) })
         } catch {
             throw MessagingException.getMessagesFailed(message: "An error ocurred when trying to get messages", cause: error)
@@ -194,11 +198,14 @@ internal class MessagingRepositoryImpl: MessagingRepository {
             return nil
         }
         
+        let unreadMessageCount = try await messagingDataSource.countUnreadMessages(fromUser: chatDTO.firstUserId == authUserId ? chatDTO.secondUserId : chatDTO.firstUserId, forChatId: chatDTO.id)
+        
         let chatDataMapper = ChatDataMapper(
             chatDTO: chatDTO,
             firstUserDTO: firstUserDTO,
             secondUserDTO: secondUserDTO,
-            authUserId: authUserId
+            authUserId: authUserId,
+            unreadMessageCount: unreadMessageCount
         )
 
         return chatMapper.map(chatDataMapper)

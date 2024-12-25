@@ -60,5 +60,21 @@ protocol MessagingDataSource {
         /// - Parameter chatId: The unique identifier of the chat.
         /// - Throws: An error if the operation fails.
     func deleteAllMessages(forChatId chatId: String) async throws
+    
+    /// Counts the number of unread messages from a specific user in a specific chat.
+    /// - Parameters:
+    ///   - chatId: The unique identifier of the chat.
+    ///   - userId: The unique identifier of the user whose messages need to be counted.
+    /// - Returns: The count of unread messages from the user.
+    /// - Throws: An error if the operation fails.
+    func countUnreadMessages(fromUser userId: String, forChatId chatId: String) async throws -> Int
+    
+    /// Retrieves the unread messages from a specific user in a specific chat.
+    /// - Parameters:
+    ///   - chatId: The unique identifier of the chat.
+    ///   - userId: The unique identifier of the user whose messages need to be retrieved.
+    /// - Returns: An array of `MessageDTO` objects representing the unread messages from the user.
+    /// - Throws: An error if the operation fails.
+    func getUnreadMessages(fromUser userId: String, forChatId chatId: String) async throws -> [MessageDTO]
 }
 

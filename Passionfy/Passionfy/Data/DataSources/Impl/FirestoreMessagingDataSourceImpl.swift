@@ -199,5 +199,51 @@ internal class FirestoreMessagingDataSourceImpl: MessagingDataSource {
             throw MessagingDataSourceException.deleteAllMessagesFailed(message: "Error deleting all messages: \(error.localizedDescription)", cause: error)
         }
     }
+    
+    /// Retrieves the unread messages from a specific user in a specific chat.
+    /// - Parameters:
+    ///   - chatId: The unique identifier of the chat.
+    ///   - userId: The unique identifier of the user whose messages need to be retrieved.
+    /// - Returns: An array of `MessageDTO` objects representing the unread messages from the user.
+    /// - Throws: An error if the operation fails.
+    func getUnreadMessages(fromUser userId: String, forChatId chatId: String) async throws -> [MessageDTO] {
+        do {
+            let querySnapshot = try await Firestore.firestore()
+                .collection(messagesCollection)
+                .document(chatId)
+                .collection(messagesCollectionSub)
+                .whereField("senderId", isEqualTo: userId)
+                .whereField("isRead", isEqualTo: false)
+                .order(by: "createdAt", descending: false)
+                .getDocuments()
+            
+            return querySnapshot.documents.compactMap { try? $0.data(as: MessageDTO.self) }
+        } catch {
+            print("Error retrieving unread messages: \(error.localizedDescription)")
+            throw MessagingDataSourceException.messagesRetrievalFailed(message: "Error retrieving unread messages: \(error.localizedDescription)", cause: error)
+        }
+    }
+    
+    /// Counts the number of unread messages from a specific user in a specific chat.
+    /// - Parameters:
+    ///   - chatId: The unique identifier of the chat.
+    ///   - userId: The unique identifier of the user whose messages need to be counted.
+    /// - Returns: The count of unread messages from the user.
+    /// - Throws: An error if the operation fails.
+    func countUnreadMessages(fromUser userId: String, forChatId chatId: String) async throws -> Int {
+        do {
+            let querySnapshot = try await Firestore.firestore()
+                .collection(messagesCollection)
+                .document(chatId)
+                .collection(messagesCollectionSub)
+                .whereField("senderId", isEqualTo: userId)
+                .whereField("isRead", isEqualTo: false)
+                .getDocuments()
+            return querySnapshot.count
+        } catch {
+            print("Error counting unread messages: \(error.localizedDescription)")
+            throw MessagingDataSourceException.messagesRetrievalFailed(message: "Error counting unread messages: \(error.localizedDescription)", cause: error)
+        }
+    }
 }
 
