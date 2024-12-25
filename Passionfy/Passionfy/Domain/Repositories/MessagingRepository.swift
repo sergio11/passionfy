@@ -33,9 +33,9 @@ protocol MessagingRepository {
     /// Sends a message within a specific chat.
     ///
     /// - Parameter data: The data used to create the message (e.g., message content, sender).
-    /// - Returns: A `String` representing the message ID of the sent message.
+    /// - Returns: A `ChatMessage` representing the  sent message.
     /// - Throws: A `MessagingRepositoryError` if sending the message fails.
-    func sendMessage(data: CreateChatMessage) async throws -> String
+    func sendMessage(data: CreateChatMessage) async throws -> ChatMessage
 
     /// Retrieves all messages within a specific chat.
     ///

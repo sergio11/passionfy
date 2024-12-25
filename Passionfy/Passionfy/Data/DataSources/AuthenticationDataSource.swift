@@ -28,7 +28,7 @@ protocol AuthenticationDataSource {
     func signOut() async throws
     
     /// Retrieves the current user's ID.
-    /// - Returns: The user ID if the user is logged in, otherwise `nil`.
+    /// - Returns: The user ID if the user is logged in.
     /// - Throws: An `AuthenticationError` in case of failure.
-    func getCurrentUserId() async throws -> String?
+    func getCurrentUserId() async throws -> String
 }

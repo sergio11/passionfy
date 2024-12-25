@@ -8,16 +8,21 @@
 import Foundation
 
 class ChatMessageMapper: Mapper {
-    typealias Input = MessageDTO
+    typealias Input = ChatMessageDataMapper
     typealias Output = ChatMessage
     
-    func map(_ input: MessageDTO) -> ChatMessage {
+    func map(_ input: ChatMessageDataMapper) -> ChatMessage {
         return ChatMessage(
-            id: input.id,
-            senderId: input.senderId,
-            createdAt: input.createdAt.dateValue(),
-            text: input.text,
-            isRead: input.isRead
+            id: input.messageDTO.id,
+            createByAuthUser: input.messageDTO.senderId == input.authUserId,
+            createdAt: input.messageDTO.createdAt.dateValue(),
+            text: input.messageDTO.text,
+            isRead: input.messageDTO.isRead
         )
     }
+}
+
+struct ChatMessageDataMapper {
+    let messageDTO: MessageDTO
+    let authUserId: String
 }

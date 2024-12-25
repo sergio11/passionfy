@@ -23,9 +23,7 @@ struct DislikeUserUseCase {
     /// - Parameter params: An instance of `LikeUserParams` containing the target user's ID to be liked.
     /// - Throws: An error if the "like" operation fails (e.g., fetching the current user's ID or performing the like).
     func execute(params: DislikeUserParams) async throws -> Void {
-        guard let userId = try await authRepository.getCurrentUserId() else {
-            throw AuthenticationException.invalidSession(message: "Invalid user session", cause: nil)
-        }
+        let userId = try await authRepository.getCurrentUserId()
         try await userRepository.dislikeUser(userId: userId, targetUserId: params.targetUserId)
     }
 }

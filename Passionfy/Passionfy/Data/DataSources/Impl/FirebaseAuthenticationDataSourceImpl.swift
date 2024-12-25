@@ -56,9 +56,9 @@ internal class FirebaseAuthenticationDataSourceImpl: AuthenticationDataSource {
         
     /// Retrieves the ID of the current user.
         /// - Returns: The user ID if the user is signed in, otherwise `nil`.
-    func getCurrentUserId() async throws -> String? {
+    func getCurrentUserId() async throws -> String {
         guard let userSession = Auth.auth().currentUser else {
-            return nil
+            throw AuthenticationDataSourceException.invalidSession(message: "An error ocurred when trying to get current user id", cause: nil)
         }
         return userSession.uid
     }

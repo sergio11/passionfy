@@ -28,7 +28,7 @@ protocol AuthenticationRepository {
     func signOut() async throws
     
     /// Fetches the current user ID asynchronously.
-    /// - Returns: The current user ID as a string, or `nil` if no user is signed in.
+    /// - Returns: The current user ID as a string.
     /// - Throws: An `AuthenticationRepositoryError` in case of failure, including specific errors related to user ID fetching failure.
-    func getCurrentUserId() async throws -> String?
+    func getCurrentUserId() async throws -> String
 }

@@ -113,11 +113,13 @@ internal class MessagingRepositoryImpl: MessagingRepository {
     ///
     /// - Parameters:
     ///   - data: The `CreateChatMessage` domain model containing the message data.
-    /// - Returns: The ID of the sent message.
+    /// - Returns: The sent message.
     /// - Throws: `MessagingRepositoryError.sendMessageFailed` if the operation fails.
-    func sendMessage(data: CreateChatMessage) async throws -> String {
+    func sendMessage(data: CreateChatMessage) async throws -> ChatMessage {
         do {
-            return try await messagingDataSource.sendMessage(data: createChatMessageMapper.map(data))
+            let authUserId = try await authDataSource.getCurrentUserId()
+            let chatMessageDTO = try await messagingDataSource.sendMessage(data: createChatMessageMapper.map(data))
+            return chatMessageMapper.map(ChatMessageDataMapper(messageDTO: chatMessageDTO, authUserId: authUserId))
         } catch {
             throw MessagingException.sendMessageFailed(message: "An error ocurred when trying to send a message", cause: error)
         }
@@ -131,8 +133,9 @@ internal class MessagingRepositoryImpl: MessagingRepository {
     /// - Throws: `MessagingRepositoryError.getMessagesFailed` if the operation fails.
     func getMessages(forChatId chatId: String) async throws -> [ChatMessage] {
         do {
+            let authUserId = try await authDataSource.getCurrentUserId()
             let messagesData = try await messagingDataSource.getMessages(forChatId: chatId)
-            return messagesData.map({ chatMessageMapper.map($0) })
+            return messagesData.map({ chatMessageMapper.map(ChatMessageDataMapper(messageDTO: $0, authUserId: authUserId)) })
         } catch {
             throw MessagingException.getMessagesFailed(message: "An error ocurred when trying to get messages", cause: error)
         }
@@ -183,10 +186,11 @@ internal class MessagingRepositoryImpl: MessagingRepository {
                 return nil
             }
         }
+        
+        let authUserId = try await authDataSource.getCurrentUserId()
 
         guard let firstUserDTO = try await getUserProfile(userId: chatDTO.firstUserId),
-              let secondUserDTO = try await getUserProfile(userId: chatDTO.secondUserId),
-              let authUserId = try await authDataSource.getCurrentUserId() else {
+              let secondUserDTO = try await getUserProfile(userId: chatDTO.secondUserId) else {
             return nil
         }
         

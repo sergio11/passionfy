@@ -15,4 +15,6 @@ enum AuthenticationDataSourceException: Error {
     case signInFailed(message: String, cause: Error?)
     /// Error indicating failure in signing out.
     case signOutFailed(message: String, cause: Error?)
+    /// Error indicating failure in getting current auth user id
+    case invalidSession(message: String, cause: Error?)
 }

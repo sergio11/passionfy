@@ -33,9 +33,7 @@ struct CreateChatUseCase {
     /// If the user ID is successfully retrieved, it proceeds to create a new chat by
     /// invoking the messaging repository with the necessary details.
     func execute(params: CreateChatParams) async throws -> Chat {
-        guard let userId = try await authRepository.getCurrentUserId() else {
-            throw AuthenticationException.invalidSession(message: "Invalid user session", cause: nil)
-        }
+        let userId = try await authRepository.getCurrentUserId()
         return try await messagingRepository.createChat(
             data: CreateChat(
                 id: UUID().uuidString,

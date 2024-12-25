@@ -176,6 +176,10 @@ extension Container {
     var deleteAllMessageUseCase: Factory<DeleteAllMessageUseCase> {
         self { DeleteAllMessageUseCase(messagingRepository: self.messagingRepository()) }
     }
+    
+    var createChatMessageUseCase: Factory<CreateChatMessageUseCase> {
+        self { CreateChatMessageUseCase(messagingRepository: self.messagingRepository(), authRepository: self.authenticationRepository()) }
+    }
 }
 
 // MARK: Utils

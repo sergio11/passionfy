@@ -15,16 +15,13 @@ struct VerifySessionUseCase {
     /// Executes the session verification asynchronously.
         /// - Returns: A boolean indicating whether the session is valid.
     func execute() async throws -> Bool {
-        guard let userId = try await authRepository.getCurrentUserId() else {
-            return false
-        }
-        var userData: User? = nil
         do {
-            userData = try await userProfileRepository.getUser(userId: userId)
+            let userId = try await authRepository.getCurrentUserId()
+            let _ = try await userProfileRepository.getUser(userId: userId)
+            return true
         } catch {
             try await authRepository.signOut()
             return false
         }
-        return userData != nil
     }
 }

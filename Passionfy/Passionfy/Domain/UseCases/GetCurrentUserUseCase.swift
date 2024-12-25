@@ -17,9 +17,7 @@ struct GetCurrentUserUseCase {
         /// - Returns: The information of the current user.
         /// - Throws: An error if the user information retrieval operation fails, including `userNotFound` if the current user is not found.
     func execute() async throws -> User {
-        guard let userId = try await authRepository.getCurrentUserId() else {
-            throw AuthenticationException.invalidSession(message: "Invalid user session", cause: nil)
-        }
+        let userId = try await authRepository.getCurrentUserId()
         return try await userRepository.getUser(userId: userId)
     }
 }

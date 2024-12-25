@@ -16,9 +16,7 @@ struct GetSuggestionsUseCase {
         /// - Returns: An array of `User` objects representing the fetched user suggestions.
         /// - Throws: An error if the user suggestions fetching operation fails.
     func execute() async throws -> [User] {
-        guard let userId = try await authRepository.getCurrentUserId() else {
-            throw AuthenticationException.invalidSession(message: "Invalid user session", cause: nil)
-        }
+        let userId = try await authRepository.getCurrentUserId()
         return try await userRepository.getSuggestions(authUserId: userId)
     }
 }

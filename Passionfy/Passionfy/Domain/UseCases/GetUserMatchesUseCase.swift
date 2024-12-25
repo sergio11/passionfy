@@ -35,9 +35,7 @@ struct GetUserMatchesUseCase {
     ///
     /// - Returns: An array of `User` objects representing the matches of the current user.
     func execute() async throws -> [User] {
-        guard let userId = try await authRepository.getCurrentUserId() else {
-            throw AuthenticationException.invalidSession(message: "Invalid user session", cause: nil)
-        }
+        let userId = try await authRepository.getCurrentUserId()
         return try await userRepository.getUserMatches(userId: userId)
     }
 }
