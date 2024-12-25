@@ -26,6 +26,10 @@ class MessagingViewModel: BaseViewModel {
         loadUserChats()
     }
     
+    func onUserChatSelected(chat: Chat) {
+        self.chatOpened =  chat
+    }
+    
     func onUserMatchSelected(user: User) {
         if let userChat = userChats.first(where: { $0.firstUser.id == user.id || $0.secondUser.id == user.id }) {
             self.chatOpened =  userChat

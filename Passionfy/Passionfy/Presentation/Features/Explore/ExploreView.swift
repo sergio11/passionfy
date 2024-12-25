@@ -44,7 +44,7 @@ struct ExploreView: View {
                 ScrollView {
                     LazyVStack(spacing: 8) {
                         ForEach(viewModel.users) { user in
-                            userNavigationLink(for: user)
+                            userCell(for: user)
                         }
                     }
                     .padding(.horizontal)
@@ -72,7 +72,7 @@ struct ExploreView: View {
     }
 
     @ViewBuilder
-    private func userNavigationLink(for user: User) -> some View {
+    private func userCell(for user: User) -> some View {
         UserCell(
             user: user,
             onOpenProfileTapped: {

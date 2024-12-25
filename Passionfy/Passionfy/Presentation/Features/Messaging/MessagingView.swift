@@ -21,7 +21,9 @@ struct MessagingView: View {
 
                 Divider().padding(.vertical, 8)
                 
-                UserChatsView(userChats: viewModel.userChats)
+                UserChatsView(userChats: viewModel.userChats) { chat in
+                    viewModel.onUserChatSelected(chat: chat)
+                }
                 
                 Spacer()
             }
@@ -34,9 +36,6 @@ struct MessagingView: View {
                         .foregroundColor(.pink)
                 }
             }
-            .onAppear {
-                viewModel.loadData()
-            }
         }
         .modifier(LoadingAndMessageOverlayModifier(
             isLoading: $viewModel.isLoading,
@@ -48,6 +47,9 @@ struct MessagingView: View {
         }
         .fullScreenCover(item: $viewModel.selectedUser) { user in
             UserProfileView(user: user)
+        }
+        .onAppear {
+            viewModel.loadData()
         }
     }
 }
@@ -106,6 +108,7 @@ private struct UserMatchesView: View {
 private struct UserChatsView: View {
     
     var userChats: [Chat]
+    var onChatClicked: ((Chat) -> Void)? = nil
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -114,53 +117,44 @@ private struct UserChatsView: View {
                 .foregroundColor(.black)
                 .padding(.bottom, 8)
             
-            ForEach(userChats) { chat in
-                NavigationLink(destination: ChatDetailView(chat: chat)) {
-                    ChatRowView(chat: chat)
+            if userChats.isEmpty {
+                EmptyStateView()
+            } else {
+                ForEach(userChats) { chat in
+                    ChatCellView(chat: chat) {
+                        onChatClicked?(chat)
+                    }
+                    .padding(.vertical, 4)
+                    .background(Divider(), alignment: .bottom)
                 }
-                .padding(.bottom, 8)
             }
         }
     }
 }
 
-private struct ChatRowView: View {
-    
-    var chat: Chat
+
+private struct EmptyStateView: View {
     
     var body: some View {
-        HStack {
-            CircularProfileImageView(
-                profileImageUrl: chat.firstUser.profileImageUrls[0],
-                size: .medium,
-                allowShadow: true
-            )
+        VStack(spacing: 16) {
+            Image(systemName: "bubble.left.and.bubble.right.fill")
+                .font(.system(size: 40))
+                .foregroundColor(.pink)
             
-            VStack(alignment: .leading) {
-                Text(chat.firstUser.username)
-                    .customFont(.bold, 16)
-                    .foregroundColor(.black)
-                Text(chat.lastMessage ?? "No messages yet")
-                    .customFont(.regular, 14)
-                    .foregroundColor(.gray)
-                    .lineLimit(1)
-            }
-            Spacer()
+            Text("Your inbox is feeling a little lonely. 💌")
+                .customFont(.bold, 20)
+                .foregroundColor(.pink)
+                .multilineTextAlignment(.center)
             
-            Text(chat.updatedAt.timeAgo())
-                .customFont(.regular, 12)
+            Text("Start a conversation or keep exploring to find someone worth chatting with!")
+                .customFont(.regular, 16)
                 .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
         }
         .padding()
-        .background(
-            Color.white
-                .cornerRadius(12)
-                .shadow(radius: 4)
-        )
-        .padding(.horizontal)
     }
 }
-
 
 // Previews
 struct MessagingView_Previews: PreviewProvider {
