@@ -49,3 +49,38 @@ I would like to express my sincere gratitude to the [AppStuff](https://www.youtu
   Vibrant, elegant, and user-friendly design to keep users engaged while they find their perfect match.  
 
 With Passionfy, we’re not just creating a dating app—we’re building a **community** where people can connect and grow together, all while enjoying a fun and seamless experience. 🌈✨
+
+## App Screenshots
+
+Here are some screenshots from our app to give you a glimpse of its design and functionality.
+
+<img width="260px" align="left" src="doc/screenshots/picture_1.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_2.png" />
+<img width="260px" src="doc/screenshots/picture_3.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_4.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_5.png" />
+<img width="260px" src="doc/screenshots/picture_6.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_7.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_8.png" />
+<img width="260px" src="doc/screenshots/picture_9.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_10.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_11.png" />
+<img width="260px" src="doc/screenshots/picture_12.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_13.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_14.png" />
+<img width="260px" src="doc/screenshots/picture_15.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_16.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_17.png" />
+<img width="260px" src="doc/screenshots/picture_18.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_19.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_20.png" />
+<img width="260px" src="doc/screenshots/picture_21.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_22.png" />
+<img width="260px" src="doc/screenshots/picture_23.png" />
