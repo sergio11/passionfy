@@ -95,6 +95,7 @@ class EditProfileViewModel: BaseUserViewModel {
         self.profileImages = user.profileImageUrls.compactMap({ URL(string: $0) }).map({ .remote($0)})
         self.userCity = user.city
         self.userCountry = user.country
+        self.selectedHobbies = user.hobbies
     }
 }
 

@@ -25,7 +25,8 @@ internal extension CreateUserDTO {
                 "longitude": coords.longitude,
             ],
             "bio": "",
-            "profileImageUrls": profileImageUrls
+            "profileImageUrls": profileImageUrls,
+            "hobbies": [String]()
         ]
     }
 }
