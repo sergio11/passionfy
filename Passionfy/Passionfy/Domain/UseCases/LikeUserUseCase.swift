@@ -24,9 +24,7 @@ struct LikeUserUseCase {
     /// - Returns: A `Bool` indicating whether the like operation was successful.
     /// - Throws: An error if the "like" operation fails
     func execute(params: LikeUserParams) async throws -> Bool {
-        guard let userId = try await authRepository.getCurrentUserId() else {
-            throw AuthenticationException.invalidSession(message: "Invalid user session", cause: nil)
-        }
+        let userId = try await authRepository.getCurrentUserId()
         return try await userRepository.likeUser(userId: userId, targetUserId: params.targetUserId)
     }
 }

@@ -32,9 +32,7 @@ struct UpdateUserUseCase {
         /// - Returns: The updated user object.
         /// - Throws: An error if the update fails or if the current user session is invalid.
     func execute(params: UpdateUserParams) async throws -> User {
-        guard let userId = try await authRepository.getCurrentUserId() else {
-            throw AuthenticationException.invalidSession(message: "Invalid user session", cause: nil)
-        }
+        let userId = try await authRepository.getCurrentUserId()
         return try await userRepository.updateUser(data: UpdateUser(
             id: userId,
             username: params.username,

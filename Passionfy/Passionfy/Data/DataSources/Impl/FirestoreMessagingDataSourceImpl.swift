@@ -82,11 +82,8 @@ internal class FirestoreMessagingDataSourceImpl: MessagingDataSource {
                 .collection(chatsCollection)
                 .document(chatId)
                 .delete()
-
-            let messages = try await getMessages(forChatId: chatId)
-            for message in messages {
-                try await deleteMessage(chatId: chatId, messageId: message.id)
-            }
+            
+            try await deleteAllMessages(forChatId: chatId)
         } catch {
             print("Error deleting chat: \(error.localizedDescription)")
             throw MessagingDataSourceException.chatNotFound(message: "Error deleting chat: \(error.localizedDescription)", cause: error)
@@ -95,12 +92,15 @@ internal class FirestoreMessagingDataSourceImpl: MessagingDataSource {
 
     /// Sends a message in a specific chat.
        /// - Parameter data: The data required to send a message, encapsulated in a `CreateChatMessageDTO`.
-       /// - Returns: The unique identifier of the sent message as a `String`.
+       /// - Returns: The sent message as a `MessageDTO`.
        /// - Throws: An error if the operation fails.
-    func sendMessage(data: CreateChatMessageDTO) async throws -> String {
+    func sendMessage(data: CreateChatMessageDTO) async throws -> MessageDTO {
         do {
-            try await Firestore.firestore()
+            
+            let collection = Firestore.firestore()
                 .collection(messagesCollection)
+            
+            try await collection
                 .document(data.chatId)
                 .collection(messagesCollectionSub)
                 .document(data.messageId)
@@ -112,7 +112,17 @@ internal class FirestoreMessagingDataSourceImpl: MessagingDataSource {
                 userId: data.senderId
             ))
             
-            return data.messageId
+            let chatMessageDocumentSnapshot = try await collection
+                .document(data.chatId)
+                .collection(messagesCollectionSub)
+                .document(data.messageId)
+                .getDocument()
+            
+            if let messageDTO = try? chatMessageDocumentSnapshot.data(as: MessageDTO.self) {
+                return messageDTO
+            } else {
+                throw MessagingDataSourceException.messageSendFailed(message: "Error sending message", cause: nil)
+            }
         } catch {
             print("Error sending message: \(error.localizedDescription)")
             throw MessagingDataSourceException.messageSendFailed(message: "Error sending message: \(error.localizedDescription)", cause: error)

@@ -34,9 +34,9 @@ protocol MessagingDataSource {
 
     /// Sends a message in a specific chat.
        /// - Parameter data: The data required to send a message, encapsulated in a `CreateChatMessageDTO`.
-       /// - Returns: The unique identifier of the sent message as a `String`.
+       /// - Returns: The  sent message as a `MessageDTO`.
        /// - Throws: An error if the operation fails.
-    func sendMessage(data: CreateChatMessageDTO) async throws -> String
+    func sendMessage(data: CreateChatMessageDTO) async throws -> MessageDTO
 
     /// Retrieves all messages associated with a specific chat.
         /// - Parameter chatId: The unique identifier of the chat.

@@ -58,14 +58,14 @@ internal class AuthenticationRepositoryImpl: AuthenticationRepository {
     }
 
     /// Fetches the current user ID asynchronously.
-    /// - Returns: The current user ID as a string, or `nil` if no user is signed in.
+    /// - Returns: The current user ID as a string
     /// - Throws: An `AuthenticationRepositoryError` in case of failure, including specific errors related to user ID fetching failure.
-    func getCurrentUserId() async throws -> String? {
+    func getCurrentUserId() async throws -> String {
         do {
             return try await authenticationDataSource.getCurrentUserId()
         } catch {
             print(error.localizedDescription)
-            throw AuthenticationException.currentUserFetchFailed(message: "An error ocurred when trying to authenticated user id", cause: error)
+            throw AuthenticationException.invalidSession(message: "An error ocurred when trying to authenticated user id", cause: error)
         }
     }
 }

@@ -36,10 +36,10 @@ struct ChatDetailView: View {
             ChatInputFieldView(
                 messageText: $viewModel.messageText,
                 onClearTextField: {
-                    
+                    viewModel.clearTextField()
                 },
                 onSendMessage: {
-                    
+                    viewModel.sendMessage(for: chat.id)
                 }
             )
         }
@@ -201,24 +201,54 @@ private struct MessageBubble: View {
     var message: ChatMessage
     
     var body: some View {
-        HStack {
-            if message.senderId == "currentUserId" {
+        HStack(alignment: .bottom) {
+            if message.createByAuthUser {
                 Spacer()
-                Text(message.text)
-                    .padding(12)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(20)
-                    .frame(maxWidth: 300, alignment: .trailing)
+                
+                VStack(alignment: .trailing, spacing: 4) {
+                    Text(message.text)
+                        .customFont(.regular, 16)
+                        .padding(12)
+                        .background(Color.pink)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
+                        .frame(maxWidth: 300, alignment: .trailing)
+                    
+                    HStack(spacing: 5) {
+                        Text(message.createdAt.timeAgo())
+                            .customFont(.regular, 12)
+                            .foregroundColor(.pink.opacity(0.8))
+                        
+                        if message.isRead {
+                            Image(systemName: "checkmark.double")
+                                .font(.caption)
+                                .foregroundColor(.blue)
+                        } else {
+                            Image(systemName: "checkmark")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                }
             } else {
-                Text(message.text)
-                    .padding(12)
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(20)
-                    .frame(maxWidth: 300, alignment: .leading)
+                VStack(alignment: .leading, spacing: 4) {
+
+                    Text(message.text)
+                        .customFont(.regular, 16)
+                        .padding(12)
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(20)
+                        .frame(maxWidth: 300, alignment: .leading)
+                    
+                    Text(message.createdAt.timeAgo())
+                        .customFont(.regular, 12)
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
                 Spacer()
             }
         }
+        .padding(.horizontal)
     }
 }
 

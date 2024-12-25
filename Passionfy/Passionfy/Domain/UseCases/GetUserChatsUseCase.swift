@@ -25,9 +25,7 @@ struct GetUserChatsUseCase {
     ///   - The user is not authenticated, resulting in an `AuthenticationException.invalidSession`.
     ///   - Any error that occurs while fetching chats from the `MessagingRepository`.
     func execute() async throws -> [Chat] {
-        guard let userId = try await authRepository.getCurrentUserId() else {
-            throw AuthenticationException.invalidSession(message: "Invalid user session", cause: nil)
-        }
+        let userId = try await authRepository.getCurrentUserId()
         return try await messagingRepository.getChats(forUserId: userId)
     }
 }
