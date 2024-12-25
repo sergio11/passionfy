@@ -13,6 +13,8 @@ class ChatDetailViewModel: BaseViewModel {
     
     
     @Injected(\.deleteChatUseCase) private var deleteChatUseCase: DeleteChatUseCase
+    @Injected(\.deleteAllMessageUseCase) private var deleteAllMessageUseCase: DeleteAllMessageUseCase
+    @Injected(\.deleteMessageUseCase) private var DeleteMessageUseCase: DeleteMessageUseCase
     @Injected(\.getChatMessagesUseCase) private var getChatMessagesUseCase: GetChatMessagesUseCase
     @Injected(\.createChatMessageUseCase) private var createChatMessageUseCase: CreateChatMessageUseCase
     
@@ -41,7 +43,6 @@ class ChatDetailViewModel: BaseViewModel {
                 self.onChatMessagesCreated(chatMessage: chatMessage)
             }
         }
-        
     }
        
     func clearTextField() {
@@ -50,6 +51,23 @@ class ChatDetailViewModel: BaseViewModel {
        
     func onOpenUserProfile(for user: User) {
         self.selectedUser = user
+    }
+    
+    func onDeleteAllMessages(for chatId: String) {
+        executeAsyncTask {
+            return try await self.deleteAllMessageUseCase.execute(params: DeleteAllMessageParams(chatId: chatId))
+        }
+    }
+    
+    func onDeleteMessage(chatId: String, messageId: String) {
+        executeAsyncTask {
+            return try await self.DeleteMessageUseCase.execute(params: DeleteMessageParams(chatId: chatId, messageId: messageId))
+        } completion: { [weak self] result in
+            guard let self = self else { return }
+            if case .success = result {
+                self.onChatMessageDeleted(messageId: messageId)
+            }
+        }
     }
        
     func onDeleteChat(for chatId: String) {
@@ -74,5 +92,9 @@ class ChatDetailViewModel: BaseViewModel {
     
     private func onChatDeleted() {
         self.chatDeleted = true
+    }
+    
+    private func onChatMessageDeleted(messageId: String) {
+        self.messages = messages.filter({ $0.id != messageId })
     }
 }

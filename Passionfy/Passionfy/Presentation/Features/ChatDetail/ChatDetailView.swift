@@ -24,13 +24,18 @@ struct ChatDetailView: View {
                 onOpenUserProfile: {
                     viewModel.onOpenUserProfile(for: chat.otherUser)
                 },
+                onDeleteAllMessages: {
+                    viewModel.onDeleteAllMessages(for: chat.id)
+                },
                 onDeleteChat: {
                     viewModel.onDeleteChat(for: chat.id)
                 }
             )
             
             // Messages
-            ChatMessagesView(messages: viewModel.messages)
+            ChatMessagesView(messages: viewModel.messages) { messageId in
+                viewModel.onDeleteMessage(chatId: chat.id, messageId: messageId)
+            }
             
             // Input Field
             ChatInputFieldView(
@@ -68,6 +73,7 @@ private struct ChatHeader: View {
     let user: User
     var onBack: (() -> Void)? = nil
     var onOpenUserProfile: (() -> Void)? = nil
+    var onDeleteAllMessages: (() -> Void)? = nil
     var onDeleteChat: (() -> Void)? = nil
     
     var body: some View {
@@ -95,7 +101,9 @@ private struct ChatHeader: View {
                 Button("View Profile") {
                     onOpenUserProfile?()
                 }
-                Button("Mute Notifications", action: {})
+                Button("Delete All Messages", role: .destructive) {
+                    onDeleteAllMessages?()
+                }
                 Button("Delete Chat", role: .destructive) {
                     onDeleteChat?()
                 }
@@ -114,14 +122,17 @@ private struct ChatHeader: View {
 private struct ChatMessagesView: View {
     
     var messages: [ChatMessage] = []
+    var onDeleteMessage: ((String) -> Void)? = nil
     
     var body: some View {
         ScrollView {
             if !messages.isEmpty {
                 LazyVStack(spacing: 10) {
                     ForEach(messages) { message in
-                        MessageBubble(message: message)
-                            .padding(.horizontal)
+                        MessageBubble(message: message) {
+                            onDeleteMessage?(message.id)
+                        }
+                        .padding(.horizontal)
                     }
                 }
             } else {
@@ -196,9 +207,9 @@ private struct ChatInputFieldView: View {
     }
 }
 
-// MessageBubble Component
 private struct MessageBubble: View {
     var message: ChatMessage
+    var onDelete: (() -> Void)?
     
     var body: some View {
         HStack(alignment: .bottom) {
@@ -206,6 +217,7 @@ private struct MessageBubble: View {
                 Spacer()
                 
                 VStack(alignment: .trailing, spacing: 4) {
+                    // Message Text
                     Text(message.text)
                         .customFont(.regular, 16)
                         .padding(12)
@@ -214,6 +226,7 @@ private struct MessageBubble: View {
                         .cornerRadius(20)
                         .frame(maxWidth: 300, alignment: .trailing)
                     
+                    // Time Ago and Read Status
                     HStack(spacing: 5) {
                         Text(message.createdAt.timeAgo())
                             .customFont(.regular, 12)
@@ -230,9 +243,16 @@ private struct MessageBubble: View {
                         }
                     }
                 }
+                .contextMenu {
+                    Button(action: {
+                        onDelete?()
+                    }) {
+                        Label("Delete", systemImage: "trash.fill")
+                    }
+                }
             } else {
                 VStack(alignment: .leading, spacing: 4) {
-
+                    // Message Text
                     Text(message.text)
                         .customFont(.regular, 16)
                         .padding(12)
@@ -240,10 +260,18 @@ private struct MessageBubble: View {
                         .cornerRadius(20)
                         .frame(maxWidth: 300, alignment: .leading)
                     
+                    // Time Ago
                     Text(message.createdAt.timeAgo())
                         .customFont(.regular, 12)
                         .font(.caption)
                         .foregroundColor(.gray)
+                }
+                .contextMenu {
+                    Button(action: {
+                        onDelete?()
+                    }) {
+                        Label("Delete", systemImage: "trash.fill")
+                    }
                 }
                 Spacer()
             }
