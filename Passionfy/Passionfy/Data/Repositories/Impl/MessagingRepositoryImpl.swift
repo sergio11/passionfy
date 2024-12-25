@@ -20,6 +20,9 @@ internal class MessagingRepositoryImpl: MessagingRepository {
     /// The data source for performing users-related operations.
     private let userDataSource: UserDataSource
     
+    /// The data source for performing auth-related operations.
+    private let authDataSource: AuthenticationDataSource
+    
     /// Mapper for transforming `CreateChat` domain models to the data model used by the data source.
     private let createChatMapper: CreateChatMapper
     
@@ -37,6 +40,7 @@ internal class MessagingRepositoryImpl: MessagingRepository {
     /// - Parameters:
     ///   - messagingDataSource: The data source that interacts with the messaging service.
     ///   - userDataSource: The data source that interacts with the users service.
+    ///   - authDataSource: The data source that interacts with the authentication service.
     ///   - createChatMapper: The mapper that converts `CreateChat` domain models to data models.
     ///   - createChatMessageMapper: The mapper that converts `CreateChatMessage` domain models to data models.
     ///   - chatMapper: The mapper that converts `Chat` data models to domain models.
@@ -44,6 +48,7 @@ internal class MessagingRepositoryImpl: MessagingRepository {
     init(
         messagingDataSource: MessagingDataSource,
         userDataSource: UserDataSource,
+        authDataSource: AuthenticationDataSource,
         createChatMapper: CreateChatMapper,
         createChatMessageMapper: CreateChatMessageMapper,
         chatMapper: ChatMapper,
@@ -51,6 +56,7 @@ internal class MessagingRepositoryImpl: MessagingRepository {
     ) {
         self.messagingDataSource = messagingDataSource
         self.userDataSource = userDataSource
+        self.authDataSource = authDataSource
         self.createChatMapper = createChatMapper
         self.createChatMessageMapper = createChatMessageMapper
         self.chatMapper = chatMapper
@@ -178,17 +184,17 @@ internal class MessagingRepositoryImpl: MessagingRepository {
             }
         }
 
-        // Fetch both users' profiles (first and second users in the chat)
         guard let firstUserDTO = try await getUserProfile(userId: chatDTO.firstUserId),
-              let secondUserDTO = try await getUserProfile(userId: chatDTO.secondUserId) else {
-            // If either user profile couldn't be fetched, return nil
+              let secondUserDTO = try await getUserProfile(userId: chatDTO.secondUserId),
+              let authUserId = try await authDataSource.getCurrentUserId() else {
             return nil
         }
-
+        
         let chatDataMapper = ChatDataMapper(
             chatDTO: chatDTO,
             firstUserDTO: firstUserDTO,
-            secondUserDTO: secondUserDTO
+            secondUserDTO: secondUserDTO,
+            authUserId: authUserId
         )
 
         return chatMapper.map(chatDataMapper)

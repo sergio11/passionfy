@@ -9,10 +9,10 @@ import Foundation
 
 struct Chat : Identifiable, Decodable {
     let id: String
-    let firstUser: User
-    let secondUser: User
+    let currentUser: User
+    let otherUser: User
     let createdAt: Date
     let updatedAt: Date
-    let lastMessage: String?
-    let lastMessageUserId: String?
+    let lastMessage: String
+    let lastMessageUserId: String
 }

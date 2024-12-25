@@ -13,6 +13,7 @@ class ChatDetailViewModel: BaseViewModel {
     
     @Published var messageText: String = ""
     @Published var messages: [ChatMessage] = []
+    @Published var selectedUser: User? = nil
     
     func loadMessages(for chatId: String) {
         // Load messages logic here
@@ -26,8 +27,8 @@ class ChatDetailViewModel: BaseViewModel {
         messageText = ""
     }
        
-    func viewUserProfile() {
-        // View user profile logic here
+    func onOpenUserProfile(for user: User) {
+        self.selectedUser = user
     }
        
     func muteChat() {

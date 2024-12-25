@@ -15,19 +15,20 @@ struct ChatCellView: View {
     var body: some View {
         HStack {
             CircularProfileImageView(
-                profileImageUrl: chat.firstUser.profileImageUrls[0],
+                profileImageUrl: chat.otherUser.profileImageUrls[0],
                 size: .medium,
                 allowShadow: true
             )
             
             VStack(alignment: .leading) {
-                Text(chat.firstUser.username)
+                Text(chat.otherUser.username)
                     .customFont(.bold, 16)
                     .foregroundColor(.black)
-                Text(chat.lastMessage ?? "No messages yet")
-                    .customFont(.regular, 14)
-                    .foregroundColor(.gray)
-                    .lineLimit(1)
+                
+                Text(chat.lastMessage.isEmpty ? "No messages yet. Say hi and break the ice!": chat.lastMessage)
+                       .customFont(.regular, 14)
+                       .foregroundColor(.gray)
+                       .lineLimit(2)
             }
             Spacer()
             

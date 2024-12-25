@@ -14,6 +14,6 @@ internal struct ChatDTO: Identifiable, Codable {
     let secondUserId: String
     let createdAt: Timestamp
     let updatedAt: Timestamp
-    let lastMessage: String?
-    let lastMessageUserId: String?
+    let lastMessage: String
+    let lastMessageUserId: String
 }

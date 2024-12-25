@@ -17,12 +17,12 @@ struct ChatDetailView: View {
         VStack {
             // Header
             ChatHeader(
-                user: chat.secondUser,
+                user: chat.otherUser,
                 onBack: {
                     dismiss()
                 },
                 onOpenUserProfile: {
-                    
+                    viewModel.onOpenUserProfile(for: chat.otherUser)
                 },
                 onDeleteChat: {
                     
@@ -44,6 +44,9 @@ struct ChatDetailView: View {
             )
         }
         .navigationBarHidden(true)
+        .fullScreenCover(item: $viewModel.selectedUser) { user in
+            UserProfileView(user: user)
+        }
         .onAppear {
             viewModel.loadMessages(for: chat.id)
         }
@@ -103,14 +106,35 @@ private struct ChatMessagesView: View {
     var messages: [ChatMessage] = []
     
     var body: some View {
-        // Messages
         ScrollView {
-            LazyVStack(spacing: 10) {
-                ForEach(messages) { message in
-                    MessageBubble(message: message)
-                        .padding(.horizontal)
+            if !messages.isEmpty {
+                LazyVStack(spacing: 10) {
+                    ForEach(messages) { message in
+                        MessageBubble(message: message)
+                            .padding(.horizontal)
+                    }
+                }
+            } else {
+                VStack(spacing: 20) {
+                    Image("onboarding_account_logo")
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundColor(Color.pink.opacity(0.8))
+                        .frame(width: 250, height: 150)
+                        .scaledToFit()
+                    
+                    Text("Break the ice!")
+                        .customFont(.bold, 22)
+                        .foregroundColor(.pink)
+                    
+                    Text("Say hello and start a conversation. Remember to be kind and make a great first impression!")
+                        .customFont(.regular, 16)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 40)
                 }
             }
+            
         }
         .padding(.top)
     }

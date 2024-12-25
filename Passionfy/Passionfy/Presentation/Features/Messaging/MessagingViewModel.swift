@@ -16,7 +16,6 @@ class MessagingViewModel: BaseViewModel {
     @Injected(\.getUserChatsUseCase) private var getUserChatsUseCase: GetUserChatsUseCase
     @Injected(\.createChatUseCase) private var createChatUseCase: CreateChatUseCase
     
-    @Published var selectedUser: User? = nil
     @Published var chatOpened: Chat? = nil
     @Published var userChats: [Chat] = []
     @Published var userMatches: [User] = []
@@ -31,7 +30,7 @@ class MessagingViewModel: BaseViewModel {
     }
     
     func onUserMatchSelected(user: User) {
-        if let userChat = userChats.first(where: { $0.firstUser.id == user.id || $0.secondUser.id == user.id }) {
+        if let userChat = userChats.first(where: { $0.currentUser.id == user.id || $0.otherUser.id == user.id }) {
             self.chatOpened =  userChat
         } else {
             executeAsyncTask {
