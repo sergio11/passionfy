@@ -20,4 +20,5 @@ struct UpdateUser: Identifiable {
     let city: String?
     let country: String?
     let profileImages: [(index: Int, data: Data)]?
+    let hobbies: [String]?
 }

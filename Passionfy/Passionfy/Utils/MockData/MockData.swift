@@ -24,7 +24,8 @@ struct MockData {
             ],
             city: "Los Angeles",
             country: "USA",
-            bio: "Lover of cinema and fine art. 🌟"
+            bio: "Lover of cinema and fine art. 🌟",
+            hobbies: []
         ),
         .init(
             id: NSUUID().uuidString,
@@ -41,7 +42,8 @@ struct MockData {
             ],
             city: "London",
             country: "UK",
-            bio: "Football is life. 🏆"
+            bio: "Football is life. 🏆",
+            hobbies: []
         ),
         .init(
             id: NSUUID().uuidString,
@@ -58,7 +60,8 @@ struct MockData {
             ],
             city: "Dublin",
             country: "Ireland",
-            bio: "Knockout artist and whiskey enthusiast. 🥃"
+            bio: "Knockout artist and whiskey enthusiast. 🥃",
+            hobbies: []
         ),
         .init(
             id: NSUUID().uuidString,
@@ -75,7 +78,8 @@ struct MockData {
             ],
             city: "Nashville",
             country: "USA",
-            bio: "Writing songs about life and love. 🎶"
+            bio: "Writing songs about life and love. 🎶",
+            hobbies: []
         )
     ]
 }

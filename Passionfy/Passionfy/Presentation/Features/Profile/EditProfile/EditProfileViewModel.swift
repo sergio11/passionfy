@@ -14,6 +14,8 @@ class EditProfileViewModel: BaseUserViewModel {
     @Injected(\.updateUserUseCase) private var updateUserUseCase: UpdateUserUseCase
     @Injected(\.locationService) private var locationService: LocationService
     
+    let allHobbies = ["Music", "Sports", "Travel", "Reading", "Cooking", "Photography", "Gaming", "Art", "Movies", "Fitness"]
+    
     @Published var username = ""
     @Published var birthdate: Date = Date()
     @Published var bio = ""
@@ -25,6 +27,7 @@ class EditProfileViewModel: BaseUserViewModel {
     @Published var userCoordinates: UserCoordinates?
     @Published var userCity: String = ""
     @Published var userCountry: String = ""
+    @Published var selectedHobbies: [String] = []
     @Published var isLoadingLocation: Bool = false
     @Published var showDatePicker = false
     @Published var profileUpdated = false
@@ -53,7 +56,8 @@ class EditProfileViewModel: BaseUserViewModel {
                 profileImages: imageDatasWithIndices,
                 userCoordinates: self.userCoordinates,
                 userCity: self.userCity,
-                userCountry: self.userCountry
+                userCountry: self.userCountry,
+                hobbies: self.selectedHobbies
             ))
         } completion: { [weak self] result in
             guard let self = self, case .success(let user) = result else { return }
@@ -68,6 +72,14 @@ class EditProfileViewModel: BaseUserViewModel {
         self.isLoadingLocation = true
         locationService.requestPermission()
         locationService.startUpdatingLocation()
+    }
+    
+    func toggleHobbySelection(_ hobby: String) {
+        if let index = selectedHobbies.firstIndex(of: hobby) {
+            selectedHobbies.remove(at: index)
+        } else if selectedHobbies.count < 5 {
+            selectedHobbies.append(hobby)
+        }
     }
     
     override func onCurrentUserLoaded(user: User) {

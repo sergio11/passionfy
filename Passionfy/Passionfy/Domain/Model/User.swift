@@ -8,16 +8,17 @@
 import Foundation
 
 struct User: Decodable, Identifiable, Hashable {
-    var id: String
-    var username: String
-    var birthdate: String
-    var phoneNumber: String
-    var occupation: String
-    var gender: Gender
+    let id: String
+    let username: String
+    let birthdate: String
+    let phoneNumber: String
+    let occupation: String
+    let gender: Gender
     let preference: Preference
     let interest: Interest
-    var profileImageUrls: [String]
+    let profileImageUrls: [String]
     let city: String
     let country: String
-    var bio: String
+    let bio: String
+    let hobbies: [String]
 }

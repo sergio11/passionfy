@@ -24,7 +24,8 @@ class UserMapper: Mapper {
             profileImageUrls: input.profileImageUrls,
             city: input.city,
             country: input.country,
-            bio: input.bio
+            bio: input.bio,
+            hobbies: input.hobbies
         )
     }
 }
