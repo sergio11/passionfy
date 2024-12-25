@@ -13,6 +13,7 @@ struct Chat : Identifiable, Decodable {
     let otherUser: User
     let createdAt: Date
     let updatedAt: Date
+    let unreadMessagesCount: Int
     let lastMessage: String
     let lastMessageUserId: String
 }

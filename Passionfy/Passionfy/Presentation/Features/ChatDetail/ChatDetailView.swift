@@ -232,15 +232,9 @@ private struct MessageBubble: View {
                             .customFont(.regular, 12)
                             .foregroundColor(.pink.opacity(0.8))
                         
-                        if message.isRead {
-                            Image(systemName: "checkmark.double")
-                                .font(.caption)
-                                .foregroundColor(.blue)
-                        } else {
-                            Image(systemName: "checkmark")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
+                        Image(systemName: "checkmark")
+                            .font(.footnote)
+                            .foregroundColor(message.isRead ? .blue : .gray)
                     }
                 }
                 .contextMenu {
