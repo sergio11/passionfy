@@ -83,4 +83,36 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 <img width="260px" src="doc/screenshots/picture_21.png" />
 
 <img width="260px" align="left" src="doc/screenshots/picture_22.png" />
-<img width="260px" src="doc/screenshots/picture_23.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_23.png" />
+<img width="260px" src="doc/screenshots/picture_24.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_25.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_26.png" />
+<img width="260px" src="doc/screenshots/picture_27.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_28.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_29.png" />
+<img width="260px" src="doc/screenshots/picture_30.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_31.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_32.png" />
+<img width="260px" src="doc/screenshots/picture_33.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_34.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_35.png" />
+<img width="260px" src="doc/screenshots/picture_36.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_37.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_38.png" />
+<img width="260px" src="doc/screenshots/picture_39.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_40.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_41.png" />
+<img width="260px" src="doc/screenshots/picture_42.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_43.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_44.png" />
+<img width="260px" src="doc/screenshots/picture_45.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_46.png" />
+<img width="260px" src="doc/screenshots/picture_47.png" />
