@@ -17,6 +17,7 @@ class MessagingViewModel: BaseViewModel {
     @Injected(\.createChatUseCase) private var createChatUseCase: CreateChatUseCase
     
     @Published var chatOpened: Chat? = nil
+    @Published var selectedUser: User? = nil
     @Published var userChats: [Chat] = []
     @Published var userMatches: [User] = []
     
@@ -26,7 +27,22 @@ class MessagingViewModel: BaseViewModel {
     }
     
     func onUserChatSelected(chat: Chat) {
-        self.chatOpened =  chat
+        self.chatOpened = chat
+    }
+    
+    func onUserSelected(user: User) {
+        self.selectedUser = user
+    }
+    
+    func onDeleteUserChat(for chatId: String) {
+        executeAsyncTask {
+            return try await self.deleteChatUseCase.execute(params: DeleteChatParams(chatId: chatId))
+        } completion: { [weak self] result in
+            guard let self = self else { return }
+            if case .success = result {
+                self.onUserChatDeleted(chatId: chatId)
+            }
+        }
     }
     
     func onUserMatchSelected(user: User) {
@@ -72,5 +88,11 @@ class MessagingViewModel: BaseViewModel {
     
     private func onGetUserChatsCompleted(userChats: [Chat]) {
         self.userChats = userChats
+    }
+    
+    private func onUserChatDeleted(chatId: String) {
+        self.chatOpened = nil
+        self.userChats = userChats.filter({ $0.id != chatId })
+        self.successMessage = "Chat deleted successfully!"
     }
 }

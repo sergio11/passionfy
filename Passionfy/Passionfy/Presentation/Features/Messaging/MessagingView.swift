@@ -21,13 +21,21 @@ struct MessagingView: View {
 
                 Divider().padding(.vertical, 8)
                 
-                UserChatsView(userChats: viewModel.userChats) { chat in
-                    viewModel.onUserChatSelected(chat: chat)
-                }
+                UserChatsView(
+                    userChats: viewModel.userChats,
+                    onOpenUserProfile: { user in
+                        viewModel.onUserSelected(user: user)
+                    },
+                    onOpenChatDetail: { chat in
+                        viewModel.onUserChatSelected(chat: chat)
+                    },
+                    onDeleteChat: { chat in
+                        viewModel.onDeleteUserChat(for: chat.id)
+                    }
+                )
                 
                 Spacer()
             }
-            .padding(.horizontal)
             .navigationTitle("")
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -42,7 +50,15 @@ struct MessagingView: View {
             message: viewModel.message,
             messageType: viewModel.messageType
         ))
-        .fullScreenCover(item: $viewModel.chatOpened) { chat in
+        .fullScreenCover(item: $viewModel.selectedUser) { user in
+            UserProfileView(user: user)
+        }
+        .fullScreenCover(
+            item: $viewModel.chatOpened,
+            onDismiss: {
+                viewModel.loadData()
+            }
+        ) { chat in
             ChatDetailView(chat: chat)
         }
         .onAppear {
@@ -62,6 +78,7 @@ private struct UserMatchesView: View {
                 .customFont(.bold, 18)
                 .foregroundColor(.black)
                 .padding(.bottom, 8)
+                .padding(.horizontal)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
@@ -104,22 +121,34 @@ private struct UserMatchesView: View {
 private struct UserChatsView: View {
     
     var userChats: [Chat]
-    var onChatClicked: ((Chat) -> Void)? = nil
+    var onOpenUserProfile: ((User) -> Void)? = nil
+    var onOpenChatDetail: ((Chat) -> Void)? = nil
+    var onDeleteChat: ((Chat) -> Void)? = nil
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("Your Chats")
                 .customFont(.bold, 18)
                 .foregroundColor(.black)
+                .padding(.horizontal)
                 .padding(.bottom, 8)
-            
+                
             if userChats.isEmpty {
                 EmptyStateView()
             } else {
                 ForEach(userChats) { chat in
-                    ChatCellView(chat: chat) {
-                        onChatClicked?(chat)
-                    }
+                    ChatCellView(
+                        chat: chat,
+                        onOpenUserProfile: {
+                            onOpenUserProfile?(chat.otherUser)
+                        },
+                        onOpenChatDetail: {
+                            onOpenChatDetail?(chat)
+                        },
+                        onDeleteChat: {
+                            onDeleteChat?(chat)
+                        }
+                    )
                     .padding(.vertical, 4)
                     .background(Divider(), alignment: .bottom)
                 }

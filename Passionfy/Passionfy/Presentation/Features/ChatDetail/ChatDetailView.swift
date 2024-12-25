@@ -25,7 +25,7 @@ struct ChatDetailView: View {
                     viewModel.onOpenUserProfile(for: chat.otherUser)
                 },
                 onDeleteChat: {
-                    
+                    viewModel.onDeleteChat(for: chat.id)
                 }
             )
             
@@ -44,9 +44,19 @@ struct ChatDetailView: View {
             )
         }
         .navigationBarHidden(true)
+        .onReceive(viewModel.$chatDeleted) { chatDeleted in
+            if chatDeleted {
+                dismiss()
+            }
+        }
         .fullScreenCover(item: $viewModel.selectedUser) { user in
             UserProfileView(user: user)
         }
+        .modifier(LoadingAndMessageOverlayModifier(
+            isLoading: $viewModel.isLoading,
+            message: viewModel.message,
+            messageType: viewModel.messageType
+        ))
         .onAppear {
             viewModel.loadMessages(for: chat.id)
         }

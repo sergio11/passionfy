@@ -146,6 +146,7 @@
 		3D83F4912D1B30FD0039ED55 /* ChatDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D83F4902D1B30FD0039ED55 /* ChatDetailView.swift */; };
 		3D83F4932D1B384B0039ED55 /* ChatDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D83F4922D1B384B0039ED55 /* ChatDetailViewModel.swift */; };
 		3D9B70EF2D1C072700AAB7EB /* ChatCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B70EE2D1C072700AAB7EB /* ChatCellView.swift */; };
+		3D9B70F22D1C1C0A00AAB7EB /* SwipeActions in Frameworks */ = {isa = PBXBuildFile; productRef = 3D9B70F12D1C1C0A00AAB7EB /* SwipeActions */; };
 		3DBFE2DA2D1AB610004D92D8 /* MessagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2D92D1AB610004D92D8 /* MessagingViewModel.swift */; };
 		3DBFE2DC2D1AB8BD004D92D8 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2DB2D1AB8BD004D92D8 /* ChatDTO.swift */; };
 		3DBFE2DE2D1AB8F9004D92D8 /* MessageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFE2DD2D1AB8F9004D92D8 /* MessageDTO.swift */; };
@@ -396,6 +397,7 @@
 				3DC9D0AC2D033A2F00F41DED /* Kingfisher in Frameworks */,
 				3D185DBB2D0329B8009A4935 /* FirebaseFirestoreSwift in Frameworks */,
 				3D185DB92D0329B8009A4935 /* FirebaseFirestore in Frameworks */,
+				3D9B70F22D1C1C0A00AAB7EB /* SwipeActions in Frameworks */,
 				3D185DB72D0329B8009A4935 /* FirebaseAuth in Frameworks */,
 				3D185DB42D03285D009A4935 /* Factory in Frameworks */,
 				3D185DBD2D0329B8009A4935 /* FirebaseStorage in Frameworks */,
@@ -1116,6 +1118,7 @@
 				3D185DBA2D0329B8009A4935 /* FirebaseFirestoreSwift */,
 				3D185DBC2D0329B8009A4935 /* FirebaseStorage */,
 				3DC9D0AB2D033A2F00F41DED /* Kingfisher */,
+				3D9B70F12D1C1C0A00AAB7EB /* SwipeActions */,
 			);
 			productName = Passionfy;
 			productReference = 3DC37E142CF78F6200E7FB1B /* Passionfy.app */;
@@ -1149,6 +1152,7 @@
 				3D185DB22D03285D009A4935 /* XCRemoteSwiftPackageReference "Factory" */,
 				3D185DB52D0329B8009A4935 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				3DC9D0AA2D033A2F00F41DED /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				3D9B70F02D1C1C0A00AAB7EB /* XCRemoteSwiftPackageReference "SwipeActions" */,
 			);
 			productRefGroup = 3DC37E152CF78F6200E7FB1B /* Products */;
 			projectDirPath = "";
@@ -1582,6 +1586,14 @@
 				minimumVersion = 10.0.21;
 			};
 		};
+		3D9B70F02D1C1C0A00AAB7EB /* XCRemoteSwiftPackageReference "SwipeActions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/c-villain/SwipeActions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.1;
+			};
+		};
 		3DC9D0AA2D033A2F00F41DED /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1617,6 +1629,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3D185DB52D0329B8009A4935 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		3D9B70F12D1C1C0A00AAB7EB /* SwipeActions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D9B70F02D1C1C0A00AAB7EB /* XCRemoteSwiftPackageReference "SwipeActions" */;
+			productName = SwipeActions;
 		};
 		3DC9D0AB2D033A2F00F41DED /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
