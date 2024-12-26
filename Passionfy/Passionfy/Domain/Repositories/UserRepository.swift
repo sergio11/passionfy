@@ -66,4 +66,11 @@ protocol UserRepository {
     /// - Returns: An array of user  that the user has matched with.
     /// - Throws: An error if the operation fails.
     func getUserMatches(userId: String) async throws -> [User]
+    
+    /// Cancels a match between two users by removing both users from each other's liked list.
+    /// - Parameters:
+    ///   - userId: The ID of the user who wants to cancel the match.
+    ///   - targetUserId: The ID of the user whose match is being canceled.
+    /// - Throws: An error if the operation fails.
+    func cancelMatch(userId: String, targetUserId: String) async throws
 }

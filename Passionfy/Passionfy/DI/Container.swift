@@ -80,7 +80,7 @@ extension Container {
     }
         
     var userProfileRepository: Factory<UserRepository> {
-        self { UserRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), userMatchDataSource: self.userMatchDataSource(), userMapper: self.userMapper(), createUserMapper: self.createUserMapper(), updateUserMapper: self.updateUserMapper()) }.singleton
+        self { UserRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), reportedUsersDataSource: self.reportedUsersDataSource(), authDataSource: self.authenticationDataSource(), userMatchDataSource: self.userMatchDataSource(), messagingDataSource: self.messagingDataSource(), userMapper: self.userMapper(), createUserMapper: self.createUserMapper(), updateUserMapper: self.updateUserMapper()) }.singleton
     }
         
     var updateUserUseCase: Factory<UpdateUserUseCase> {
@@ -113,15 +113,19 @@ extension Container {
     }
     
     var getUserMatchesUseCase: Factory<GetUserMatchesUseCase> {
-        self { GetUserMatchesUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+        self { GetUserMatchesUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }.singleton
     }
     
     var likeUserUseCase: Factory<LikeUserUseCase> {
-        self { LikeUserUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+        self { LikeUserUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }.singleton
     }
     
     var dislikeUserUseCase: Factory<DislikeUserUseCase> {
-        self { DislikeUserUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+        self { DislikeUserUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }.singleton
+    }
+    
+    var cancelMatchUseCase: Factory<CancelMatchUseCase> {
+        self { CancelMatchUseCase(userRepository: self.userProfileRepository(), authenticationRepository: self.authenticationRepository()) }.singleton
     }
 }
 
@@ -195,7 +199,7 @@ extension Container {
     }
     
     var reportedUsersRepository: Factory<ReportedUsersRepository> {
-        self { ReportedUsersRepositoryImpl(reportedUsersDataSource: self.reportedUsersDataSource(), reportUserMapper: self.reportUserMapper()) }.singleton
+        self { ReportedUsersRepositoryImpl(reportedUsersDataSource: self.reportedUsersDataSource(), messagingDataSource: self.messagingDataSource(), userMatchDataSource: self.userMatchDataSource(), reportUserMapper: self.reportUserMapper()) }.singleton
     }
     
     var reportUserUseCase: Factory<ReportUserUseCase> {

@@ -155,4 +155,34 @@ internal class FirestoreUserMatchDataSourceImpl: UserMatchDataSource {
         
         return []
     }
+    
+    /// Cancels a match between two users by removing both users from each other's liked list.
+    /// - Parameters:
+    ///   - userId: The ID of the user who wants to cancel the match.
+    ///   - targetUserId: The ID of the user whose match is being canceled.
+    /// - Throws: An error if the operation fails.
+    func cancelMatch(userId: String, targetUserId: String) async throws {
+        let db = Firestore.firestore()
+        let batch = db.batch()
+            
+        let userMatchRef = db.collection(matchesCollection).document(userId)
+        let targetUserMatchRef = db.collection(matchesCollection).document(targetUserId)
+            
+        // Prepare the operations for both users:
+        batch.updateData([
+            "likedUsers": FieldValue.arrayRemove([targetUserId]),
+            "dislikedUsers": FieldValue.arrayRemove([targetUserId])
+        ], forDocument: userMatchRef)
+            
+        batch.updateData([
+            "likedUsers": FieldValue.arrayRemove([userId]),
+            "dislikedUsers": FieldValue.arrayRemove([userId])
+        ], forDocument: targetUserMatchRef)
+            
+        do {
+            try await batch.commit()
+        } catch {
+            throw UserMatchDataSourceException.cancelMatchFailed(message: "Failed to cancel match between \(userId) and \(targetUserId).", cause: error)
+        }
+    }
 }

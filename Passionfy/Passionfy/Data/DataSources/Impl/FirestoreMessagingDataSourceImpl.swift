@@ -86,7 +86,7 @@ internal class FirestoreMessagingDataSourceImpl: MessagingDataSource {
             try await deleteAllMessages(forChatId: chatId)
         } catch {
             print("Error deleting chat: \(error.localizedDescription)")
-            throw MessagingDataSourceException.chatNotFound(message: "Error deleting chat: \(error.localizedDescription)", cause: error)
+            throw MessagingDataSourceException.chatDeletedFailed(message: "Error deleting chat: \(error.localizedDescription)", cause: error)
         }
     }
 
@@ -243,6 +243,35 @@ internal class FirestoreMessagingDataSourceImpl: MessagingDataSource {
         } catch {
             print("Error counting unread messages: \(error.localizedDescription)")
             throw MessagingDataSourceException.messagesRetrievalFailed(message: "Error counting unread messages: \(error.localizedDescription)", cause: error)
+        }
+    }
+    
+    /// Deletes a chat and all the messages for the given user IDs.
+    /// - Parameters:
+    ///   - userId: The ID of the first user in the chat.
+    ///   - targetUserId: The ID of the second user in the chat.
+    /// - Throws: An error if the operation fails, including failure to find the chat or delete the messages.
+    func deleteChatAndMessages(forUserId userId: String, targetUserId: String) async throws {
+        do {
+            let collection = Firestore.firestore().collection(chatsCollection)
+            let userChats = try await getChats(forUserId: userId)
+
+            guard let chat = userChats.first(where: { chat in
+                chat.participantIds.contains(userId) && chat.participantIds.contains(targetUserId)
+            }) else {
+                throw MessagingDataSourceException.chatNotFound(
+                    message: "No chat found between \(userId) and \(targetUserId).",
+                    cause: nil
+                )
+            }
+            try await deleteAllMessages(forChatId: chat.id)
+            try await collection.document(chat.id).delete()
+        } catch {
+            print("Unexpected error deleting chat and messages: \(error.localizedDescription)")
+            throw MessagingDataSourceException.chatDeletedFailed(
+                message: "Unexpected error deleting chat and messages between \(userId) and \(targetUserId).",
+                cause: error
+            )
         }
     }
 }

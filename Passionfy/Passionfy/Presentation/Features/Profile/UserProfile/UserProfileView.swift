@@ -11,8 +11,9 @@ struct UserProfileView: View {
     
     @Environment(\.dismiss) var dismiss
     @StateObject private var viewModel = UserProfileViewModel()
-    
+
     let user: User
+    var onUserReported: (() -> Void)? = nil
     
     var body: some View {
         VStack {
@@ -58,6 +59,7 @@ struct UserProfileView: View {
         .onReceive(viewModel.$userReported) { isUserReported in
             if isUserReported {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    onUserReported?()
                     dismiss()
                 }
             }

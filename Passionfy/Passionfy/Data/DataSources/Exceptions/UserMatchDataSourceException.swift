@@ -15,4 +15,7 @@ enum UserMatchDataSourceException: Error {
     
     /// Error indicating that the dislike operation failed.
     case dislikeUserFailed(message: String, cause: Error?)
+    
+    /// Error indicating that the cancel match operation failed.
+    case cancelMatchFailed(message: String, cause: Error?)
 }

@@ -29,6 +29,9 @@ struct ChatDetailView: View {
                 },
                 onDeleteChat: {
                     viewModel.onDeleteChat(for: chat.id)
+                },
+                onCancelMatch: {
+                    viewModel.onCancelMatch(for: chat.otherUser.id)
                 }
             )
             
@@ -75,6 +78,7 @@ private struct ChatHeader: View {
     var onOpenUserProfile: (() -> Void)? = nil
     var onDeleteAllMessages: (() -> Void)? = nil
     var onDeleteChat: (() -> Void)? = nil
+    var onCancelMatch: (() -> Void)? = nil
     
     var body: some View {
         HStack {
@@ -100,6 +104,9 @@ private struct ChatHeader: View {
             Menu {
                 Button("View Profile") {
                     onOpenUserProfile?()
+                }
+                Button("Cancel Match", role: .destructive) {
+                    onCancelMatch?()
                 }
                 Button("Delete All Messages", role: .destructive) {
                     onDeleteAllMessages?()
