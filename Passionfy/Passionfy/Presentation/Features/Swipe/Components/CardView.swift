@@ -40,7 +40,10 @@ struct CardView: View {
             onReceiveSwipeAction(action)
         })
         .fullScreenCover(isPresented: $showProfileModal) {
-            UserProfileView(user: user)
+            UserProfileView(
+                user: user,
+                onUserReported: discardUser
+            )
         }
         .frame(width: SizeConstants.cardWidth, height: SizeConstants.cardHeight)
         .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -72,6 +75,16 @@ private extension CardView {
         withAnimation(.spring()) {
             xOffset = 0
             degrees = 0
+        }
+    }
+    
+    func discardUser() {
+        withAnimation(.spring()) {
+            xOffset = -500
+            degrees = -12
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            viewModel.onUserReported(withCard: model)
         }
     }
     

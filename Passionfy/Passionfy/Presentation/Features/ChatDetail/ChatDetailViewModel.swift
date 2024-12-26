@@ -14,9 +14,10 @@ class ChatDetailViewModel: BaseViewModel {
     
     @Injected(\.deleteChatUseCase) private var deleteChatUseCase: DeleteChatUseCase
     @Injected(\.deleteAllMessageUseCase) private var deleteAllMessageUseCase: DeleteAllMessageUseCase
-    @Injected(\.deleteMessageUseCase) private var DeleteMessageUseCase: DeleteMessageUseCase
+    @Injected(\.deleteMessageUseCase) private var deleteMessageUseCase: DeleteMessageUseCase
     @Injected(\.getChatMessagesUseCase) private var getChatMessagesUseCase: GetChatMessagesUseCase
     @Injected(\.createChatMessageUseCase) private var createChatMessageUseCase: CreateChatMessageUseCase
+    @Injected(\.cancelMatchUseCase) private var cancelMatchUseCase: CancelMatchUseCase
     
     @Published var messageText: String = ""
     @Published var messages: [ChatMessage] = []
@@ -59,9 +60,20 @@ class ChatDetailViewModel: BaseViewModel {
         }
     }
     
+    func onCancelMatch(for userId: String) {
+        executeAsyncTask {
+            return try await self.cancelMatchUseCase.execute(params: CancelMatchParams(targetUserId: userId))
+        } completion: { [weak self] result in
+            guard let self = self else { return }
+            if case .success = result {
+                self.onMatchCancelled()
+            }
+        }
+    }
+    
     func onDeleteMessage(chatId: String, messageId: String) {
         executeAsyncTask {
-            return try await self.DeleteMessageUseCase.execute(params: DeleteMessageParams(chatId: chatId, messageId: messageId))
+            return try await self.deleteMessageUseCase.execute(params: DeleteMessageParams(chatId: chatId, messageId: messageId))
         } completion: { [weak self] result in
             guard let self = self else { return }
             if case .success = result {
@@ -96,5 +108,9 @@ class ChatDetailViewModel: BaseViewModel {
     
     private func onChatMessageDeleted(messageId: String) {
         self.messages = messages.filter({ $0.id != messageId })
+    }
+    
+    private func onMatchCancelled() {
+        self.chatDeleted = true
     }
 }

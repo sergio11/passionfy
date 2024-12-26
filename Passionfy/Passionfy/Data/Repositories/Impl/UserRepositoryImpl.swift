@@ -8,17 +8,48 @@
 import Foundation
 
 /// Class responsible for managing user profile-related operations.
+///
+/// This class provides functionality to handle various user profile operations such as creating a new user,
+/// updating user information, uploading files (e.g., profile pictures), managing user matches, reporting users,
+/// and performing authentication-related tasks. It interacts with multiple data sources for handling different aspects
+/// of the user profile system, including user data, file storage, user matching, and messaging.
+///
+/// The class also uses mappers to transform data between domain models and data models.
 internal class UserRepositoryImpl: UserRepository {
     
+    // MARK: - Properties
+
+    /// The data source responsible for handling user-related operations, such as fetching and updating user data.
     private let userDataSource: UserDataSource
-    private let userMatchDataSource: UserMatchDataSource
+    
+    /// The data source for managing file storage, typically for handling image uploads (e.g., profile pictures).
     private let storageFilesDataSource: StorageFilesDataSource
-        
-    // Mappers for transforming user data between domain and data models
+    
+    /// The data source for managing reported users.
+    private let reportedUsersDataSource: ReportedUsersDataSource
+    
+    /// The data source for performing authentication-related operations, such as login and registration.
+    private let authDataSource: AuthenticationDataSource
+    
+    /// The data source responsible for managing user interactions like "likes", "dislikes", and determining matches.
+    private let userMatchDataSource: UserMatchDataSource
+    
+    /// The data source for handling messaging-related tasks (e.g., chats and messages).
+    private let messagingDataSource: MessagingDataSource
+
+    // MARK: - Mappers
+
+    /// A mapper used to transform raw user data into domain objects (e.g., `User` objects).
     private let userMapper: UserMapper
+    
+    /// A mapper used to transform data from the domain layer to the data layer when creating a new user.
     private let createUserMapper: CreateUserMapper
+    
+    /// A mapper used to transform data from the domain layer to the data layer when updating an existing user's profile.
     private let updateUserMapper: UpdateUserMapper
-        
+    
+    // MARK: - Initializer
+
     /// Initializes the `UserRepositoryImpl` class with the necessary dependencies.
     ///
     /// This constructor is used to inject all the required data sources and mappers that the `UserRepositoryImpl` class needs
@@ -28,21 +59,28 @@ internal class UserRepositoryImpl: UserRepository {
     /// - Parameters:
     ///   - userDataSource: The data source responsible for handling user-related operations, such as fetching and updating user data.
     ///   - storageFilesDataSource: The data source for managing file storage, typically for handling image uploads.
+    ///   - reportedUsersDataSource: The data source for reported users.
+    ///   - authDataSource: The data source for performing auth-related operations.
     ///   - userMatchDataSource: The data source responsible for managing user interactions like "likes" and "dislikes", and determining matches.
-    ///   - userMapper: A mapper used to transform raw user data into domain objects (e.g., User objects).
+    ///   - userMapper: A mapper used to transform raw user data into domain objects (e.g., `User` objects).
     ///   - createUserMapper: A mapper used to transform data from the domain layer to the data layer when creating a new user.
     ///   - updateUserMapper: A mapper used to transform data from the domain layer to the data layer when updating an existing user's profile.
-
     init(
         userDataSource: UserDataSource,
         storageFilesDataSource: StorageFilesDataSource,
+        reportedUsersDataSource: ReportedUsersDataSource,
+        authDataSource: AuthenticationDataSource,
         userMatchDataSource: UserMatchDataSource,
+        messagingDataSource: MessagingDataSource,
         userMapper: UserMapper,
         createUserMapper: CreateUserMapper,
         updateUserMapper: UpdateUserMapper
     ) {
         self.userDataSource = userDataSource
         self.storageFilesDataSource = storageFilesDataSource
+        self.reportedUsersDataSource = reportedUsersDataSource
+        self.authDataSource = authDataSource
+        self.messagingDataSource = messagingDataSource
         self.userMatchDataSource = userMatchDataSource
         self.userMapper = userMapper
         self.createUserMapper = createUserMapper
@@ -136,9 +174,19 @@ internal class UserRepositoryImpl: UserRepository {
     /// - Throws: An error if fetching suggestions or determining interest fails.
     func getSuggestions(authUserId: String) async throws -> [User] {
         do {
+            // Fetch users reported by the authenticated user
+            let reportedUsers = try await reportedUsersDataSource.getUsersReportedBy(userId: authUserId)
+            // Fetch users who have reported the authenticated user
+            let blockedBy = try await reportedUsersDataSource.getUsersWhoReported(userId: authUserId)
+            
             // Fetch the authenticated user's data
             let data = try await userDataSource.getUserById(userId: authUserId)
             let authUserData = userMapper.map(data)
+            
+            // Fetch the user's matches
+            let userMatches = try await userMatchDataSource.getUserMatches(userId: authUserId)
+        
+            let ignoredUserIds = Set(reportedUsers + blockedBy + userMatches)
             
             // Determine the target gender and interest for matching
             guard let targetGender = determineTargetGender(for: authUserData.interest) else {
@@ -146,16 +194,14 @@ internal class UserRepositoryImpl: UserRepository {
             }
             let targetInterest = determineTargetInterest(for: authUserData.gender)
             
-            print("getSuggestions -> authUserId: \(authUserId) - targetGender: \(targetGender) - targetInterest: \(String(describing: targetInterest))")
-            
             let suggestedUserData = try await userDataSource.getSuggestions(
                 authUserId: authUserId,
                 targetGender: targetGender,
                 targetInterest: targetInterest,
-                ignoredUserIds: [] // TODO: Add logic for ignored user IDs
+                ignoredUserIds: ignoredUserIds
             )
-            // Map and return the filtered suggestions
             return suggestedUserData.map { userMapper.map($0) }
+            
         } catch {
             print("Error fetching suggestions: \(error.localizedDescription)")
             throw UserException.suggestionFetchFailed(message: "Error fetching suggestions", cause: error)
@@ -169,7 +215,14 @@ internal class UserRepositoryImpl: UserRepository {
     /// - Throws: An error if the search operation fails.
     func searchUsers(searchTerm: String) async throws -> [User] {
         do {
-            let result = try await userDataSource.searchUsers(searchTerm: searchTerm)
+            let authUserId = try await authDataSource.getCurrentUserId()
+            let reportedUsers = try await reportedUsersDataSource.getUsersReportedBy(userId: authUserId)
+            let blockedBy = try await reportedUsersDataSource.getUsersWhoReported(userId: authUserId)
+            let ignoredUserIds = Set(reportedUsers + blockedBy + [authUserId])
+            let result = try await userDataSource.searchUsers(
+                searchTerm: searchTerm,
+                ignoredUserIds: ignoredUserIds
+            )
             return result.map { userMapper.map($0) }
         } catch {
             throw UserException.searchUsersFailed(message: "An error ocurred when trying to search users", cause: error)
@@ -210,10 +263,28 @@ internal class UserRepositoryImpl: UserRepository {
     func getUserMatches(userId: String) async throws -> [User] {
         do {
             let userIds = try await userMatchDataSource.getUserMatches(userId: userId)
-            let userDataList = try await userDataSource.getUserByIdList(userIds: userIds)
-            return userDataList.map { userMapper.map($0) }
+            if !userIds.isEmpty {
+                let userDataList = try await userDataSource.getUserByIdList(userIds: userIds)
+                return userDataList.map { userMapper.map($0) }
+            } else {
+                return []
+            }
         } catch {
             throw UserException.fetchMatchesFailed(message: "Failed to fetch user matches.", cause: error)
+        }
+    }
+    
+    /// Cancels a match between two users by removing both users from each other's liked list.
+    /// - Parameters:
+    ///   - userId: The ID of the user who wants to cancel the match.
+    ///   - targetUserId: The ID of the user whose match is being canceled.
+    /// - Throws: An error if the operation fails.
+    func cancelMatch(userId: String, targetUserId: String) async throws {
+        do {
+            try await userMatchDataSource.cancelMatch(userId: userId, targetUserId: targetUserId)
+            try await messagingDataSource.deleteChatAndMessages(forUserId: userId, targetUserId: targetUserId)
+        } catch {
+            throw UserException.cancelMatchFailed(message: "Failed to cancel match.", cause: error)
         }
     }
 

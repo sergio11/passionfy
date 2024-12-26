@@ -51,8 +51,10 @@ protocol UserDataSource {
     
     /// Searches for users based on a provided search term asynchronously.
     ///
-    /// - Parameter searchTerm: A string representing the term to search for (e.g., username).
+    /// - Parameters:
+    ///   - searchTerm: A string representing the term to search for (e.g., username).
+    ///   - ignoredUserIds: A set of user IDs to exclude from the suggestions (e.g., matches, blocked users).
     /// - Returns: An array of `UserDTO` objects that match the search criteria.
     /// - Throws: An error if the search operation fails, including errors specified in `UserDataSourceError`.
-    func searchUsers(searchTerm: String) async throws -> [UserDTO]
+    func searchUsers(searchTerm: String, ignoredUserIds: Set<String>) async throws -> [UserDTO]
 }

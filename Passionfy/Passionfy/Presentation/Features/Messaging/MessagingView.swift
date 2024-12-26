@@ -80,41 +80,68 @@ private struct UserMatchesView: View {
                 .padding(.bottom, 8)
                 .padding(.horizontal)
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 16) {
-                    ForEach(matches) { match in
-                        VStack {
-                            Spacer()
-                            
-                            CircularProfileImageView(
-                                profileImageUrl: match.profileImageUrls[0],
-                                size: .xLarge,
-                                allowShadow: false
-                            )
-                            .padding(4)
-                            .background(
-                                Circle()
-                                    .fill(Color.white)
-                            )
-                            .overlay(Circle().stroke(Color.pink, lineWidth: 2))
+            if matches.isEmpty {
+                EmptyStateViewForMatches()
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+                        ForEach(matches) { match in
+                            VStack {
+                                Spacer()
+                                
+                                CircularProfileImageView(
+                                    profileImageUrl: match.profileImageUrls[0],
+                                    size: .xLarge,
+                                    allowShadow: false
+                                )
+                                .padding(4)
+                                .background(
+                                    Circle()
+                                        .fill(Color.white)
+                                )
+                                .overlay(Circle().stroke(Color.pink, lineWidth: 2))
 
-                            Text(match.username)
-                                .customFont(.medium, 16)
-                                .lineLimit(1)
-                                .foregroundColor(.gray)
-                            
-                            Spacer()
-                        }
-                        .padding(.leading, match.id == matches.first?.id ? 16 : 0)
-                        .padding(.bottom, 4)
-                        .onTapGesture {
-                            onMatchClicked?(match)
+                                Text(match.username)
+                                    .customFont(.medium, 16)
+                                    .lineLimit(1)
+                                    .foregroundColor(.gray)
+                                
+                                Spacer()
+                            }
+                            .padding(.leading, match.id == matches.first?.id ? 16 : 0)
+                            .padding(.bottom, 4)
+                            .onTapGesture {
+                                onMatchClicked?(match)
+                            }
                         }
                     }
                 }
+                .frame(height: 140)
             }
-            .frame(height: 140)
         }
+    }
+}
+
+private struct EmptyStateViewForMatches: View {
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "heart.fill")
+                .font(.system(size: 40))
+                .foregroundColor(.pink)
+            
+            Text("It seems you haven't matched with anyone yet... 💖")
+                .customFont(.bold, 20)
+                .foregroundColor(.pink)
+                .multilineTextAlignment(.center)
+            
+            Text("Swipe, explore, and start finding some amazing people to match with!")
+                .customFont(.regular, 16)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+        }
+        .padding(.horizontal)
     }
 }
 

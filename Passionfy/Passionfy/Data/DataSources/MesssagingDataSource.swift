@@ -76,5 +76,12 @@ protocol MessagingDataSource {
     /// - Returns: An array of `MessageDTO` objects representing the unread messages from the user.
     /// - Throws: An error if the operation fails.
     func getUnreadMessages(fromUser userId: String, forChatId chatId: String) async throws -> [MessageDTO]
+    
+    /// Deletes a chat and all the messages for the given user IDs.
+    /// - Parameters:
+    ///   - userId: The ID of the first user in the chat.
+    ///   - targetUserId: The ID of the second user in the chat.
+    /// - Throws: An error if the operation fails.
+    func deleteChatAndMessages(forUserId userId: String, targetUserId: String) async throws
 }
 

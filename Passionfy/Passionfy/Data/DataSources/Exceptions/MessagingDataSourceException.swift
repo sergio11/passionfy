@@ -27,4 +27,6 @@ enum MessagingDataSourceException: Error {
     case messagesRetrievalFailed(message: String, cause: Error?)
     /// Error indicating that the deletion of all messages failed.
     case deleteAllMessagesFailed(message: String, cause: Error?)
+    /// Error indicating that the deletion of the chat failed.
+    case chatDeletedFailed(message: String, cause: Error?)
 }

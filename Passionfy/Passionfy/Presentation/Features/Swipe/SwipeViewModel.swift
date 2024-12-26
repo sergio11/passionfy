@@ -58,6 +58,10 @@ class SwipeViewModel: BaseUserViewModel {
         removeCard(card)
     }
     
+    func onUserReported(withCard card: CardModel) {
+        removeCard(card)
+    }
+    
     func onDisliked(withCard card: CardModel) {
         executeAsyncTask {
             return try await self.dislikeUserUseCase.execute(params: DislikeUserParams(targetUserId: card.user.id))

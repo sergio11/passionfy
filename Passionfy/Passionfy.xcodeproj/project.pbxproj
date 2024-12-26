@@ -163,6 +163,7 @@
 		3D87DEB92D1D70EB0036B9C1 /* ReportUserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D87DEB82D1D70EB0036B9C1 /* ReportUserMapper.swift */; };
 		3D87DEBB2D1D71840036B9C1 /* ReportedUsersException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D87DEBA2D1D71840036B9C1 /* ReportedUsersException.swift */; };
 		3D87DEBD2D1D73E80036B9C1 /* ReportUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D87DEBC2D1D73E80036B9C1 /* ReportUserUseCase.swift */; };
+		3D87DEBF2D1D94D60036B9C1 /* CancelMatchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D87DEBE2D1D94D50036B9C1 /* CancelMatchUseCase.swift */; };
 		3D9B70EF2D1C072700AAB7EB /* ChatCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B70EE2D1C072700AAB7EB /* ChatCellView.swift */; };
 		3D9B70F22D1C1C0A00AAB7EB /* SwipeActions in Frameworks */ = {isa = PBXBuildFile; productRef = 3D9B70F12D1C1C0A00AAB7EB /* SwipeActions */; };
 		3D9B70F42D1C240900AAB7EB /* CreateChatMessageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B70F32D1C240900AAB7EB /* CreateChatMessageUseCase.swift */; };
@@ -372,6 +373,7 @@
 		3D87DEB82D1D70EB0036B9C1 /* ReportUserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUserMapper.swift; sourceTree = "<group>"; };
 		3D87DEBA2D1D71840036B9C1 /* ReportedUsersException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedUsersException.swift; sourceTree = "<group>"; };
 		3D87DEBC2D1D73E80036B9C1 /* ReportUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUserUseCase.swift; sourceTree = "<group>"; };
+		3D87DEBE2D1D94D50036B9C1 /* CancelMatchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelMatchUseCase.swift; sourceTree = "<group>"; };
 		3D9B70EE2D1C072700AAB7EB /* ChatCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCellView.swift; sourceTree = "<group>"; };
 		3D9B70F32D1C240900AAB7EB /* CreateChatMessageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatMessageUseCase.swift; sourceTree = "<group>"; };
 		3DBFE2D92D1AB610004D92D8 /* MessagingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingViewModel.swift; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 				3D83F48D2D1B1EA50039ED55 /* DeleteAllMessagesUseCase.swift */,
 				3D9B70F32D1C240900AAB7EB /* CreateChatMessageUseCase.swift */,
 				3D87DEBC2D1D73E80036B9C1 /* ReportUserUseCase.swift */,
+				3D87DEBE2D1D94D50036B9C1 /* CancelMatchUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1376,6 +1379,7 @@
 				3DBFE3042D1AE497004D92D8 /* CreateChatMessageMapper.swift in Sources */,
 				3D83F4912D1B30FD0039ED55 /* ChatDetailView.swift in Sources */,
 				3DBFE2EC2D1ABCEA004D92D8 /* CreateChatDTO+Dictionary.swift in Sources */,
+				3D87DEBF2D1D94D60036B9C1 /* CancelMatchUseCase.swift in Sources */,
 				3D185E012D0333FC009A4935 /* GetSuggestionsUseCase.swift in Sources */,
 				3D185DE82D033198009A4935 /* UserRepositoryImpl.swift in Sources */,
 				3D7B657B2D046BCA0002364F /* NumericInputModifier.swift in Sources */,

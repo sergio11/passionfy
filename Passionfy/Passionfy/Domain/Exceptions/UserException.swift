@@ -35,5 +35,8 @@ enum UserException: Error {
     
     /// Error when fetching matches fails.
     case fetchMatchesFailed(message: String, cause: Error?)
+    
+    /// Error when cancel match fails.
+    case cancelMatchFailed(message: String, cause: Error?)
 }
 

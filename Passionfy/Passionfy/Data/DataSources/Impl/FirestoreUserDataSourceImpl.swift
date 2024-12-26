@@ -153,15 +153,19 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
         }
     }
     
-    /// Searches for users based on a search term in their username or full name.
-    /// - Parameter searchTerm: A string representing the term to search for (e.g., username, full name).
+    /// Searches for users based on a provided search term asynchronously.
+    ///
+    /// - Parameters:
+    ///   - searchTerm: A string representing the term to search for (e.g., username).
+    ///   - ignoredUserIds: A set of user IDs to exclude from the suggestions (e.g., matches, blocked users).
     /// - Returns: An array of `UserDTO` objects that match the search criteria.
-    /// - Throws: An error if the search operation fails.
-    func searchUsers(searchTerm: String) async throws -> [UserDTO] {
+    /// - Throws: An error if the search operation fails, including errors specified in `UserDataSourceError`.
+    func searchUsers(searchTerm: String, ignoredUserIds: Set<String>) async throws -> [UserDTO] {
         let firestore = Firestore.firestore()
         do {
             async let usernameSnapshot = firestore
                 .collection(usersCollection)
+                .whereField("userId", notIn: Array(ignoredUserIds))
                 .whereField("username", isGreaterThanOrEqualTo: searchTerm)
                 .whereField("username", isLessThanOrEqualTo: searchTerm + "\u{f8ff}")
                 .getDocuments()
