@@ -182,6 +182,27 @@ extension Container {
     }
 }
 
+// MARK: Reported users
+
+extension Container {
+    
+    var reportUserMapper: Factory<ReportUserMapper> {
+        self { ReportUserMapper() }.singleton
+    }
+    
+    var reportedUsersDataSource: Factory<ReportedUsersDataSource> {
+        self { FirestoreReportedUsersDataSourceImpl() }.singleton
+    }
+    
+    var reportedUsersRepository: Factory<ReportedUsersRepository> {
+        self { ReportedUsersRepositoryImpl(reportedUsersDataSource: self.reportedUsersDataSource(), reportUserMapper: self.reportUserMapper()) }.singleton
+    }
+    
+    var reportUserUseCase: Factory<ReportUserUseCase> {
+        self { ReportUserUseCase(reportedUsersDataSource: self.reportedUsersDataSource(), authRepository: self.authenticationRepository()) }.singleton
+    }
+}
+
 // MARK: Utils
 
 extension Container {
