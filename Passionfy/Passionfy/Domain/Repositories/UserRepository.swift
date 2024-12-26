@@ -10,9 +10,16 @@ import Foundation
 /// A repository for user profile-related operations.
 protocol UserRepository {
    
+    /// Updates user information asynchronously.
+    /// - Parameter data: An `UpdateUser` object containing the updated user details.
+    /// - Returns: A `User` object representing the updated user.
+    /// - Throws: An error if the update operation fails.
     func updateUser(data: UpdateUser) async throws -> User
 
-    // Creates a new user asynchronously.
+    /// Creates a new user asynchronously.
+    /// - Parameter data: A `CreateUser` object containing the details of the new user.
+    /// - Returns: A `User` object representing the created user.
+    /// - Throws: An error if the user creation fails.
     func createUser(data: CreateUser) async throws -> User
 
     /// Retrieves user information asynchronously.

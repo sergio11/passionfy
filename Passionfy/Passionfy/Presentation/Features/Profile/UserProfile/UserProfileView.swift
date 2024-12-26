@@ -6,163 +6,75 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct UserProfileView: View {
     
     @Environment(\.dismiss) var dismiss
-    @State private var currentImageIndex = 0
+    @StateObject private var viewModel = UserProfileViewModel()
     
     let user: User
     
     var body: some View {
         VStack {
-            HeaderView(user: user, dismiss: dismiss)
+            UserProfileHeaderView(user: user, dismiss: dismiss)
                 .padding(.horizontal)
             
             ScrollView {
                 VStack(spacing: 16) {
-                    ProfileImageCarousel(user: user, currentImageIndex: $currentImageIndex)
+                    UserProfileImageCarouselView(user: user, currentImageIndex: $viewModel.currentImageIndex)
                     
-                    InfoSection(title: "About Me") {
+                    UserProfileInfoSectionView(title: "About Me") {
                         Text(user.bio.isEmpty ? "Prefers to keep it mysterious..." : user.bio)
                             .customFont(.medium, 14)
                             .foregroundColor(.primary)
                     }
                     
-                    InfoSection(title: "Essentials") {
-                        ProfileInfoRow(icon: "person", title: user.gender.rawValue)
-                        ProfileInfoRow(icon: "arrow.down.forward.and.arrow.up.backward.circle", title: user.preference.rawValue)
-                        ProfileInfoRow(icon: "book", title: user.occupation)
-                        ProfileInfoRow(icon: "mappin.and.ellipse", title: "\(user.city), \(user.country)")
+                    UserProfileInfoSectionView(title: "Essentials") {
+                        UserProfileInfoRowView(icon: "person", title: user.gender.rawValue)
+                        UserProfileInfoRowView(icon: "arrow.down.forward.and.arrow.up.backward.circle", title: user.preference.rawValue)
+                        UserProfileInfoRowView(icon: "book", title: user.occupation)
+                        UserProfileInfoRowView(icon: "mappin.and.ellipse", title: "\(user.city), \(user.country)")
                     }
                     
-                    InfoSection(title: "Interests") {
-                        ProfileInfoRow(icon: "star", title: user.interest.rawValue)
+                    UserProfileInfoSectionView(title: "Interests") {
+                        UserProfileInfoRowView(icon: "star", title: user.interest.rawValue)
                     }
                     
-                    InfoSection(title: "Hobbies") {
-                        HobbiesRow(hobbies: user.hobbies)
+                    UserProfileInfoSectionView(title: "Hobbies") {
+                        UserProfileHobbiesRowView(hobbies: user.hobbies)
                     }
+                    
+                    ActionButtonView(
+                        title: "Report User",
+                        mode: .outlined
+                    ) {
+                        viewModel.showReportSheet = true
+                    }.padding(.bottom)
                 }
                 .padding(.horizontal)
             }
         }
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
-    }
-}
-
-private struct HeaderView: View {
-    let user: User
-    let dismiss: DismissAction
-    
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(user.username)
-                    .customFont(.semiBold, 20)
-                
-                if let birthdate = user.birthdate.toDate() {
-                    Text("\(birthdate.age) years old")
-                        .customFont(.regular, 18)
-                        .foregroundColor(.secondary)
+        .onReceive(viewModel.$userReported) { isUserReported in
+            if isUserReported {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    dismiss()
                 }
             }
-            
-            Spacer()
-            
-            Button {
-                dismiss()
-            } label: {
-                Image(systemName: "arrow.down.circle.fill")
-                    .imageScale(.large)
-                    .fontWeight(.bold)
-                    .foregroundStyle(.pink)
+        }
+        .modifier(LoadingAndMessageOverlayModifier(
+            isLoading: $viewModel.isLoading,
+            message: viewModel.message,
+            messageType: viewModel.messageType,
+            duration: 3.0
+        ))
+        .sheet(isPresented: $viewModel.showReportSheet) {
+            ReportUserSheet(isPresented: $viewModel.showReportSheet) { reason in
+                viewModel.onUserReported(userId: user.id, reason: reason)
             }
         }
     }
 }
-
-private struct ProfileImageCarousel: View {
-    let user: User
-    @Binding var currentImageIndex: Int
-    
-    var body: some View {
-        ZStack(alignment: .top) {
-            KFImage(URL(string: user.profileImageUrls[currentImageIndex]))
-                .resizable()
-                .scaledToFill()
-                .frame(width: SizeConstants.cardWidth, height: SizeConstants.cardHeight)
-                .overlay {
-                    ImageScrollingOverlay(currentImageIndex: $currentImageIndex, imageCount: user.profileImageUrls.count)
-                }
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-            
-            CardImageIndicatorView(currentImageIndex: currentImageIndex, imageCount: user.profileImageUrls.count)
-        }
-    }
-}
-
-private struct InfoSection<Content: View>: View {
-    let title: String
-    let content: Content
-    
-    init(title: String, @ViewBuilder content: () -> Content) {
-        self.title = title
-        self.content = content()
-    }
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(title)
-                .customFont(.semiBold, 16)
-            
-            content
-        }
-        .padding()
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-    }
-}
-
-private struct ProfileInfoRow: View {
-    let icon: String
-    let title: String
-    
-    var body: some View {
-        HStack {
-            Image(systemName: icon)
-                .foregroundColor(.pink)
-            
-            Text(title)
-                .customFont(.medium, 14)
-                .foregroundColor(.primary)
-            
-            Spacer()
-        }
-    }
-}
-
-private struct HobbiesRow: View {
-    let hobbies: [String]
-    
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 10) {
-                ForEach(hobbies, id: \.self) { hobby in
-                    Text(hobby)
-                        .customFont(.medium, 14)
-                        .padding(10)
-                        .background(Color.pink.opacity(0.2))
-                        .foregroundColor(.pink)
-                        .cornerRadius(20)
-                }
-            }
-        }
-        .frame(height: 40)
-    }
-}
-
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
