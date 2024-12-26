@@ -140,6 +140,10 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 <img width="260px" align="left" src="doc/screenshots/picture_62.png" />
 <img width="260px" src="doc/screenshots/picture_63.png" />
 
+<img width="260px" align="left" src="doc/screenshots/picture_64.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_65.png" />
+<img width="260px" src="doc/screenshots/picture_66.png" />
+
 ## Contributing 🤝
 
 Contributions are welcome! If you'd like to contribute to Passionfy, please fork the repository and create a pull request with your changes.
