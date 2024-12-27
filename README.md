@@ -90,6 +90,77 @@ Passionfy leverages modern technologies and best practices to deliver a seamless
 
 ✨ With Passionfy, we’re bringing people closer while delivering a flawless, cutting-edge experience. 💕  
 
+## 🏗️ Architecture  
+
+**Passionfy** is designed with a modern **MVVM (Model-View-ViewModel)** pattern enhanced by **Clean Architecture** principles. This ensures a scalable, maintainable, and testable application structure while delivering an exceptional user experience.  
+
+
+### MVVM + Clean Architecture  
+
+#### MVVM:  
+- **Model**: Represents the app’s core data structures, such as `User`, `Chat`, and `ChatMessage`.  
+- **View**: Composed of SwiftUI views like `UserProfileView`, `ExploreView`, and `ChatDetailView`, responsible for presenting the user interface.  
+- **ViewModel**: Acts as the bridge between the View and the business logic. The ViewModel transforms raw data into a format suitable for display and interacts with use cases to fetch and process data.  
+
+#### Clean Architecture Layers:  
+1. **Use Case Layer**:  
+   - Contains the app’s core business logic, encapsulating user actions such as creating a profile, searching for matches, swiping, and chatting.  
+   - Examples: `CreateChatUseCase`, `GetUserMatchesUseCase`, and `GetSuggestionsUseCase`.  
+
+2. **Repository Layer**:  
+   - Abstracts data-fetching and manipulation logic, providing a unified API for accessing user profiles, matches, and chats.  
+   - Examples: `UserRepository`, `MessagingRepository`, and `AuthenticationRepository`.  
+   - Interacts with external services like Firebase through well-defined interfaces, ensuring loose coupling.  
+
+3. **Data Source Layer**:  
+   - Manages communication with external services such as Firebase, handling tasks like reading and writing data.  
+   - Examples: `UserMatchDataSource` and `AuthenticationDataSource`.  
+   - Abstracts Firebase operations to simplify testing and scalability.  
+
+### SwiftUI + Combine  
+
+Passionfy takes full advantage of **SwiftUI** for its declarative UI framework, enabling dynamic and reactive interfaces. Paired with **Combine**, it ensures seamless state management and real-time updates, particularly for features like:  
+- User profile updates.  
+- Live chat functionality.  
+- Dynamic match recommendations and swiping interactions.  
+
+This combination guarantees a smooth and interactive user experience.  
+
+### Inversion of Control (IoC) and Factory Pattern  
+
+Passionfy employs an **IoC (Inversion of Control) container** along with the **Factory** design pattern for:  
+- Managing dependency injection.  
+- Simplifying class interactions by injecting required services (repositories, use cases, etc.) where needed.  
+- Enhancing modularity and testability, making the app flexible for future growth.  
+
+### Firebase Integration  
+
+Passionfy leverages **Firebase** for its backend, offering real-time synchronization, scalability, and secure data management. All Firebase interactions are abstracted through repositories and data sources, ensuring the app is maintainable and testable.  
+
+- **Firestore**: A NoSQL database for storing user profiles, chats, matches, and reports. Enables real-time updates for chat and swipe interactions.  
+- **Firebase Authentication**: Provides secure login using OTP (One-Time Password) for a simple and safe sign-in experience.  
+- **Firebase Storage**: Manages user-uploaded profile pictures, ensuring efficient and reliable image handling.  
+
+## ⚙️ Technologies Used  
+
+### Core Frameworks and Libraries  
+- **SwiftUI**: A declarative framework for building the app's responsive and elegant user interface.  
+- **Combine**: Powers reactive programming and state management, ensuring real-time data binding between the UI and backend.  
+- **Firebase**: Backend as a Service (BaaS) for real-time data storage, authentication, and media handling.  
+
+### Supporting Libraries  
+- **Kingfisher**: Efficiently downloads and caches user profile images.  
+- **SwipeActions**: Enhances UX with intuitive swipe gestures for user interactions, like reporting or blocking profiles.  
+
+## 🛠️ Why This Architecture?  
+
+- **Scalability**: Clean separation of concerns allows new features to be added with minimal impact on existing functionality.  
+- **Maintainability**: Decoupled components make debugging and updating code straightforward.  
+- **Testability**: Abstracted layers (repositories and data sources) make unit and integration testing easier.  
+
+By combining modern tools, best practices, and a user-centric approach, Passionfy delivers not just a dating app, but a secure, scalable, and delightful space for creating meaningful connections. 🌟  
+
+
 ## App Screenshots
 
 Here are some screenshots from our app to give you a glimpse of its design and functionality.
