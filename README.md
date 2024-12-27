@@ -2,9 +2,9 @@
 
 <img width="300px" align="left" src="./doc/main_logo.png" />
 
-Welcome to **Passionfy**, a sleek and dynamic app designed to help you discover connections, explore shared interests, and spark meaningful relationships! 🌟 Built exclusively for **iOS 16** using the powerful **SwiftUI**, Passionfy offers a feature-rich experience with eye-catching design and smooth animations. 🎉
+Welcome to **Passionfy** — a vibrant and innovative app crafted to help you forge connections, uncover shared passions, and ignite meaningful relationships! 🌟 Designed exclusively for **iOS 16** with the cutting-edge **SwiftUI**, Passionfy combines elegance, functionality, and seamless animations to deliver a truly engaging experience. 🎉
 
-This app is powered by **SwiftUI**, Apple's declarative framework for building modern user interfaces, and follows **Clean Code** principles to ensure scalability, maintainability, and high performance. 
+Built on the foundation of **SwiftUI**, Apple’s revolutionary declarative framework for modern UI development, Passionfy adheres to **Clean Code principles**, ensuring a robust, scalable, and high-performance architecture. Whether you’re exploring potential matches or diving into shared interests, Passionfy offers a polished, intuitive, and feature-rich platform to make every interaction meaningful. ❤️✨
 
 I would like to express my sincere gratitude to the [AppStuff](https://www.youtube.com/@appstuff5778) YouTube channel for providing such valuable resources. I used one of the channel’s videos as a key learning tool and starting point for developing my SwiftUI app. The tutorial was incredibly helpful in understanding UI development, and it gave me a solid foundation to build upon. Since then, I’ve made significant modifications to the app with my own architecture approach and added new features. Your content has been a huge inspiration and has played a key role in my progress. Thanks again for all the help!
 
