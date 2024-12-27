@@ -283,6 +283,7 @@ Template mockup from https://previewed.app/template/AFC0B4CB
 
 ## Visitors Count
 
+<img width="auto" src="https://profile-counter.glitch.me/passionfy/count.svg" />
 
 ## Please Share & Star the repository to keep me motivated.
 <a href = "https://github.com/sergio11/passionfy/stargazers">
