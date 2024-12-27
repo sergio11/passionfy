@@ -69,6 +69,8 @@ Stay flexible with your information:
 
 Passionfy combines robust functionality with an elegant interface to create an app that’s not just about finding matches but also about celebrating individuality, safety, and meaningful connections. Dive in and start your journey today! 💕✨  
 
+<img src="doc/screenshots/picture_68.png" />
+
 ## 👩‍💻 Technical Highlights  
 
 Passionfy leverages modern technologies and best practices to deliver a seamless, robust, and engaging experience. Here’s what makes the app stand out from a technical perspective:  
@@ -261,6 +263,9 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 <img width="260px" align="left" src="doc/screenshots/picture_64.png" />
 <img width="260px" align="left" src="doc/screenshots/picture_65.png" />
 <img width="260px" src="doc/screenshots/picture_66.png" />
+
+<img width="260px" align="left" src="doc/screenshots/picture_67.png" />
+<img width="260px"  src="doc/screenshots/picture_68.png" />
 
 ## Contributing 🤝
 
