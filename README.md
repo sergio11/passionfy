@@ -18,6 +18,8 @@ This app, **Passionfy**, includes images and resources designed by [Freepik](htt
   <img src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black" />
 </p>
 
+Slides are built using the  template from [Previewed](https://previewed.app/template/AFC0B4CB). I extend my gratitude to them for their remarkable work and contribution.
+
 
 ## ✨ Features That Make Passionfy Unique  
 
