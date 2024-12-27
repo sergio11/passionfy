@@ -69,7 +69,7 @@ Stay flexible with your information:
 
 Passionfy combines robust functionality with an elegant interface to create an app that’s not just about finding matches but also about celebrating individuality, safety, and meaningful connections. Dive in and start your journey today! 💕✨  
 
-<img src="doc/screenshots/picture_68.png" />
+<img src="doc/screenshots/picture_69.png" />
 
 ## 👩‍💻 Technical Highlights  
 
