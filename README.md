@@ -19,23 +19,46 @@ This app, **Passionfy**, includes images and resources designed by [Freepik](htt
 </p>
 
 
-## ✨ Features That Make Passionfy Unique:
-- **Create Your Profile**:  
-  🎂 Share your age  
-  🌍 Specify your location  
-  🎨 Highlight your hobbies and interests  
-  🏳️‍🌈 Indicate your sexual orientation  
-  📸 Upload multiple photos to showcase your best self!  
+## ✨ Features That Make Passionfy Unique  
 
-- **Explore & Match**:  
-  🔍 Browse through profiles tailored to your preferences  
-  ❤️ Connect with people who share your vibe  
+Passionfy is thoughtfully designed to offer a seamless and enjoyable experience for creating meaningful connections. Here’s a detailed look at the features that make it stand out:  
 
-- **Chat with Matches**:  
-  💬 Enjoy real-time, private conversations with your matches  
+### 👤 **Create a Fully Personalized Profile**  
+Showcase your personality and preferences with an in-depth profile creation process:  
+- **📛 Username:** Choose a unique name that represents you.  
+- **🎂 Age:** Share your age to help find compatible matches.  
+- **🚻 Gender & 🏳️‍🌈 Orientation:** Specify your gender, sexual orientation, and the gender of your ideal partner for tailored matching.  
+- **🎨 Hobbies:** Highlight your passions and interests to connect with like-minded individuals.  
+- **🌍 Location:** Provide your location to discover matches near you, ensuring proximity and convenience.  
+- **💑 Relationship Preferences:** Indicate the type of relationship you’re seeking, whether casual or long-term.  
+- **📸 Photo Gallery:** Upload up to **6 photos** to showcase your best self.  
+- **👔 Occupation:** Add your profession to give your profile a personal touch.  
 
-- **Emojis & Personalization**:  
-  ✨ A touch of fun with emojis across the app to keep interactions light and lively  
+### 🔒 **Secure and Convenient Login**  
+- **📱 OTP Login:** Enjoy a hassle-free and secure sign-in experience using a one-time password sent to your mobile phone.  
+
+### 🔍 **Explore & Discover**  
+Passionfy makes finding connections both engaging and intuitive:  
+- **🖼️ Browse Profiles:** Explore detailed profiles of other users, complete with their photos, hobbies, and preferences.  
+- **🎮 Swipe to Match:** Play the swipe game to find your perfect match — swipe right if you're interested, left to pass.  
+
+### 💬 **Real-Time Chat with Matches**  
+Keep the conversation flowing with smooth and reliable messaging:  
+- **📨 Instant Messaging:** Chat in real-time with your matches for seamless communication.  
+- **📷 Multimedia Support:** Share photos and emojis to make conversations more vibrant and personal.  
+
+### 🔒 **Safety and Moderation Tools**  
+Passionfy prioritizes user safety and provides tools to maintain a respectful environment:  
+- **🚨 Report Profiles:** Quickly flag inappropriate behavior or content.  
+- **🚫 Block Users:** Take control of your experience by blocking profiles you no longer want to interact with.  
+
+### 🛠️ **Edit Your Profile Anytime**  
+Stay flexible with your information:  
+- **🔄 Profile Management:** Update any details you provided during the onboarding process, including photos, preferences, and personal info.  
+
+
+Passionfy combines robust functionality with an elegant interface to create an app that’s not just about finding matches but also about celebrating individuality, safety, and meaningful connections. Dive in and start your journey today! 💕✨  
+
 
 ## 👩‍💻 Technical Highlights:
 - **SwiftUI Framework**:  
