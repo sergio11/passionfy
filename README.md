@@ -279,6 +279,9 @@ This app, **Passionfy**, includes images and resources designed by [Freepik](htt
 
 I would like to express my sincere gratitude to the [AppStuff](https://www.youtube.com/@appstuff5778) YouTube channel for providing such valuable resources. I used one of the channel’s videos as a key learning tool and starting point for developing my SwiftUI app. The tutorial was incredibly helpful in understanding UI development, and it gave me a solid foundation to build upon. Since then, I’ve made significant modifications to the app with my own architecture approach and added new features. Your content has been a huge inspiration and has played a key role in my progress. Thanks again for all the help!
 
+We would like to express our sincere thanks to **Smartsheet Inc.** and **Rodrigo Fuenzalida** for designing the **Outfit** typeface, which we have used in this project. The font is licensed under the **SIL Open Font License, Version 1.1**, and we acknowledge and appreciate the freedom it provides for creative use and collaboration. For more information on the font and its license, please visit [Outfit Font GitHub](https://github.com/Outfitio/Outfit-Fonts) and [SIL Open Font License](https://openfontlicense.org).
+
+
 Template mockup from https://previewed.app/template/AFC0B4CB
 
 ## Visitors Count
