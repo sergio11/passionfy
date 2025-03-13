@@ -6,7 +6,7 @@ Welcome to **Passionfy** — a vibrant and innovative app crafted to help you fo
 
 Built on the foundation of **SwiftUI**, Apple’s revolutionary declarative framework for modern UI development, Passionfy adheres to **Clean Code principles**, ensuring a robust, scalable, and high-performance architecture. Whether you’re exploring potential matches or diving into shared interests, Passionfy offers a polished, intuitive, and feature-rich platform to make every interaction meaningful. ❤️✨
 
-I would like to express my sincere gratitude to the [AppStuff](https://www.youtube.com/@appstuff5778) YouTube channel for providing such valuable resources. I used one of the channel’s videos as a key learning tool and starting point for developing my SwiftUI app. The tutorial was incredibly helpful in understanding UI development, and it gave me a solid foundation to build upon. Since then, I’ve made significant modifications to the app with my own architecture approach and added new features. Your content has been a huge inspiration and has played a key role in my progress. Thanks again for all the help!
+I would like to express my sincere gratitude to the [AppStuff](https://www.youtube.com/@appstuff) YouTube channel for providing such valuable resources. I used one of the channel’s videos as a key learning tool and starting point for developing my SwiftUI app. The tutorial was incredibly helpful in understanding UI development, and it gave me a solid foundation to build upon. Since then, I’ve made significant modifications to the app with my own architecture approach and added new features. Your content has been a huge inspiration and has played a key role in my progress. Thanks again for all the help!
 
 This app, **Passionfy**, includes images and resources designed by [Freepik](https://www.freepik.com). We would like to acknowledge and thank Freepik for their incredible design assets. The images used in the app are provided with attribution, as required by Freepik's licensing terms. For more information on Freepik's resources, please visit [www.freepik.com](https://www.freepik.com).
 
@@ -29,6 +29,13 @@ This app, **Passionfy**, includes images and resources designed by [Freepik](htt
 
 Slides are built using the  template from [Previewed](https://previewed.app/template/AFC0B4CB). I extend my gratitude to them for their remarkable work and contribution.
 
+## ⚠️ Disclaimer
+
+**Passionfy** is an **educational and experimental project** developed for exploring and demonstrating modern iOS app development using **SwiftUI**. The primary goal of this project is to provide a polished example of how to create engaging, intuitive, and feature-rich applications for iOS 16 using Apple's SwiftUI framework.
+
+The name **"Passionfy"** and the logo were both generated as part of a **brainstorming session with AI**, and any resemblance to existing brands or services is purely coincidental. The app and its design are intended solely for **educational and personal development purposes**. It is not intended for commercial use or deployment in a production environment.
+
+This repository is intended to inspire developers, showcase SwiftUI’s capabilities, and provide hands-on experience with UI design, animations, and app architecture. **Passionfy** is not intended to offer real matchmaking services or manage user data in any production context.
 
 ## ✨ Features That Make Passionfy Unique  
 
@@ -266,6 +273,14 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 
 <img width="260px" align="left" src="doc/screenshots/picture_67.png" />
 <img width="260px"  src="doc/screenshots/picture_68.png" />
+
+## ⚠️ Disclaimer
+
+**Passionfy** is an **educational and experimental project** developed for exploring and demonstrating modern iOS app development using **SwiftUI**. The primary goal of this project is to provide a polished example of how to create engaging, intuitive, and feature-rich applications for iOS 16 using Apple's SwiftUI framework.
+
+The name **"Passionfy"** and the logo were both generated as part of a **brainstorming session with AI**, and any resemblance to existing brands or services is purely coincidental. The app and its design are intended solely for **educational and personal development purposes**. It is not intended for commercial use or deployment in a production environment.
+
+This repository is intended to inspire developers, showcase SwiftUI’s capabilities, and provide hands-on experience with UI design, animations, and app architecture. **Passionfy** is not intended to offer real matchmaking services or manage user data in any production context.
 
 ## Contributing 🤝
 
