@@ -1,6 +1,6 @@
 # Passionfy 💕✨ - Where Love Begins 🌟❤️
 
-<img width="300px" align="left" src="./doc/main_logo.png" />
+<img width="300px" align="left" src="./doc/passionfy_logo.webp" />
 
 Welcome to **Passionfy** — a vibrant and innovative app crafted to help you forge connections, uncover shared passions, and ignite meaningful relationships! 🌟 Designed exclusively for **iOS 16** with the cutting-edge **SwiftUI**, Passionfy combines elegance, functionality, and seamless animations to deliver a truly engaging experience. 🎉
 
